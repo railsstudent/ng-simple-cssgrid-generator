@@ -1,0 +1,23 @@
+:host {
+    display: block;
+    margin: 1rem;
+}
+.container {
+    display: grid;
+    margin: 1rem 0;
+
+    > * {
+        border: 1px solid black;
+    }
+}
+
+.code {
+    border: 3px solid #dcdcdc;
+    padding: 1rem;
+
+    &-title {
+        margin: 1rem 0;
+        font-size: 1em;
+        text-decoration: underline;
+    }
+}
