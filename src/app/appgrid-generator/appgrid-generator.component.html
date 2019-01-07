@@ -32,7 +32,7 @@
                     <input type="number" matInput placeholder="min value" formControlName="minWidth" />
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-select placeholder="Unit" [value]="'px'">
+                    <mat-select placeholder="Unit" [value]="gridTemplateColumns.get('minUnit').value">
                         <mat-option *ngFor="let unit of units" [value]="unit"> {{ unit }} </mat-option>
                     </mat-select>
                 </mat-form-field>
