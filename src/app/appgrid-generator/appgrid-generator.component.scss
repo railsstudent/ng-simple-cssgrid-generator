@@ -2,6 +2,9 @@
     display: block;
     margin: 1rem;
 }
+
+$border-colour: #dcdcdc;
+
 .container {
     display: grid;
     margin: 1rem 0;
@@ -11,8 +14,33 @@
     }
 }
 
+section {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid $border-colour;
+    padding: 1rem;
+
+    > * {
+        margin-bottom: 1rem;
+    }
+
+    mat-radio-button {
+        margin-right: 1rem;
+    }
+
+    &.minwidth {
+        flex-direction: row;
+        padding: 0.25rem;
+
+        > * {
+            flex: 1 1 auto;
+            padding: 0.5rem;
+        }
+    }
+}
+
 .code {
-    border: 3px solid #dcdcdc;
+    border: 3px solid $border-colour;
     padding: 1rem;
 
     &-title {

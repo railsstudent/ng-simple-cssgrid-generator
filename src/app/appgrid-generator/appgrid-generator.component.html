@@ -1,4 +1,51 @@
-<p>appgrid-generator works!</p>
+<form [formGroup]="form" no-validate>
+    <form [formGroup]="gridTemplateColumns">
+        <section>
+            <p>Grid template columns</p>
+            <label>
+                Repeat:
+                <mat-radio-group formControlName="repeat">
+                    <mat-radio-button value="true" [checked]="gridTemplateColumns.get('repeat').value"
+                        >Yes</mat-radio-button
+                    >
+                    <mat-radio-button value="false" [checked]="!gridTemplateColumns.get('repeat').value"
+                        >No</mat-radio-button
+                    >
+                </mat-radio-group>
+            </label>
+            <mat-form-field *ngIf="gridTemplateColumns.get('repeat').value">
+                <input type="number" matInput placeholder="Number of columns" formControlName="numColumns" />
+            </mat-form-field>
+            <label>
+                Need MinMax:
+                <mat-radio-group formControlName="minmax">
+                    <mat-radio-button value="true" [checked]="gridTemplateColumns.get('minmax').value"
+                        >Yes</mat-radio-button
+                    >
+                    <mat-radio-button value="false" [checked]="!gridTemplateColumns.get('minmax').value"
+                        >No</mat-radio-button
+                    >
+                </mat-radio-group>
+            </label>
+            <section class="minwidth">
+                <mat-form-field>
+                    <input type="number" matInput placeholder="min value" formControlName="minWidth" />
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-select placeholder="Unit" [value]="'px'">
+                        <mat-option *ngFor="let unit of units" [value]="unit"> {{ unit }} </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </section>
+            <mat-form-field *ngIf="gridTemplateColumns.get('minmax').value">
+                <input type="number" matInput placeholder="max value" formControlName="maxWidth" />
+            </mat-form-field>
+        </section>
+    </form>
+</form>
+<pre>
+    {{ form.value | json }}
+</pre>
 
 <p class="code-title">CSS Code</p>
 <div class="code">
