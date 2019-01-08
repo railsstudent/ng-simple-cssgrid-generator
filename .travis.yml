@@ -1,0 +1,27 @@
+language: node_js
+cache:
+    yarn: true
+    directories:
+        - node_modules
+
+env:
+    global:
+        - GITHUB_ORG="https://GH_TOKEN@github.com"
+        - REPO_NAME="ng-dynamic-shapes"
+        - GITHUB_NAME="railsstudent"
+        - GITHUB_EMAIL="cleung334@gmail.com"
+
+before_script:
+    - yarn install
+
+script:
+    - echo "*** lint ***"
+    - yarn lint
+    - echo "*** Build production build ***"
+    - ng build --prod --base-href "https://railsstudent.github.io/ng-simple-cssgrid-generator/"
+    - echo "*** Deploy ng-simple-cssgrid-generator to github pages ****"
+    - ngh --repo="$GITHUB_ORG/$GITHUB_NAME/$REPO_NAME.git" --name="$GITHUB_NAME" --email="$GITHUB_EMAIL" --dir=dist/ng-simple-cssgrid-generator --no-silent
+
+branches:
+    only:
+        - master

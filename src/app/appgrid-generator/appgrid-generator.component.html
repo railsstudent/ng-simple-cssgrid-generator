@@ -1,120 +1,12 @@
 <form [formGroup]="form" no-validate>
-    <form [formGroup]="gridTemplateColumns">
-        <fieldset class="settings">
-            <legend>Grid template columns</legend>
-            <label>
-                Repeat:
-                <mat-radio-group formControlName="repeat">
-                    <mat-radio-button value="true" [checked]="gridTemplateColumns.get('repeat').value"
-                        >Yes</mat-radio-button
-                    >
-                    <mat-radio-button value="false" [checked]="!gridTemplateColumns.get('repeat').value"
-                        >No</mat-radio-button
-                    >
-                </mat-radio-group>
-            </label>
-            <mat-form-field *ngIf="gridTemplateColumns.get('repeat').value === 'true'">
-                <input type="number" matInput placeholder="Number of times" formControlName="numOfTimes" />
-            </mat-form-field>
-            <label>
-                Need MinMax:
-                <mat-radio-group formControlName="minmax">
-                    <mat-radio-button value="true" [checked]="gridTemplateColumns.get('minmax').value"
-                        >Yes</mat-radio-button
-                    >
-                    <mat-radio-button value="false" [checked]="!gridTemplateColumns.get('minmax').value"
-                        >No</mat-radio-button
-                    >
-                </mat-radio-group>
-            </label>
-            <section class="section-width">
-                <mat-form-field>
-                    <input type="number" matInput placeholder="Min value" formControlName="minWidth" />
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-select placeholder="Unit" formControlName="minUnit">
-                        <mat-option *ngFor="let unit of units" [value]="unit"> {{ unit }} </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field *ngIf="gridTemplateColumns.get('minmax').value === 'true'">
-                    <input
-                        type="number"
-                        matInput
-                        placeholder="Max value"
-                        formControlName="maxWidth"
-                        *ngIf="gridTemplateColumns.get('minmax').value === 'true'"
-                    />
-                </mat-form-field>
-                <mat-form-field *ngIf="gridTemplateColumns.get('minmax').value === 'true'">
-                    <mat-select
-                        placeholder="Unit"
-                        formControlName="maxUnit"
-                        *ngIf="gridTemplateColumns.get('minmax').value === 'true'"
-                    >
-                        <mat-option *ngFor="let unit of units" [value]="unit"> {{ unit }} </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </section>
-        </fieldset>
-    </form>
-    <form [formGroup]="gridTemplateRows">
-        <fieldset class="settings">
-            <legend>Grid template rows</legend>
-            <label>
-                Repeat:
-                <mat-radio-group formControlName="repeat">
-                    <mat-radio-button value="true" [checked]="gridTemplateRows.get('repeat').value"
-                        >Yes</mat-radio-button
-                    >
-                    <mat-radio-button value="false" [checked]="!gridTemplateRows.get('repeat').value"
-                        >No</mat-radio-button
-                    >
-                </mat-radio-group>
-            </label>
-            <mat-form-field *ngIf="gridTemplateRows.get('repeat').value === 'true'">
-                <input type="number" matInput placeholder="Number of columns" formControlName="numOfTimes" />
-            </mat-form-field>
-            <label>
-                Need MinMax:
-                <mat-radio-group formControlName="minmax">
-                    <mat-radio-button value="true" [checked]="gridTemplateRows.get('minmax').value"
-                        >Yes</mat-radio-button
-                    >
-                    <mat-radio-button value="false" [checked]="!gridTemplateRows.get('minmax').value"
-                        >No</mat-radio-button
-                    >
-                </mat-radio-group>
-            </label>
-            <section class="section-width">
-                <mat-form-field>
-                    <input type="number" matInput placeholder="Min value" formControlName="minWidth" />
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-select placeholder="Unit" formControlName="minUnit">
-                        <mat-option *ngFor="let unit of units" [value]="unit"> {{ unit }} </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field *ngIf="gridTemplateRows.get('minmax').value === 'true'">
-                    <input
-                        type="number"
-                        matInput
-                        placeholder="Max value"
-                        formControlName="maxWidth"
-                        *ngIf="gridTemplateRows.get('minmax').value === 'true'"
-                    />
-                </mat-form-field>
-                <mat-form-field *ngIf="gridTemplateRows.get('minmax').value === 'true'">
-                    <mat-select
-                        placeholder="Unit"
-                        formControlName="maxUnit"
-                        *ngIf="gridTemplateRows.get('minmax').value === 'true'"
-                    >
-                        <mat-option *ngFor="let unit of units" [value]="unit"> {{ unit }} </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </section>
-        </fieldset>
-    </form>
+    <app-grid-generator-form
+        [form]="gridTemplateColumns"
+        [legend]="'Grid template columns (custom)'"
+    ></app-grid-generator-form>
+    <app-grid-generator-form
+        [form]="gridTemplateRows"
+        [legend]="'Grid template rows (custom)'"
+    ></app-grid-generator-form>
 </form>
 <pre>
     {{ form.value | json }}
