@@ -21,6 +21,10 @@ export class AppGridGeneratorComponent implements OnInit {
 
     units = ['fr', 'em', 'px'];
 
+    styles = {
+        hide: false,
+    };
+
     constructor(private renderer: Renderer2, private fb: FormBuilder) {}
 
     ngOnInit() {
@@ -28,22 +32,47 @@ export class AppGridGeneratorComponent implements OnInit {
 
         this.form = this.fb.group({
             gridTemplateColumns: this.fb.group({
-                repeat: [false],
-                numColumns: [1],
-                minmax: [true],
+                repeat: ['false'],
+                numOfTimes: [1],
+                minmax: ['true'],
                 minWidth: [1],
-                minUnit: ['fr'],
+                minUnit: ['px'],
                 maxWidth: [1],
-                maxUnit: ['fr'],
+                maxUnit: ['px'],
+            }),
+            gridTemplateRows: this.fb.group({
+                repeat: ['false'],
+                numOfTimes: [1],
+                minmax: ['true'],
+                minWidth: [1],
+                minUnit: ['px'],
+                maxWidth: [1],
+                maxUnit: ['px'],
             }),
         });
 
         this.renderer.setStyle(this.grid.nativeElement, 'grid-template-columns', 'repeat(3, minmax(150px, 1fr))');
         this.renderer.setStyle(this.grid.nativeElement, 'grid-template-rows', 'repeat(2, 1fr)');
         this.renderer.setStyle(this.grid.nativeElement, 'grid-auto-flow', 'column');
+
+        this.gridTemplateColumns.get('repeat').valueChanges.subscribe(repeat => {
+            if (repeat === 'false') {
+                this.gridTemplateColumns.get('numOfTimes').setValue(1);
+            }
+        });
+
+        this.gridTemplateRows.get('repeat').valueChanges.subscribe(repeat => {
+            if (repeat === 'false') {
+                this.gridTemplateRows.get('numOfTimes').setValue(1);
+            }
+        });
     }
 
     get gridTemplateColumns() {
         return this.form.get('gridTemplateColumns');
+    }
+
+    get gridTemplateRows() {
+        return this.form.get('gridTemplateRows');
     }
 }
