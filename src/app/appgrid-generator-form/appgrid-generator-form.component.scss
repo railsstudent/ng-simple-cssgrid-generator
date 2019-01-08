@@ -1,0 +1,29 @@
+$border-colour: #dcdcdc;
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid $border-colour;
+    padding: 1rem;
+    margin: 1rem;
+
+    > * {
+        margin-bottom: 1rem;
+    }
+
+    mat-radio-button {
+        margin-right: 1rem;
+    }
+
+    .section-width {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 0.25rem;
+
+        > * {
+            flex: 1 1 auto;
+            padding: 0.5rem;
+        }
+    }
+}
