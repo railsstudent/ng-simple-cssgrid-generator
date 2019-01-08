@@ -7,7 +7,7 @@ cache:
 env:
     global:
         - GITHUB_ORG="https://GH_TOKEN@github.com"
-        - REPO_NAME="ng-dynamic-shapes"
+        - REPO_NAME="ng-simple-cssgrid-generator"
         - GITHUB_NAME="railsstudent"
         - GITHUB_EMAIL="cleung334@gmail.com"
 
