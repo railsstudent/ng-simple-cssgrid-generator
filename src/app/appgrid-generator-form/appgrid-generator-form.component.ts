@@ -18,5 +18,11 @@ export class AppGeneratorFormComponent implements OnInit {
 
     constructor() {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.form.get('repeat').valueChanges.subscribe(repeat => {
+            if (repeat === 'false') {
+                this.form.get('numOfTimes').setValue(1);
+            }
+        });
+    }
 }
