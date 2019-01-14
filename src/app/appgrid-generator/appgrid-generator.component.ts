@@ -16,9 +16,9 @@ interface IGridInfo {
     numOfTimes: number;
     minmax: string;
     minWidth: number;
-    minUnit: 'fr' | 'px' | 'em';
+    minUnit: 'fr' | 'px' | 'em' | '%';
     maxWidth: number;
-    maxUnit: 'fr' | 'px' | 'em';
+    maxUnit: 'fr' | 'px' | 'em' | '%';
 }
 
 @Component({
@@ -64,10 +64,6 @@ export class AppGridGeneratorComponent implements OnInit {
             }),
         });
 
-        // this.renderer.setStyle(this.grid.nativeElement, 'grid-template-columns', this.gridTemplateColumnsCss);
-        // this.renderer.setStyle(this.grid.nativeElement, 'grid-template-rows', this.gridTemplateRowsCss);
-        // this.renderer.setStyle(this.grid.nativeElement, 'grid-auto-flow', 'column');
-
         const gridTemplateColumns$ = (this.gridTemplateColumns.valueChanges as Observable<IGridInfo>).pipe(
             startWith({
                 repeat: 'false',
@@ -79,7 +75,6 @@ export class AppGridGeneratorComponent implements OnInit {
                 maxUnit: 'fr',
             } as IGridInfo),
             map(v => this.generateCss(v)),
-            tap(v => console.log(v)),
         );
 
         const gridTemplateRows$ = (this.gridTemplateRows.valueChanges as Observable<IGridInfo>).pipe(
@@ -93,7 +88,6 @@ export class AppGridGeneratorComponent implements OnInit {
                 maxUnit: 'fr',
             } as IGridInfo),
             map(v => this.generateCss(v)),
-            tap(v => console.log(v)),
         );
 
         combineLatest(gridTemplateColumns$, gridTemplateRows$)

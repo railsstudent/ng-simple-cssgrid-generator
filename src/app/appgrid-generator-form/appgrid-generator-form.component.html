@@ -7,10 +7,10 @@
                 <mat-radio-button value="true" [checked]="form.get('repeat').value">Yes</mat-radio-button>
                 <mat-radio-button value="false" [checked]="!form.get('repeat').value">No</mat-radio-button>
             </mat-radio-group>
+            <mat-form-field *ngIf="form.get('repeat').value === 'true'">
+                <input type="number" matInput placeholder="Number of times" formControlName="numOfTimes" />
+            </mat-form-field>
         </label>
-        <mat-form-field *ngIf="form.get('repeat').value === 'true'">
-            <input type="number" matInput placeholder="Number of times" formControlName="numOfTimes" />
-        </mat-form-field>
         <label>
             Need MinMax:
             <mat-radio-group formControlName="minmax">
@@ -24,7 +24,9 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-select placeholder="Unit" formControlName="minUnit">
-                    <mat-option *ngFor="let unit of units" [value]="unit"> {{ unit }} </mat-option>
+                    <ng-container *ngIf="(minUnits$ | async) as minUnits">
+                        <mat-option *ngFor="let unit of minUnits" [value]="unit"> {{ unit }} </mat-option>
+                    </ng-container>
                 </mat-select>
             </mat-form-field>
             <mat-form-field *ngIf="form.get('minmax').value === 'true'">

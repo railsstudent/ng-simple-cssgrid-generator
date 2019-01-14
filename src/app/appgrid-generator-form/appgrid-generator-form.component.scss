@@ -5,10 +5,14 @@ $border-colour: #dcdcdc;
     flex-direction: column;
     border: 3px solid $border-colour;
     padding: 1rem;
-    margin: 1rem;
+    margin: 1rem 0;
 
     > * {
         margin-bottom: 1rem;
+    }
+
+    legend {
+        margin-bottom: 0;
     }
 
     mat-radio-button {
@@ -20,10 +24,11 @@ $border-colour: #dcdcdc;
         flex-direction: row;
         flex-wrap: wrap;
         padding: 0.25rem;
+        margin-bottom: 0;
 
         > * {
             flex: 1 1 auto;
-            padding: 0.5rem;
+            padding: 0 0.5rem;
         }
     }
 }
