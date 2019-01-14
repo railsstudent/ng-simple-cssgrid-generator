@@ -6,6 +6,12 @@
 
 $border-colour: #dcdcdc;
 
+.dimensions {
+    mat-form-field {
+        margin: 0 0.5rem;
+    }
+}
+
 .container {
     display: grid;
     margin: 1rem 0;

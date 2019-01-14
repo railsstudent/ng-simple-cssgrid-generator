@@ -1,4 +1,12 @@
-<form [formGroup]="form" no-validate>
+<form [formGroup]="form" novalidate>
+    <section class="dimensions">
+        <mat-form-field>
+            <input type="number" matInput placeholder="Height in pixel" [min]="60" formControlName="heightInPixel" />
+        </mat-form-field>
+        <mat-form-field>
+            <input type="number" matInput placeholder="Number of divs" [min]="1" formControlName="numDivs" />
+        </mat-form-field>
+    </section>
     <app-grid-generator-form [form]="gridTemplateColumns" [legend]="'Grid template columns'"></app-grid-generator-form>
     <app-grid-generator-form [form]="gridTemplateRows" [legend]="'Grid template rows'"></app-grid-generator-form>
 </form>
@@ -6,6 +14,7 @@
 <p class="code-title">CSS Code</p>
 <div class="code">
     <p>{{ openCurly }}</p>
+    <p>&nbsp;&nbsp;height: {{ containerHeight }}px;</p>
     <p>&nbsp;&nbsp;{{ code }}</p>
     <p>&nbsp;&nbsp;grid-template-columns: {{ gridTemplateColumnsCss }}</p>
     <p>&nbsp;&nbsp;grid-template-rows: {{ gridTemplateRowsCss }}</p>
@@ -13,13 +22,7 @@
 </div>
 
 <div class="container" #grid>
-    <div>1</div>
-    <div>2</div>
-    <div>3</div>
-    <div>4</div>
-    <div>5</div>
-    <div>6</div>
-    <div>7</div>
-    <div>8</div>
-    <div>9</div>
+    <ng-container *ngIf="(numDivs$ | async) as totalDivs">
+        <div *ngFor="let x of totalDivs">{{ x }}</div>
+    </ng-container>
 </div>
