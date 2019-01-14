@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    ElementRef,
+    OnInit,
+    Renderer2,
+    ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { combineLatest, Observable } from 'rxjs';
 import { map, startWith, tap } from 'rxjs/operators';
@@ -23,11 +31,16 @@ export class AppGridGeneratorComponent implements OnInit {
     @ViewChild('grid')
     grid: ElementRef;
 
-    code = '';
+    code = 'display: grid';
+    gridTemplateColumnsCss = '';
+    gridTemplateRowsCss = '';
     form: FormGroup;
     units = ['fr', 'em', 'px'];
 
-    constructor(private renderer: Renderer2, private fb: FormBuilder) {}
+    openCurly = '{';
+    closeCurly = '}';
+
+    constructor(private renderer: Renderer2, private fb: FormBuilder, private cd: ChangeDetectorRef) {}
 
     ngOnInit() {
         this.form = this.fb.group({
@@ -51,9 +64,9 @@ export class AppGridGeneratorComponent implements OnInit {
             }),
         });
 
-        this.renderer.setStyle(this.grid.nativeElement, 'grid-template-columns', 'repeat(3,250px');
-        this.renderer.setStyle(this.grid.nativeElement, 'grid-template-rows', 'repeat(2, 1fr)');
-        this.renderer.setStyle(this.grid.nativeElement, 'grid-auto-flow', 'column');
+        // this.renderer.setStyle(this.grid.nativeElement, 'grid-template-columns', this.gridTemplateColumnsCss);
+        // this.renderer.setStyle(this.grid.nativeElement, 'grid-template-rows', this.gridTemplateRowsCss);
+        // this.renderer.setStyle(this.grid.nativeElement, 'grid-auto-flow', 'column');
 
         const gridTemplateColumns$ = (this.gridTemplateColumns.valueChanges as Observable<IGridInfo>).pipe(
             startWith({
@@ -65,7 +78,7 @@ export class AppGridGeneratorComponent implements OnInit {
                 maxWidth: 1,
                 maxUnit: 'fr',
             } as IGridInfo),
-            map(v => this.generateTrack(v)),
+            map(v => this.generateCss(v)),
             tap(v => console.log(v)),
         );
 
@@ -79,18 +92,24 @@ export class AppGridGeneratorComponent implements OnInit {
                 maxWidth: 1,
                 maxUnit: 'fr',
             } as IGridInfo),
-            map(v => this.generateTrack(v)),
+            map(v => this.generateCss(v)),
             tap(v => console.log(v)),
         );
 
         combineLatest(gridTemplateColumns$, gridTemplateRows$)
             .pipe(
                 tap(([gridTemplateColumns, gridTemplateRows]) => {
-                    this.code = `{
-                        display: grid;
-                        grid-template-columns: ${gridTemplateColumns};
-                        grid-template-rows: ${gridTemplateRows};
-                    }`;
+                    this.code = 'display: grid';
+                    this.gridTemplateColumnsCss = gridTemplateColumns;
+                    this.gridTemplateRowsCss = gridTemplateRows;
+
+                    this.renderer.setStyle(
+                        this.grid.nativeElement,
+                        'grid-template-columns',
+                        this.gridTemplateColumnsCss,
+                    );
+                    this.renderer.setStyle(this.grid.nativeElement, 'grid-template-rows', this.gridTemplateRowsCss);
+                    this.cd.markForCheck();
                 }),
             )
             .subscribe();
@@ -104,7 +123,7 @@ export class AppGridGeneratorComponent implements OnInit {
         return this.form.get('gridTemplateRows');
     }
 
-    private generateTrack(info: IGridInfo) {
+    private generateCss(info: IGridInfo) {
         const { repeat, numOfTimes, minmax, minWidth, minUnit, maxWidth, maxUnit } = info;
         let str = '';
         if (repeat === 'true') {

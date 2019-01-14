@@ -1,17 +1,15 @@
 <form [formGroup]="form" no-validate>
-    <app-grid-generator-form
-        [form]="gridTemplateColumns"
-        [legend]="'Grid template columns (custom)'"
-    ></app-grid-generator-form>
-    <app-grid-generator-form
-        [form]="gridTemplateRows"
-        [legend]="'Grid template rows (custom)'"
-    ></app-grid-generator-form>
+    <app-grid-generator-form [form]="gridTemplateColumns" [legend]="'Grid template columns'"></app-grid-generator-form>
+    <app-grid-generator-form [form]="gridTemplateRows" [legend]="'Grid template rows'"></app-grid-generator-form>
 </form>
 
 <p class="code-title">CSS Code</p>
 <div class="code">
-    <p>{{ code }}</p>
+    <p>{{ openCurly }}</p>
+    <p>&nbsp;&nbsp;{{ code }}</p>
+    <p>&nbsp;&nbsp;grid-template-columns: {{ gridTemplateColumnsCss }}</p>
+    <p>&nbsp;&nbsp;grid-template-rows: {{ gridTemplateRowsCss }}</p>
+    <p>{{ closeCurly }}</p>
 </div>
 
 <div class="container" #grid>
