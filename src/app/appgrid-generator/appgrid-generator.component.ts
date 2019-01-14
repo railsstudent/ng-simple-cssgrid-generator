@@ -109,7 +109,6 @@ export class AppGridGeneratorComponent implements OnInit {
                     this.containerHeight = containerHeight;
 
                     this.renderer.setStyle(this.grid.nativeElement, 'height', `${containerHeight}px`);
-
                     this.renderer.setStyle(
                         this.grid.nativeElement,
                         'grid-template-columns',
