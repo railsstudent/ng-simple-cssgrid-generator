@@ -59,10 +59,10 @@ export class AppGridGeneratorComponent implements OnInit {
                 maxUnit: ['fr'],
             }),
             gridTemplateRows: this.fb.group({
-                repeat: ['false'],
-                numOfTimes: new FormControl(1, { updateOn: 'blur' }),
+                repeat: ['true'],
+                numOfTimes: new FormControl(3, { updateOn: 'blur' }),
                 minmax: ['true'],
-                minWidth: new FormControl(10, { updateOn: 'blur' }),
+                minWidth: new FormControl(20, { updateOn: 'blur' }),
                 minUnit: ['px'],
                 maxWidth: new FormControl(1, { updateOn: 'blur' }),
                 maxUnit: ['fr'],
@@ -84,10 +84,10 @@ export class AppGridGeneratorComponent implements OnInit {
 
         const gridTemplateRows$ = (this.gridTemplateRows.valueChanges as Observable<IGridInfo>).pipe(
             startWith({
-                repeat: 'false',
-                numOfTimes: 1,
+                repeat: 'true',
+                numOfTimes: 3,
                 minmax: 'true',
-                minWidth: 10,
+                minWidth: 20,
                 minUnit: 'px',
                 maxWidth: 1,
                 maxUnit: 'fr',
