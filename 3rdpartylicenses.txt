@@ -365,9 +365,9 @@ MIT
 
 @angular/material/snack-bar
 
-@angular/material/form-field
-
 @angular/material/core
+
+@angular/material/form-field
 
 @angular/material/select
 
