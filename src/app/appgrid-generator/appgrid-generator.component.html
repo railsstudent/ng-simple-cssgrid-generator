@@ -6,6 +6,16 @@
         <mat-form-field>
             <input type="number" matInput placeholder="Number of divs" [min]="1" formControlName="numDivs" />
         </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Auto flow" formControlName="gridAutoFlow">
+                <mat-option *ngFor="let flow of gridAutoFlowChoices" [value]="flow"> {{ flow }} </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Grid gap" formControlName="gridAutoFlow">
+                <mat-option *ngFor="let flow of gridAutoFlowChoices" [value]="flow"> {{ flow }} </mat-option>
+            </mat-select>
+        </mat-form-field>
     </section>
     <app-grid-generator-form [form]="gridTemplateColumns" [legend]="'Grid template columns'"></app-grid-generator-form>
     <app-grid-generator-form [form]="gridTemplateRows" [legend]="'Grid template rows'"></app-grid-generator-form>

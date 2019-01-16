@@ -40,6 +40,7 @@ export class AppGridGeneratorComponent implements OnInit {
     openCurly = '{';
     closeCurly = '}';
     containerHeight = '';
+    gridAutoFlowChoices = ['row', 'column', 'dense', 'row dense', 'column dense'];
 
     numDivs$: Observable<number[]>;
 
@@ -49,6 +50,7 @@ export class AppGridGeneratorComponent implements OnInit {
         this.form = this.fb.group({
             heightInPixel: 60,
             numDivs: 3,
+            gridAutoFlow: 'row',
             gridTemplateColumns: this.fb.group({
                 repeat: ['false'],
                 numOfTimes: new FormControl(1, { updateOn: 'blur' }),
