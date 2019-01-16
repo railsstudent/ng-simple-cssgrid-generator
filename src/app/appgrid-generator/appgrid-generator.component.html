@@ -6,23 +6,36 @@
         <mat-form-field>
             <input type="number" matInput placeholder="Number of divs" [min]="1" formControlName="numDivs" />
         </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Grid auto flow" formControlName="gridAutoFlow">
+                <mat-option *ngFor="let flow of gridAutoFlowChoices" [value]="flow"> {{ flow }} </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field> <input type="number" matInput placeholder="Grid gap" formControlName="gap" /> </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Gap Unit" formControlName="gapUnit">
+                <mat-option *ngFor="let unit of gapUnits" [value]="unit"> {{ unit }} </mat-option>
+            </mat-select>
+        </mat-form-field>
     </section>
     <app-grid-generator-form [form]="gridTemplateColumns" [legend]="'Grid template columns'"></app-grid-generator-form>
     <app-grid-generator-form [form]="gridTemplateRows" [legend]="'Grid template rows'"></app-grid-generator-form>
 </form>
 
-<p class="code-title">CSS Code</p>
-<div class="code">
-    <p>{{ openCurly }}</p>
-    <p>&nbsp;&nbsp;height: {{ containerHeight }}px;</p>
-    <p>&nbsp;&nbsp;{{ code }}</p>
-    <p>&nbsp;&nbsp;grid-template-columns: {{ gridTemplateColumnsCss }}</p>
-    <p>&nbsp;&nbsp;grid-template-rows: {{ gridTemplateRowsCss }}</p>
-    <p>{{ closeCurly }}</p>
-</div>
-
 <div class="container" #grid>
     <ng-container *ngIf="(numDivs$ | async) as totalDivs">
         <div *ngFor="let x of totalDivs">{{ x }}</div>
     </ng-container>
+</div>
+
+<p class="code-title">CSS Code</p>
+<div class="code">
+    <p>{{ openCurly }}</p>
+    <p>&nbsp;&nbsp;height: {{ containerHeight }}</p>
+    <p>&nbsp;&nbsp;{{ code }}</p>
+    <p>&nbsp;&nbsp;grid-gap: {{ gridGapCss }}</p>
+    <p>&nbsp;&nbsp;grid-template-columns: {{ gridTemplateColumnsCss }}</p>
+    <p>&nbsp;&nbsp;grid-template-rows: {{ gridTemplateRowsCss }}</p>
+    <p>&nbsp;&nbsp;grid-auto-flow: {{ gridAutoFlow }}</p>
+    <p>{{ closeCurly }}</p>
 </div>

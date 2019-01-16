@@ -33,13 +33,17 @@ export class AppGridGeneratorComponent implements OnInit {
 
     form: FormGroup;
 
-    code = 'display: grid';
+    code = 'display: grid;';
     gridTemplateColumnsCss = '';
     gridTemplateRowsCss = '';
     units = ['fr', 'em', 'px'];
     openCurly = '{';
     closeCurly = '}';
     containerHeight = '';
+    gridAutoFlow = '';
+    gridGapCss = '';
+    gapUnits = ['px', '%', 'em'];
+    gridAutoFlowChoices = ['row', 'column', 'dense', 'row dense', 'column dense'];
 
     numDivs$: Observable<number[]>;
 
@@ -49,6 +53,9 @@ export class AppGridGeneratorComponent implements OnInit {
         this.form = this.fb.group({
             heightInPixel: 60,
             numDivs: 3,
+            gridAutoFlow: 'row',
+            gap: 0,
+            gapUnit: 'px',
             gridTemplateColumns: this.fb.group({
                 repeat: ['false'],
                 numOfTimes: new FormControl(1, { updateOn: 'blur' }),
@@ -98,23 +105,36 @@ export class AppGridGeneratorComponent implements OnInit {
         const containerHeight$ = this.form.get('heightInPixel').valueChanges.pipe(
             startWith(60),
             filter(v => v && v >= 60),
+            map(v => `${v}px`),
         );
 
-        combineLatest(gridTemplateColumns$, gridTemplateRows$, containerHeight$)
-            .pipe(
-                tap(([gridTemplateColumns, gridTemplateRows, containerHeight]) => {
-                    this.code = 'display: grid';
-                    this.gridTemplateColumnsCss = gridTemplateColumns;
-                    this.gridTemplateRowsCss = gridTemplateRows;
-                    this.containerHeight = containerHeight;
+        const gridAutoFlow$ = this.form.get('gridAutoFlow').valueChanges.pipe(
+            startWith('row'),
+            filter(v => !!v),
+        );
 
-                    this.renderer.setStyle(this.grid.nativeElement, 'height', `${containerHeight}px`);
-                    this.renderer.setStyle(
-                        this.grid.nativeElement,
-                        'grid-template-columns',
-                        this.gridTemplateColumnsCss,
-                    );
-                    this.renderer.setStyle(this.grid.nativeElement, 'grid-template-rows', this.gridTemplateRowsCss);
+        const gap$ = combineLatest(
+            this.form.get('gap').valueChanges.pipe(
+                startWith(0),
+                filter(v => v != null),
+            ),
+            this.form.get('gapUnit').valueChanges.pipe(startWith('px')),
+        ).pipe(map(([gap, unit]) => `${gap}${unit}`));
+
+        combineLatest(gridTemplateColumns$, gridTemplateRows$, containerHeight$, gridAutoFlow$, gap$)
+            .pipe(
+                tap(([gridTemplateColumns, gridTemplateRows, containerHeight, gridAutoFlow, gridGap]) => {
+                    this.gridTemplateColumnsCss = `${gridTemplateColumns};`;
+                    this.gridTemplateRowsCss = `${gridTemplateRows};`;
+                    this.containerHeight = `${containerHeight};`;
+                    this.gridAutoFlow = `${gridAutoFlow};`;
+                    this.gridGapCss = `${gridGap};`;
+
+                    this.renderer.setStyle(this.grid.nativeElement, 'height', containerHeight);
+                    this.renderer.setStyle(this.grid.nativeElement, 'grid-template-columns', gridTemplateColumns);
+                    this.renderer.setStyle(this.grid.nativeElement, 'grid-template-rows', gridTemplateRows);
+                    this.renderer.setStyle(this.grid.nativeElement, 'grid-auto-flow', gridAutoFlow);
+                    this.renderer.setStyle(this.grid.nativeElement, 'grid-gap', gridGap);
                     this.cd.markForCheck();
                 }),
             )
