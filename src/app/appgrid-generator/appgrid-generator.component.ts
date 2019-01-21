@@ -43,13 +43,13 @@ export class AppGridGeneratorComponent implements OnInit {
     ngOnInit() {
         this.form = this.fb.group({
             heightInPixel: 60,
-            numDivs: 3,
+            numDivs: 4,
             gridAutoFlow: 'row',
             gap: 0,
             gapUnit: 'px',
             gridTemplateColumns: this.fb.group({
-                repeat: ['false'],
-                numOfTimes: new FormControl(1, { updateOn: 'blur' }),
+                repeat: ['true'],
+                numOfTimes: new FormControl(2, { updateOn: 'blur' }),
                 minmax: ['true'],
                 minWidth: new FormControl(10, { updateOn: 'blur' }),
                 minUnit: ['px'],
@@ -58,7 +58,7 @@ export class AppGridGeneratorComponent implements OnInit {
             }),
             gridTemplateRows: this.fb.group({
                 repeat: ['true'],
-                numOfTimes: new FormControl(3, { updateOn: 'blur' }),
+                numOfTimes: new FormControl(2, { updateOn: 'blur' }),
                 minmax: ['true'],
                 minWidth: new FormControl(20, { updateOn: 'blur' }),
                 minUnit: ['px'],
@@ -69,8 +69,8 @@ export class AppGridGeneratorComponent implements OnInit {
 
         const gridTemplateColumns$ = (this.gridTemplateColumns.valueChanges as Observable<IGridInfo>).pipe(
             startWith({
-                repeat: 'false',
-                numOfTimes: 1,
+                repeat: 'true',
+                numOfTimes: 2,
                 minmax: 'true',
                 minWidth: 10,
                 minUnit: 'px',
@@ -83,7 +83,7 @@ export class AppGridGeneratorComponent implements OnInit {
         const gridTemplateRows$ = (this.gridTemplateRows.valueChanges as Observable<IGridInfo>).pipe(
             startWith({
                 repeat: 'true',
-                numOfTimes: 3,
+                numOfTimes: 2,
                 minmax: 'true',
                 minWidth: 20,
                 minUnit: 'px',
@@ -94,22 +94,22 @@ export class AppGridGeneratorComponent implements OnInit {
         );
 
         const containerHeight$ = this.form.get('heightInPixel').valueChanges.pipe(
-            startWith(60),
+            startWith(this.form.get('heightInPixel').value),
             filter(v => v && v >= 60),
             map(v => `${v}px`),
         );
 
         const gridAutoFlow$ = this.form.get('gridAutoFlow').valueChanges.pipe(
-            startWith('row'),
+            startWith(this.form.get('gridAutoFlow').value),
             filter(v => !!v),
         );
 
         const gap$ = combineLatest(
             this.form.get('gap').valueChanges.pipe(
-                startWith(0),
+                startWith(this.form.get('gap').value),
                 filter(v => v != null),
             ),
-            this.form.get('gapUnit').valueChanges.pipe(startWith('px')),
+            this.form.get('gapUnit').valueChanges.pipe(startWith(this.form.get('gapUnit').value)),
         ).pipe(map(([gap, unit]) => `${gap}${unit}`));
 
         combineLatest(gridTemplateColumns$, gridTemplateRows$, containerHeight$, gridAutoFlow$, gap$)
@@ -132,7 +132,7 @@ export class AppGridGeneratorComponent implements OnInit {
             .subscribe();
 
         this.numDivs$ = this.form.get('numDivs').valueChanges.pipe(
-            startWith(3),
+            startWith(this.form.get('numDivs').value),
             filter((v: number) => v && v > 0),
             map(v => {
                 const range = [];
