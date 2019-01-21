@@ -12,6 +12,14 @@ $border-colour: #dcdcdc;
     }
 }
 
+.section-form {
+    display: flex;
+    justify-content: space-between;
+    app-grid-generator-form {
+        flex: 0 0 48%;
+    }
+}
+
 .container {
     --containerHeight: 60px;
     --grid-gap: 0;
@@ -40,5 +48,14 @@ $border-colour: #dcdcdc;
         margin: 1rem 0;
         font-size: 1em;
         text-decoration: underline;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .section-form {
+        flex-direction: column;
+        app-grid-generator-form {
+            flex: 0 0 100%;
+        }
     }
 }

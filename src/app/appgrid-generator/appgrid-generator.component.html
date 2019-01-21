@@ -18,8 +18,13 @@
             </mat-select>
         </mat-form-field>
     </section>
-    <app-grid-generator-form [form]="gridTemplateColumns" [legend]="'Grid template columns'"></app-grid-generator-form>
-    <app-grid-generator-form [form]="gridTemplateRows" [legend]="'Grid template rows'"></app-grid-generator-form>
+    <section class="section-form">
+        <app-grid-generator-form
+            [form]="gridTemplateColumns"
+            [legend]="'Grid template columns'"
+        ></app-grid-generator-form>
+        <app-grid-generator-form [form]="gridTemplateRows" [legend]="'Grid template rows'"></app-grid-generator-form>
+    </section>
 </form>
 
 <div class="container" #grid>
