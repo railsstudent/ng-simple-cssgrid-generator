@@ -130,7 +130,8 @@ export class AppGridGeneratorComponent implements OnInit {
                     this.gridAutoFlow = `${gridAutoFlow};`;
                     this.gridGapCss = `${gridGap};`;
 
-                    this.renderer.setStyle(this.grid.nativeElement, 'height', containerHeight);
+                    this.grid.nativeElement.style.setProperty('--containerHeight', containerHeight);
+                    // this.renderer.setStyle(this.grid.nativeElement, 'height', containerHeight);
                     this.renderer.setStyle(this.grid.nativeElement, 'grid-template-columns', gridTemplateColumns);
                     this.renderer.setStyle(this.grid.nativeElement, 'grid-template-rows', gridTemplateRows);
                     this.renderer.setStyle(this.grid.nativeElement, 'grid-auto-flow', gridAutoFlow);

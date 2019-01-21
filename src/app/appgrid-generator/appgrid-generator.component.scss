@@ -13,7 +13,18 @@ $border-colour: #dcdcdc;
 }
 
 .container {
+    --containerHeight: 60px;
+    --gridGap: 0;
+    --gridTemplateColumns: gridTemplateColumns;
+    --gridTemplateRows: gridTemplateRows;
+    --gridAutoFlow: gridAutoFlow;
+
+    height: var(--containerHeight);
     display: grid;
+    grid-gap: var(--gridGap);
+    grid-template-columns: var(--gridTemplateColumns);
+    grid-template-rows: var(--gridTemplateRows);
+    grid-auto-flow: var(--gridAutoFlow);
     margin: 1rem 0;
 
     > * {
