@@ -21,14 +21,13 @@ $border-colour: #dcdcdc;
 
     .section-width {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-flow: row wrap;
         padding: 0.25rem;
         margin-bottom: 0;
 
         > * {
             flex: 1 1 auto;
-            padding: 0 0.5rem;
+            padding: 0 0.5rem 0 0;
         }
     }
 }

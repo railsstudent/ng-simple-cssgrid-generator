@@ -1,12 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    ElementRef,
-    OnInit,
-    Renderer2,
-    ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { combineLatest, Observable } from 'rxjs';
 import { filter, map, startWith, tap } from 'rxjs/operators';
@@ -33,7 +25,6 @@ export class AppGridGeneratorComponent implements OnInit {
 
     form: FormGroup;
 
-    code = 'display: grid;';
     gridTemplateColumnsCss = '';
     gridTemplateRowsCss = '';
     units = ['fr', 'em', 'px'];
@@ -47,7 +38,7 @@ export class AppGridGeneratorComponent implements OnInit {
 
     numDivs$: Observable<number[]>;
 
-    constructor(private renderer: Renderer2, private fb: FormBuilder, private cd: ChangeDetectorRef) {}
+    constructor(private fb: FormBuilder) {}
 
     ngOnInit() {
         this.form = this.fb.group({
@@ -130,13 +121,12 @@ export class AppGridGeneratorComponent implements OnInit {
                     this.gridAutoFlow = `${gridAutoFlow};`;
                     this.gridGapCss = `${gridGap};`;
 
-                    this.grid.nativeElement.style.setProperty('--containerHeight', containerHeight);
-                    // this.renderer.setStyle(this.grid.nativeElement, 'height', containerHeight);
-                    this.renderer.setStyle(this.grid.nativeElement, 'grid-template-columns', gridTemplateColumns);
-                    this.renderer.setStyle(this.grid.nativeElement, 'grid-template-rows', gridTemplateRows);
-                    this.renderer.setStyle(this.grid.nativeElement, 'grid-auto-flow', gridAutoFlow);
-                    this.renderer.setStyle(this.grid.nativeElement, 'grid-gap', gridGap);
-                    this.cd.markForCheck();
+                    const style = this.grid.nativeElement.style;
+                    style.setProperty('--containerHeight', containerHeight);
+                    style.setProperty('--grid-template-columns', gridTemplateColumns);
+                    style.setProperty('--grid-template-rows', gridTemplateRows);
+                    style.setProperty('--grid-auto-flow', gridAutoFlow);
+                    style.setProperty('--grid-gap', gridGap);
                 }),
             )
             .subscribe();
