@@ -10,7 +10,8 @@
     "e2e": "ng e2e",
     "pretty-quick:staged": "pretty-quick --staged",
     "build-ngh": "ng build --prod --base-href \"https://railsstudent.github.io/ng-simple-cssgrid-generator/\"",
-    "deploy": "npm run build-ngh && ngh --dir=dist/ng-simple-cssgrid-generator --no-silent"
+    "deploy": "npm run build-ngh && ngh --dir=dist/ng-simple-cssgrid-generator --no-silent",
+    "test-headless": "ng test --watch=false --browsers=ChromeHeadless"
   },
   "private": true,
   "dependencies": {
@@ -31,7 +32,7 @@
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.11.0",
+    "@angular-devkit/build-angular": "~0.12.0",
     "@angular/cli": "~7.1.0",
     "@angular/compiler-cli": "~7.1.0",
     "@angular/language-service": "~7.1.0",

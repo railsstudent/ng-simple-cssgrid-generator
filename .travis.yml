@@ -17,8 +17,11 @@ before_script:
 script:
     - echo "*** lint ***"
     - yarn lint
+    - echo "*** run tests in headless browser ***"
+    - yarn test-headless
     - echo "*** Build production build ***"
-    - ng build --prod --base-href "https://railsstudent.github.io/ng-simple-cssgrid-generator/"
+    #- ng build --prod --base-href "https://railsstudent.github.io/ng-simple-cssgrid-generator/"
+    - yarn build-ngh
     - echo "*** Deploy ng-simple-cssgrid-generator to github pages ****"
     - ngh --repo="$GITHUB_ORG/$GITHUB_NAME/$REPO_NAME.git" --name="$GITHUB_NAME" --email="$GITHUB_EMAIL" --dir=dist/ng-simple-cssgrid-generator --no-silent
 
