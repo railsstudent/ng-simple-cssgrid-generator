@@ -1,8 +1,12 @@
 language: node_js
+node_js:
+    - '8'
+
 cache:
     yarn: true
     directories:
         - node_modules
+        - dist/
 
 env:
     global:
@@ -11,19 +15,41 @@ env:
         - GITHUB_NAME="railsstudent"
         - GITHUB_EMAIL="cleung334@gmail.com"
 
+before_install:
+    - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.13.0
+    - export PATH="$HOME/.yarn/bin:$PATH"
+
 before_script:
     - yarn install
 
-script:
-    - echo "*** lint ***"
-    - yarn lint
-    - echo "*** run tests in headless browser ***"
-    - yarn test-headless
-    - echo "*** Build production build ***"
-    #- ng build --prod --base-href "https://railsstudent.github.io/ng-simple-cssgrid-generator/"
-    - yarn build-ngh
-    - echo "*** Deploy ng-simple-cssgrid-generator to github pages ****"
-    - ngh --repo="$GITHUB_ORG/$GITHUB_NAME/$REPO_NAME.git" --name="$GITHUB_NAME" --email="$GITHUB_EMAIL" --dir=dist/ng-simple-cssgrid-generator --no-silent
+stages:
+    - test
+    - build
+    - deploy
+
+jobs:
+    include:
+        - stage: test
+          script: yarn lint
+        - stage: test
+          script: yarn audit
+        - stage: test
+          script: yarn test-headless
+        - stage: build
+          script: yarn build-ngh
+        - stage: deploy
+          script: ngh --repo="$GITHUB_ORG/$GITHUB_NAME/$REPO_NAME.git" --name="$GITHUB_NAME" --email="$GITHUB_EMAIL" --dir=dist/ng-simple-cssgrid-generator --no-silent
+
+#script:
+#    - echo "*** lint ***"
+#    - yarn lint
+#    - echo "*** run tests in headless browser ***"
+#    - yarn test-headless
+#    - echo "*** Build production build ***"
+#- ng build --prod --base-href "https://railsstudent.github.io/ng-simple-cssgrid-generator/"
+#    - yarn build-ngh
+#    - echo "*** Deploy ng-simple-cssgrid-generator to github pages ****"
+#    - ngh --repo="$GITHUB_ORG/$GITHUB_NAME/$REPO_NAME.git" --name="$GITHUB_NAME" --email="$GITHUB_EMAIL" --dir=dist/ng-simple-cssgrid-generator --no-silent
 
 branches:
     only:
