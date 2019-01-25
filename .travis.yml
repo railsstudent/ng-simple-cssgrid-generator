@@ -23,22 +23,33 @@ before_script:
     - yarn install
 
 stages:
+    - lint
     - test
     - build
     - deploy
 
 jobs:
     include:
-        - stage: test
-          script: yarn lint
-        - stage: test
+        - stage: lint:
+          name: "Yarn audit and linting"
           script: yarn audit
+        - script: yarn lint
         - stage: test
+          name: "Headless browser testin"
           script: yarn test-headless
         - stage: build
+          name: "Build production code"
           script: yarn build-ngh
         - stage: deploy
+          name: "Deploy to Github Page"
           script: ngh --repo="$GITHUB_ORG/$GITHUB_NAME/$REPO_NAME.git" --name="$GITHUB_NAME" --email="$GITHUB_EMAIL" --dir=dist/ng-simple-cssgrid-generator --no-silent
+          deploy:
+              provider: pages
+              skip-cleanup: true
+              github-token: $GITHUB_TOKEN # Set in the settings page of your repository, as a secure variable
+              keep-history: true
+              on:
+                  branch: master
 
 #script:
 #    - echo "*** lint ***"

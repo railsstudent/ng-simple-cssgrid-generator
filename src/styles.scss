@@ -7,8 +7,7 @@
     margin: 0;
 }
 
-html,
-body {
+html {
     height: 100%;
 }
 body {
@@ -18,7 +17,6 @@ body {
 
 body {
     display: block;
-    width: 100vw;
-    /*    min-height: 100vh;*/
-    /*    border: 5px solid red;/*/
+    min-height: 100vh;
+    border: 5px solid red;
 }
