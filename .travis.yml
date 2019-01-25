@@ -31,17 +31,18 @@ stages:
 jobs:
     include:
         - stage: lint
-          name: 'Yarn audit and linting'
+          name: 'Yarn audit'
           script: yarn audit
+        - name: 'Linting'
         - script: yarn lint
         - stage: test
-          name: 'Headless browser testin'
+          name: 'Headless browser testing'
           script: yarn test-headless
         - stage: build
           name: 'Build production code'
           script: yarn build-ngh
         - stage: deploy
-          name: 'Deploy to Github Page'
+          name: 'Deploy to github page'
           script: ngh --repo="$GITHUB_ORG/$GITHUB_NAME/$REPO_NAME.git" --name="$GITHUB_NAME" --email="$GITHUB_EMAIL" --dir=dist/ng-simple-cssgrid-generator --no-silent
           deploy:
               provider: pages
