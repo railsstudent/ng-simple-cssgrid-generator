@@ -20,48 +20,14 @@ before_install:
     - export PATH="$HOME/.yarn/bin:$PATH"
 
 before_script:
-    - yarn install
+    - yarn install --pure-lockfile
 
-stages:
-    - lint
-    - test
-    - build
-    - deploy
-
-jobs:
-    include:
-        - stage: lint
-          name: 'Yarn audit'
-          script: yarn audit
-        - name: 'Linting'
-        - script: yarn lint
-        - stage: test
-          name: 'Headless browser testing'
-          script: yarn test-headless
-        - stage: build
-          name: 'Build production code'
-          script: yarn build-ngh
-        - stage: deploy
-          name: 'Deploy to github page'
-          script: ngh --repo="$GITHUB_ORG/$GITHUB_NAME/$REPO_NAME.git" --name="$GITHUB_NAME" --email="$GITHUB_EMAIL" --dir=dist/ng-simple-cssgrid-generator --no-silent
-          deploy:
-              provider: pages
-              skip-cleanup: true
-              github-token: $GITHUB_TOKEN # Set in the settings page of your repository, as a secure variable
-              keep-history: true
-              on:
-                  branch: master
-
-#script:
-#    - echo "*** lint ***"
-#    - yarn lint
-#    - echo "*** run tests in headless browser ***"
-#    - yarn test-headless
-#    - echo "*** Build production build ***"
-#- ng build --prod --base-href "https://railsstudent.github.io/ng-simple-cssgrid-generator/"
-#    - yarn build-ngh
-#    - echo "*** Deploy ng-simple-cssgrid-generator to github pages ****"
-#    - ngh --repo="$GITHUB_ORG/$GITHUB_NAME/$REPO_NAME.git" --name="$GITHUB_NAME" --email="$GITHUB_EMAIL" --dir=dist/ng-simple-cssgrid-generator --no-silent
+script:
+    - yarn audit
+    - yarn lint
+    - yarn test-headless
+    - yarn build-ngh
+    - ngh --repo="$GITHUB_ORG/$GITHUB_NAME/$REPO_NAME.git" --name="$GITHUB_NAME" --email="$GITHUB_EMAIL" --dir=dist/ng-simple-cssgrid-generator --no-silent
 
 branches:
     only:

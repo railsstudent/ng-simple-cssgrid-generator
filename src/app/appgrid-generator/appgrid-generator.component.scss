@@ -15,7 +15,7 @@ $border-colour: #dcdcdc;
     display: flex;
     justify-content: space-between;
     app-grid-generator-form {
-        flex: 0 0 48%;
+        flex: 0 0 49%;
     }
 }
 
@@ -24,7 +24,7 @@ $border-colour: #dcdcdc;
     --grid-gap: 0;
     --grid-template-columns: auto;
     --grid-template-rows: auto;
-    --grid-auto-flow: 'row';
+    --grid-auto-flow: row;
 
     height: var(--containerHeight);
     display: grid;

@@ -1,11 +1,11 @@
 div {
+    padding: 0.5rem 0;
     text-align: center;
-    color: goldenrod;
+    color: antiquewhite;
     font-size: 1.5rem;
     text-shadow: 0 0 2px black, 0 0 25px red, 0 0 5px palevioletred;
 }
 
 :host {
     display: block;
-    border: 1px solid blue;
 }

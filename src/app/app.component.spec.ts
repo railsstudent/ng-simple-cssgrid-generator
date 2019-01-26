@@ -20,16 +20,16 @@ describe('AppComponent', () => {
         expect(app).toBeTruthy();
     });
 
-    it(`should have as title 'Very Simple CSS Grid Generator'`, () => {
+    it(`should have as title 'Simple CSS Grid Generator'`, () => {
         const fixture = TestBed.createComponent(AppComponent);
         const app = fixture.debugElement.componentInstance;
-        expect(app.title).toEqual('Very Simple CSS Grid Generator');
+        expect(app.title).toEqual('Simple CSS Grid Generator');
     });
 
     it('should render title in a h1 tag', () => {
         const fixture = TestBed.createComponent(AppComponent);
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
-        expect(compiled.querySelector('h1').textContent).toContain('Very Simple CSS Grid Generator');
+        expect(compiled.querySelector('h1').textContent).toContain('Simple CSS Grid Generator');
     });
 });

@@ -7,7 +7,7 @@ import { Title } from '@angular/platform-browser';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-    title = 'Very Simple CSS Grid Generator';
+    title = 'Simple CSS Grid Generator';
 
     constructor(private titleService: Title) {}
 
