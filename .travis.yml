@@ -27,6 +27,8 @@ script:
     - yarn lint
     - yarn test-headless
     - yarn build-ngh
+
+after_success:
     - ngh --repo="$GITHUB_ORG/$GITHUB_NAME/$REPO_NAME.git" --name="$GITHUB_NAME" --email="$GITHUB_EMAIL" --dir=dist/ng-simple-cssgrid-generator --no-silent
 
 branches:
