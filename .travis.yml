@@ -23,7 +23,6 @@ script:
     - npm audit --audit-level=moderate
     - npm run lint
     - npm run test-headless
-    - npm run build-ngh
 
 after_success:
     - ng deploy --base-href="$BASE_HREF/$REPO_NAME/" --repo="$GITHUB_ORG/$GITHUB_NAME/$REPO_NAME.git" --name="$GITHUB_NAME" --email="$GITHUB_EMAIL" --no-silent
