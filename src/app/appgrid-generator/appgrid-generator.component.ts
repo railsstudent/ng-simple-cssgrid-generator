@@ -20,7 +20,7 @@ interface IGridInfo {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppGridGeneratorComponent implements OnInit {
-    @ViewChild('grid')
+    @ViewChild('grid', { static: true })
     grid: ElementRef;
 
     form: FormGroup;
@@ -104,15 +104,15 @@ export class AppGridGeneratorComponent implements OnInit {
             filter(v => !!v),
         );
 
-        const gap$ = combineLatest(
+        const gap$ = combineLatest([
             this.form.get('gap').valueChanges.pipe(
                 startWith(this.form.get('gap').value),
                 filter(v => v != null),
             ),
             this.form.get('gapUnit').valueChanges.pipe(startWith(this.form.get('gapUnit').value)),
-        ).pipe(map(([gap, unit]) => `${gap}${unit}`));
+        ]).pipe(map(([gap, unit]) => `${gap}${unit}`));
 
-        combineLatest(gridTemplateColumns$, gridTemplateRows$, containerHeight$, gridAutoFlow$, gap$)
+        combineLatest([gridTemplateColumns$, gridTemplateRows$, containerHeight$, gridAutoFlow$, gap$])
             .pipe(
                 tap(([gridTemplateColumns, gridTemplateRows, containerHeight, gridAutoFlow, gridGap]) => {
                     this.gridTemplateColumnsCss = `${gridTemplateColumns};`;

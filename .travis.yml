@@ -1,9 +1,9 @@
 language: node_js
 node_js:
-    - '8'
+    - '12'
 
 cache:
-    yarn: true
+    npm: true
     directories:
         - node_modules
         - dist/
@@ -14,22 +14,19 @@ env:
         - REPO_NAME="ng-simple-cssgrid-generator"
         - GITHUB_NAME="railsstudent"
         - GITHUB_EMAIL="cleung334@gmail.com"
-
-before_install:
-    - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.13.0
-    - export PATH="$HOME/.yarn/bin:$PATH"
+        - BASE_HREF="https://railsstudent.github.io"
 
 before_script:
-    - yarn install --pure-lockfile
+    - npm install
 
 script:
-    - yarn audit
-    - yarn lint
-    - yarn test-headless
-    - yarn build-ngh
+    - npm audit --audit-level=moderate
+    - npm run lint
+    - npm run test-headless
+    - npm run build-ngh
 
 after_success:
-    - ngh --repo="$GITHUB_ORG/$GITHUB_NAME/$REPO_NAME.git" --name="$GITHUB_NAME" --email="$GITHUB_EMAIL" --dir=dist/ng-simple-cssgrid-generator --no-silent
+    - ng deploy --base-href="$BASE_HREF/$REPO_NAME/" --repo="$GITHUB_ORG/$GITHUB_NAME/$REPO_NAME.git" --name="$GITHUB_NAME" --email="$GITHUB_EMAIL" --no-silent
 
 branches:
     only:
