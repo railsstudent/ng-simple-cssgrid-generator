@@ -29,7 +29,7 @@
 
 <div class="container" #grid>
     <ng-container *ngIf="(numDivs$ | async) as totalDivs">
-        <div *ngFor="let x of totalDivs">{{ x }}</div>
+        <div *ngFor="let x of totalDivs" class="css-row">{{ x }}</div>
     </ng-container>
 </div>
 

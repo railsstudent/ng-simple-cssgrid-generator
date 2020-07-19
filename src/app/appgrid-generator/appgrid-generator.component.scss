@@ -50,6 +50,13 @@ $border-colour: #dcdcdc;
     }
 }
 
+.css-row:nth-child(even) {
+    background: #ccc;
+}
+.css-row:nth-child(odd) {
+    background: chartreuse;
+}
+
 @media screen and (max-width: 600px) {
     .section-form {
         flex-direction: column;
