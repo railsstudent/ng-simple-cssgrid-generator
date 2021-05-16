@@ -1,4 +1,4 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
@@ -7,7 +7,7 @@ import { AppGridGeneratorComponent } from './appgrid-generator/appgrid-generator
 import { ShareModule } from './share.module';
 
 describe('AppComponent', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [AppComponent, AppGridGeneratorComponent, AppGeneratorFormComponent],
             imports: [ReactiveFormsModule, ShareModule, NoopAnimationsModule],
