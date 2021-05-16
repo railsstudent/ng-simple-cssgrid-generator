@@ -7,12 +7,14 @@ import { AppGridGeneratorComponent } from './appgrid-generator/appgrid-generator
 import { ShareModule } from './share.module';
 
 describe('AppComponent', () => {
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [AppComponent, AppGridGeneratorComponent, AppGeneratorFormComponent],
-            imports: [ReactiveFormsModule, ShareModule, NoopAnimationsModule],
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [AppComponent, AppGridGeneratorComponent, AppGeneratorFormComponent],
+                imports: [ReactiveFormsModule, ShareModule, NoopAnimationsModule],
+            }).compileComponents();
+        }),
+    );
 
     it('should create the app', () => {
         const fixture = TestBed.createComponent(AppComponent);

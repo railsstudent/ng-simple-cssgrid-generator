@@ -9,6 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "pretty-quick:staged": "pretty-quick --staged",
+    "pretty-quick": "pretty-quick",
     "test-headless": "ng test --watch=false --browsers=ChromeHeadless"
   },
   "private": true,
