@@ -10,7 +10,8 @@
             },
             "extends": [
                 "plugin:@angular-eslint/recommended",
-                "plugin:@angular-eslint/template/process-inline-templates"
+                "plugin:@angular-eslint/template/process-inline-templates",
+                "plugin:rxjs/recommended"
             ],
             "rules": {
                 "@angular-eslint/component-selector": [
@@ -28,7 +29,11 @@
                         "style": "camelCase",
                         "type": "attribute"
                     }
-                ]
+                ],
+                "rxjs/no-unsafe-takeuntil": "error",
+                "rxjs/no-unsafe-subject-next": "error",
+                "rxjs/no-async-subscribe": "error",
+                "rxjs/no-subject-unsubscribe": "error"
             }
         },
         {
