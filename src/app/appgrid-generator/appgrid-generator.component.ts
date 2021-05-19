@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { combineLatest, Observable } from 'rxjs';
-import { filter, map, startWith, tap } from 'rxjs/operators';
+import { combineLatest, Observable, Subject } from 'rxjs';
+import { filter, map, startWith, takeUntil, tap } from 'rxjs/operators';
 
 interface GridTemplateInfo {
     repeat: string;
@@ -27,7 +27,7 @@ interface GridForm {
     styleUrls: ['./appgrid-generator.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppGridGeneratorComponent implements OnInit {
+export class AppGridGeneratorComponent implements OnInit, OnDestroy {
     @ViewChild('grid', { static: true })
     grid: ElementRef;
 
@@ -45,6 +45,8 @@ export class AppGridGeneratorComponent implements OnInit {
     gridAutoFlowChoices = ['row', 'column', 'dense', 'row dense', 'column dense'];
 
     numDivs$: Observable<number[]>;
+
+    destroy$ = new Subject();
 
     constructor(private fb: FormBuilder) {}
 
@@ -87,7 +89,7 @@ export class AppGridGeneratorComponent implements OnInit {
                 maxWidth: 1,
                 maxUnit: 'fr',
             } as GridTemplateInfo),
-            map(v => this.generateCss(v)),
+            map(v => this.generateCss(v), takeUntil(this.destroy$)),
         );
 
         const gridTemplateRows$ = (this.gridTemplateRows.valueChanges as Observable<GridTemplateInfo>).pipe(
@@ -100,7 +102,7 @@ export class AppGridGeneratorComponent implements OnInit {
                 maxWidth: 1,
                 maxUnit: 'fr',
             } as GridTemplateInfo),
-            map(v => this.generateCss(v)),
+            map(v => this.generateCss(v), takeUntil(this.destroy$)),
         );
 
         const gridForm$ = (this.gridForm.valueChanges as Observable<GridForm>).pipe(
@@ -126,6 +128,7 @@ export class AppGridGeneratorComponent implements OnInit {
                     gridGap: `${gap}${gapUnit}`,
                 };
             }),
+            takeUntil(this.destroy$),
         );
 
         combineLatest([gridTemplateColumns$, gridTemplateRows$, gridForm$])
@@ -146,6 +149,7 @@ export class AppGridGeneratorComponent implements OnInit {
                     style.setProperty('--grid-auto-flow', gridAutoFlow);
                     style.setProperty('--grid-gap', gridGap);
                 }),
+                takeUntil(this.destroy$),
             )
             .subscribe();
 
@@ -159,6 +163,7 @@ export class AppGridGeneratorComponent implements OnInit {
                 }
                 return range;
             }),
+            takeUntil(this.destroy$),
         );
     }
 
@@ -195,5 +200,9 @@ export class AppGridGeneratorComponent implements OnInit {
             str += ')';
         }
         return str;
+    }
+
+    ngOnDestroy(): void {
+        this.destroy$.next();
     }
 }
