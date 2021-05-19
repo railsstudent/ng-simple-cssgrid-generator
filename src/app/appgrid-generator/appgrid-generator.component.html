@@ -20,10 +20,13 @@
     </section>
     <section class="section-form">
         <app-grid-generator-form
-            [form]="gridTemplateColumns"
+            formGroupName="gridTemplateColumns"
             [legend]="'Grid template columns'"
         ></app-grid-generator-form>
-        <app-grid-generator-form [form]="gridTemplateRows" [legend]="'Grid template rows'"></app-grid-generator-form>
+        <app-grid-generator-form
+            formGroupName="gridTemplateRows"
+            [legend]="'Grid template rows'"
+        ></app-grid-generator-form>
     </section>
 </form>
 

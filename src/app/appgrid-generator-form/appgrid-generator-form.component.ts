@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
@@ -11,19 +11,23 @@ import { map, startWith } from 'rxjs/operators';
 })
 export class AppGeneratorFormComponent implements OnInit {
     @Input()
-    form: FormGroup;
+    legend: string;
 
     @Input()
-    legend: string;
+    formGroupName: string;
 
     units = ['em', 'fr', '%', 'px'];
     unitsWithoutFlex = ['em', '%', 'px'];
 
     minUnits$: Observable<string[]>;
 
-    constructor() {}
+    form: FormGroup;
+
+    constructor(private rootFormGroup: FormGroupDirective) {}
 
     ngOnInit() {
+        this.form = this.rootFormGroup.control.get(this.formGroupName) as FormGroup;
+
         this.form.get('repeat').valueChanges.subscribe(repeat => {
             if (repeat === 'false') {
                 this.form.get('numOfTimes').setValue(1);
