@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { combineLatest, Observable } from 'rxjs';
 import { filter, map, startWith, tap } from 'rxjs/operators';
 
-interface IGridTemplateInfo {
+interface GridTemplateInfo {
     repeat: string;
     numOfTimes: number;
     minmax: string;
@@ -13,13 +13,13 @@ interface IGridTemplateInfo {
     maxUnit: 'fr' | 'px' | 'em' | '%';
 }
 
-// interface IGridInfo {
-//     heightInPixel: number;
-//     numDivs: number;
-//     gridAutoFlow: 'row' | 'column' | 'dense' | 'row dense' | 'column dense';
-//     gap: number;
-//     gapUnit: 'px' | 'em' | '%';
-// }
+interface GridForm {
+    heightInPixel: number;
+    numDivs: number;
+    gridAutoFlow: 'row' | 'column' | 'dense' | 'row dense' | 'column dense';
+    gap: number;
+    gapUnit: 'px' | 'em' | '%';
+}
 
 @Component({
     selector: 'app-grid-generator',
@@ -77,7 +77,7 @@ export class AppGridGeneratorComponent implements OnInit {
             }),
         });
 
-        const gridTemplateColumns$ = (this.gridTemplateColumns.valueChanges as Observable<IGridTemplateInfo>).pipe(
+        const gridTemplateColumns$ = (this.gridTemplateColumns.valueChanges as Observable<GridTemplateInfo>).pipe(
             startWith({
                 repeat: 'true',
                 numOfTimes: 2,
@@ -86,11 +86,11 @@ export class AppGridGeneratorComponent implements OnInit {
                 minUnit: 'px',
                 maxWidth: 1,
                 maxUnit: 'fr',
-            } as IGridTemplateInfo),
+            } as GridTemplateInfo),
             map(v => this.generateCss(v)),
         );
 
-        const gridTemplateRows$ = (this.gridTemplateRows.valueChanges as Observable<IGridTemplateInfo>).pipe(
+        const gridTemplateRows$ = (this.gridTemplateRows.valueChanges as Observable<GridTemplateInfo>).pipe(
             startWith({
                 repeat: 'true',
                 numOfTimes: 2,
@@ -99,32 +99,40 @@ export class AppGridGeneratorComponent implements OnInit {
                 minUnit: 'px',
                 maxWidth: 1,
                 maxUnit: 'fr',
-            } as IGridTemplateInfo),
+            } as GridTemplateInfo),
             map(v => this.generateCss(v)),
         );
 
-        const containerHeight$ = this.gridForm.get('heightInPixel').valueChanges.pipe(
-            startWith(this.gridForm.get('heightInPixel').value),
-            filter(v => v && v >= 60),
-            map(v => `${v}px`),
-        );
-
-        const gridAutoFlow$ = this.gridForm.get('gridAutoFlow').valueChanges.pipe(
-            startWith(this.gridForm.get('gridAutoFlow').value),
-            filter(v => !!v),
-        );
-
-        const gap$ = combineLatest([
-            this.gridForm.get('gap').valueChanges.pipe(
-                startWith(this.gridForm.get('gap').value),
-                filter(v => v != null),
+        const gridForm$ = (this.gridForm.valueChanges as Observable<GridForm>).pipe(
+            startWith({
+                heightInPixel: 60,
+                numDivs: 4,
+                gridAutoFlow: 'row',
+                gap: 0,
+                gapUnit: 'px',
+            } as GridForm),
+            filter(
+                value =>
+                    value.gap !== null &&
+                    !!value.gridAutoFlow &&
+                    value.heightInPixel != null &&
+                    value.heightInPixel >= 60,
             ),
-            this.gridForm.get('gapUnit').valueChanges.pipe(startWith(this.gridForm.get('gapUnit').value)),
-        ]).pipe(map(([gap, unit]) => `${gap}${unit}`));
+            map(value => {
+                const { heightInPixel, gridAutoFlow, gap, gapUnit } = value;
+                return {
+                    containerHeight: `${heightInPixel}px`,
+                    gridAutoFlow,
+                    gridGap: `${gap}${gapUnit}`,
+                };
+            }),
+        );
 
-        combineLatest([gridTemplateColumns$, gridTemplateRows$, containerHeight$, gridAutoFlow$, gap$])
+        combineLatest([gridTemplateColumns$, gridTemplateRows$, gridForm$])
             .pipe(
-                tap(([gridTemplateColumns, gridTemplateRows, containerHeight, gridAutoFlow, gridGap]) => {
+                tap(([gridTemplateColumns, gridTemplateRows, gridForm]) => {
+                    const { containerHeight, gridAutoFlow, gridGap } = gridForm;
+
                     this.gridTemplateColumnsCss = `${gridTemplateColumns};`;
                     this.gridTemplateRowsCss = `${gridTemplateRows};`;
                     this.containerHeight = `${containerHeight};`;
@@ -166,7 +174,7 @@ export class AppGridGeneratorComponent implements OnInit {
         return this.form.get('grid');
     }
 
-    private generateCss(info: IGridTemplateInfo) {
+    private generateCss(info: GridTemplateInfo) {
         const { repeat, numOfTimes, minmax, minWidth, minUnit, maxWidth, maxUnit } = info;
         let str = '';
         if (repeat === 'true') {
