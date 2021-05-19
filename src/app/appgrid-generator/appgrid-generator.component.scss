@@ -14,7 +14,7 @@ $border-colour: #dcdcdc;
 .section-form {
     display: flex;
     justify-content: space-between;
-    app-grid-generator-form {
+    .app-grid-template-form {
         flex: 0 0 49%;
     }
 }

@@ -1,11 +1,11 @@
 <form [formGroup]="form" novalidate>
     <section class="dimensions"><app-grid-form formGroupName="grid"></app-grid-form></section>
     <section class="section-form">
-        <app-grid-template-form
+        <app-grid-template-form class="app-grid-template-form"
             formGroupName="gridTemplateColumns"
             [legend]="'Grid template columns'"
         ></app-grid-template-form>
-        <app-grid-template-form
+        <app-grid-template-form class="app-grid-template-form"
             formGroupName="gridTemplateRows"
             [legend]="'Grid template rows'"
         ></app-grid-template-form>
