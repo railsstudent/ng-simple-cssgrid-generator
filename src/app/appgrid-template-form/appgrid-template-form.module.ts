@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ShareModule } from '../share.module';
-import { AppGeneratorFormComponent } from './appgrid-generator-form.component';
+import { AppTemplateFormComponent } from './appgrid-template-form.component';
 
 @NgModule({
-    declarations: [AppGeneratorFormComponent],
+    declarations: [AppTemplateFormComponent],
     imports: [ShareModule, ReactiveFormsModule],
-    exports: [AppGeneratorFormComponent],
+    exports: [AppTemplateFormComponent],
 })
-export class AppGeneratorFormModule {}
+export class AppTemplateFormModule {}

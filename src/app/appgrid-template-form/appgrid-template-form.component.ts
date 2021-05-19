@@ -4,12 +4,12 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 @Component({
-    selector: 'app-grid-generator-form',
-    templateUrl: './appgrid-generator-form.component.html',
-    styleUrls: ['./appgrid-generator-form.component.scss'],
+    selector: 'app-grid-template-form',
+    templateUrl: './appgrid-template-form.component.html',
+    styleUrls: ['./appgrid-template-form.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppGeneratorFormComponent implements OnInit {
+export class AppTemplateFormComponent implements OnInit {
     @Input()
     legend: string;
 
