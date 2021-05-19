@@ -1,0 +1,19 @@
+<ng-container class="dimensions" [formGroup]="form">
+    <mat-form-field>
+        <input type="number" matInput placeholder="Height in pixel" [min]="60" formControlName="heightInPixel" />
+    </mat-form-field>
+    <mat-form-field>
+        <input type="number" matInput placeholder="Number of divs" [min]="1" formControlName="numDivs" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Grid auto flow" formControlName="gridAutoFlow">
+            <mat-option *ngFor="let flow of gridAutoFlowChoices" [value]="flow"> {{ flow }} </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field> <input type="number" matInput placeholder="Grid gap" formControlName="gap" /> </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Gap Unit" formControlName="gapUnit">
+            <mat-option *ngFor="let unit of gapUnits" [value]="unit"> {{ unit }} </mat-option>
+        </mat-select>
+    </mat-form-field>
+</ng-container>
