@@ -20,7 +20,7 @@ before_script:
     - npm install
 
 script:
-    - npm audit --audit-level=moderate
+    - npm audit --audit-level=high
     - npm run lint
     - npm run test-headless
 
