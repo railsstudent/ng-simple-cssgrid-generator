@@ -2,24 +2,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, View
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { filter, map, startWith, takeUntil, tap } from 'rxjs/operators';
-
-interface GridTemplateInfo {
-    repeat: string;
-    numOfTimes: number;
-    minmax: string;
-    minWidth: number;
-    minUnit: 'fr' | 'px' | 'em' | '%';
-    maxWidth: number;
-    maxUnit: 'fr' | 'px' | 'em' | '%';
-}
-
-interface GridForm {
-    heightInPixel: number;
-    numDivs: number;
-    gridAutoFlow: 'row' | 'column' | 'dense' | 'row dense' | 'column dense';
-    gap: number;
-    gapUnit: 'px' | 'em' | '%';
-}
+import { autoflow, gapUnits, GridForm, GridTemplateInfo } from '../types';
 
 @Component({
     selector: 'app-grid-generator',
@@ -35,14 +18,13 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
 
     gridTemplateColumnsCss = '';
     gridTemplateRowsCss = '';
-    units = ['fr', 'em', 'px'];
     openCurly = '{';
     closeCurly = '}';
     containerHeight = '';
     gridAutoFlow = '';
     gridGapCss = '';
-    gapUnits = ['px', '%', 'em'];
-    gridAutoFlowChoices = ['row', 'column', 'dense', 'row dense', 'column dense'];
+    gapUnits = gapUnits;
+    gridAutoFlowChoices = autoflow;
 
     numDivs$: Observable<number[]>;
 
