@@ -2,7 +2,15 @@ import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, View
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { filter, map, startWith, takeUntil, tap } from 'rxjs/operators';
-import { autoflow, gapUnits, GridForm, GridTemplateInfo } from '../types';
+import { autoflow, ControlMapping, gapUnits, GridForm, GridTemplateInfo } from '../types';
+import {
+    gridControlNames,
+    gridFormStartWith,
+    gridTemplateColumnControlNames,
+    gridTemplateRowControlNames,
+    templateColumnsStartWith,
+    templateRowsStartWith,
+} from './constants';
 
 @Component({
     selector: 'app-grid-generator',
@@ -33,68 +41,30 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
     constructor(private fb: FormBuilder) {}
 
     ngOnInit() {
+        const fbGridGroup = this.createFormGroup(gridControlNames);
+        const fbTemplateColumnsGroup = this.createFormGroup(gridTemplateColumnControlNames);
+        const fbTemplateRowsGroup = this.createFormGroup(gridTemplateRowControlNames);
+
         this.form = this.fb.group({
-            grid: this.fb.group({
-                heightInPixel: new FormControl(60, { updateOn: 'blur' }),
-                numDivs: new FormControl(4, { updateOn: 'blur' }),
-                gridAutoFlow: 'row',
-                gap: 0,
-                gapUnit: 'px',
-            }),
-            gridTemplateColumns: this.fb.group({
-                repeat: ['true'],
-                numOfTimes: new FormControl(2, { updateOn: 'blur' }),
-                minmax: ['true'],
-                minWidth: new FormControl(10, { updateOn: 'blur' }),
-                minUnit: ['px'],
-                maxWidth: new FormControl(1, { updateOn: 'blur' }),
-                maxUnit: ['fr'],
-            }),
-            gridTemplateRows: this.fb.group({
-                repeat: ['true'],
-                numOfTimes: new FormControl(2, { updateOn: 'blur' }),
-                minmax: ['true'],
-                minWidth: new FormControl(20, { updateOn: 'blur' }),
-                minUnit: ['px'],
-                maxWidth: new FormControl(1, { updateOn: 'blur' }),
-                maxUnit: ['fr'],
-            }),
+            grid: this.fb.group(fbGridGroup),
+            gridTemplateColumns: this.fb.group(fbTemplateColumnsGroup),
+            gridTemplateRows: this.fb.group(fbTemplateRowsGroup),
         });
 
         const gridTemplateColumns$ = (this.gridTemplateColumns.valueChanges as Observable<GridTemplateInfo>).pipe(
-            startWith({
-                repeat: 'true',
-                numOfTimes: 2,
-                minmax: 'true',
-                minWidth: 10,
-                minUnit: 'px',
-                maxWidth: 1,
-                maxUnit: 'fr',
-            } as GridTemplateInfo),
-            map(v => this.generateCss(v), takeUntil(this.destroy$)),
+            startWith(templateColumnsStartWith),
+            map(v => this.generateCss(v)),
+            takeUntil(this.destroy$),
         );
 
         const gridTemplateRows$ = (this.gridTemplateRows.valueChanges as Observable<GridTemplateInfo>).pipe(
-            startWith({
-                repeat: 'true',
-                numOfTimes: 2,
-                minmax: 'true',
-                minWidth: 20,
-                minUnit: 'px',
-                maxWidth: 1,
-                maxUnit: 'fr',
-            } as GridTemplateInfo),
-            map(v => this.generateCss(v), takeUntil(this.destroy$)),
+            startWith(templateRowsStartWith),
+            map(v => this.generateCss(v)),
+            takeUntil(this.destroy$),
         );
 
         const gridForm$ = (this.gridForm.valueChanges as Observable<GridForm>).pipe(
-            startWith({
-                heightInPixel: 60,
-                numDivs: 4,
-                gridAutoFlow: 'row',
-                gap: 0,
-                gapUnit: 'px',
-            } as GridForm),
+            startWith(gridFormStartWith),
             filter(
                 value =>
                     value.gap !== null &&
@@ -146,6 +116,19 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
                 return range;
             }),
             takeUntil(this.destroy$),
+        );
+    }
+
+    createFormGroup(controlNames: ControlMapping): { [key: string]: any } {
+        return Object.keys(controlNames).reduce(
+            (acc, field) => {
+                const option = controlNames[field];
+                const { value, updateOn } = option;
+                const control = updateOn ? new FormControl(value, { updateOn }) : value;
+                acc[field] = control;
+                return acc;
+            },
+            {} as { [key: string]: any },
         );
     }
 
