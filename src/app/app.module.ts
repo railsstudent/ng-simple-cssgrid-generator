@@ -6,9 +6,9 @@ import { AppGeneratorModule } from './appgrid-generator'
 import { ShareModule } from './share.module'
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, AppGeneratorModule, BrowserAnimationsModule, ShareModule],
-  providers: [],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [BrowserModule, AppGeneratorModule, BrowserAnimationsModule, ShareModule],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}
