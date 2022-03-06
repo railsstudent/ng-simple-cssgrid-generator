@@ -31,10 +31,6 @@
                         "type": "attribute"
                     }
                 ],
-                "rxjs/no-unsafe-takeuntil": "error",
-                "rxjs/no-unsafe-subject-next": "error",
-                "rxjs/no-async-subscribe": "error",
-                "rxjs/no-subject-unsubscribe": "error",
                 "prettier/prettier": [
                     "error",
                     {
