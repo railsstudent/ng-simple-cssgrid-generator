@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { AbstractControl, FormGroup, FormGroupDirective } from '@angular/forms'
 import { Observable } from 'rxjs'
 import { map, startWith } from 'rxjs/operators'
-import { gapUnits, gridUnits } from '../types'
+import { GAP_UNITS, GRID_UNITS } from '../types'
 
 @Component({
   selector: 'app-grid-template-form',
@@ -17,10 +17,10 @@ export class AppTemplateFormComponent implements OnInit {
   @Input()
   formGroupName: string
 
-  units = gridUnits
-  unitsWithoutFlex = gapUnits
+  units = GRID_UNITS
+  unitsWithoutFlex = GAP_UNITS
 
-  minUnits$: Observable<typeof gapUnits | typeof gridUnits>
+  minUnits$: Observable<typeof GAP_UNITS | typeof GRID_UNITS>
 
   form: FormGroup
 

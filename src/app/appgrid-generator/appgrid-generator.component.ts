@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, View
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms'
 import { combineLatest, Observable, Subject } from 'rxjs'
 import { filter, map, startWith, takeUntil, tap } from 'rxjs/operators'
+import { AUTO_FLOW, ControlMapping, GAP_UNITS, GridForm, GridTemplateInfo } from '../types'
 import {
   gridControlNames,
   gridFormStartWith,
@@ -10,7 +11,6 @@ import {
   templateColumnsStartWith,
   templateRowsStartWith,
 } from './constants'
-import { autoflow, ControlMapping, gapUnits, GridForm, GridTemplateInfo } from '../types'
 
 @Component({
   selector: 'app-grid-generator',
@@ -31,8 +31,8 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
   containerHeight = ''
   gridAutoFlow = ''
   gridGapCss = ''
-  gapUnits = gapUnits
-  gridAutoFlowChoices = autoflow
+  gapUnits = GAP_UNITS
+  gridAutoFlowChoices = AUTO_FLOW
 
   numDivs$: Observable<number[]>
 

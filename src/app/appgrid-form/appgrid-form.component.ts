@@ -1,6 +1,6 @@
 import { FormGroup, FormGroupDirective } from '@angular/forms'
 import { Component, Input, OnInit } from '@angular/core'
-import { autoflow, gapUnits } from '../types'
+import { AUTO_FLOW, GAP_UNITS } from '../types'
 
 @Component({
   selector: 'app-grid-form',
@@ -13,8 +13,8 @@ export class AppgridFormComponent implements OnInit {
 
   form: FormGroup
 
-  gapUnits = gapUnits
-  gridAutoFlowChoices = autoflow
+  gapUnits = GAP_UNITS
+  gridAutoFlowChoices = AUTO_FLOW
 
   constructor(private rootFormGroup: FormGroupDirective) {}
 
