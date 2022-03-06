@@ -38,7 +38,7 @@
                     {
                         "printWidth": 140,
                         "trailingComma": "all",
-                        "tabWidth": 2,
+                        "tabWidth": 4,
                         "semi": false,
                         "singleQuote": true
                     }
