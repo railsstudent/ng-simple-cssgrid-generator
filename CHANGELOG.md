@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.2](https://github.com/railsstudent/ng-simple-cssgrid-generator/compare/0.0.1...0.0.2) (2022-03-06)
+
+
+### Features
+
+* appGridValueField component ([3f6d00c](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/3f6d00cf181ba08f51ed200b729b99b8775ec3de))
+
+
+### Bug fixes
+
+* errors caused by enabling strict mode ([690469f](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/690469f1a11f249c27329cf3e4ed0d78daf269ef))
+* lint errors ([b9ac89e](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/b9ac89e40659b5d4e27df8c6632db7db1c009391))
+* lint errors ([885d082](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/885d08227620481a3b790b9fad1badf9a92dff6d))
+* strict template errors ([1a7b9bd](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/1a7b9bd4448ef8affbd72b485b3de3a57c4aef3a))
+
 ### 0.0.1 (2022-03-06)
 
 
