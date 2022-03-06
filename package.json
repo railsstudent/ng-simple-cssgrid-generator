@@ -46,7 +46,7 @@
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
-    "angular-cli-ghpages": "^1.0.0-rc.1",
+    "angular-cli-ghpages": "^1.0.0",
     "eslint": "^7.26.0",
     "eslint-plugin-rxjs": "^3.3.0",
     "husky": "^6.0.0",
@@ -68,9 +68,5 @@
     "hooks": {
       "pre-commit": "run-s lint pretty-quick:staged"
     }
-  },
-  "volta": {
-    "node": "14.19.0",
-    "npm": "8.5.3"
   }
 }
