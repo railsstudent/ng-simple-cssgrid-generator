@@ -5,7 +5,6 @@ import { AUTO_FLOW, GAP_UNITS } from '../types'
 @Component({
     selector: 'app-grid-form',
     templateUrl: './appgrid-form.component.html',
-    styleUrls: ['./appgrid-form.component.scss'],
 })
 export class AppgridFormComponent implements OnInit {
     @Input()
