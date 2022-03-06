@@ -3,7 +3,13 @@ import { Title } from '@angular/platform-browser'
 
 @Component({
     selector: 'app-root',
-    templateUrl: './app.component.html',
+    template: `
+        <header>
+            <h1>{{ title }}</h1>
+        </header>
+        <app-grid-generator></app-grid-generator>
+        <footer>Version: 0.0.2</footer>
+    `,
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
@@ -12,6 +18,6 @@ export class AppComponent implements OnInit {
     constructor(private titleService: Title) {}
 
     ngOnInit() {
-        this.titleService.setTitle('Simple css grid generator')
+        this.titleService.setTitle(this.title)
     }
 }
