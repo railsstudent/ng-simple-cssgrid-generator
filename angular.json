@@ -104,8 +104,15 @@
                 },
                 "deploy": {
                     "builder": "angular-cli-ghpages:deploy",
-                    "options": {}
-                }
+                    "options": {
+                      "baseHref": "https://railsstudent.github.io/ng-simple-cssgrid-generator/",
+                      "name": "railsstudent",
+                      "email": "cleung334@gmail.com",
+                      "message": "Deploy to gh-pages by angular-cli-ghpages",
+                      "repo": "https://github.com/railsstudent/ng-simple-cssgrid-generator.git",
+                      "noSilent": true
+                    }
+                  }
             }
         },
         "ng-simple-cssgrid-generator-e2e": {

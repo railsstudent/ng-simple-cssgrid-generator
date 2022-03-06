@@ -12,8 +12,9 @@
     "pretty-quick:staged": "pretty-quick --staged",
     "pretty-quick": "pretty-quick",
     "test-headless": "ng test --watch=false --browsers=ChromeHeadless",
-    "deploy": "ng deploy --base-href='https://railsstudent.github.io/ng-simple-cssgrid-generator/' --repo='https://github.com/railsstudent/ng-simple-cssgrid-generator.git' --no-silent"
-  },
+    "deploy": "ng deploy",
+    "deploy:dryrun": "ng deploy --dry-run"
+},
   "private": true,
   "dependencies": {
     "@angular/animations": "~13.2.5",
