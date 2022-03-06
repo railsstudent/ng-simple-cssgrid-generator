@@ -32,46 +32,24 @@
             </mat-radio-group>
         </label>
         <section class="section-width">
-            <mat-form-field>
-                <input
-                    type="number"
-                    matInput
-                    placeholder="Min value"
-                    formControlName="minWidth"
-                />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-select placeholder="Unit" formControlName="minUnit">
-                    <ng-container *ngIf="minUnits$ | async as minUnits">
-                        <mat-option
-                            *ngFor="let unit of minUnits"
-                            [value]="unit"
-                        >
-                            {{ unit }}
-                        </mat-option>
-                    </ng-container>
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field *ngIf="minmax.value === 'true'">
-                <input
-                    type="number"
-                    matInput
-                    placeholder="Max value"
-                    formControlName="maxWidth"
-                    *ngIf="minmax.value === 'true'"
-                />
-            </mat-form-field>
-            <mat-form-field *ngIf="minmax.value === 'true'">
-                <mat-select
-                    placeholder="Unit"
-                    formControlName="maxUnit"
-                    *ngIf="minmax.value === 'true'"
-                >
-                    <mat-option *ngFor="let unit of units" [value]="unit">
-                        {{ unit }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
+            <app-grid-value-field
+                [formGroup]="form"
+                [controlName]="'minWidth'"
+                [unitControlName]="'minUnit'"
+                [unitList]="minUnits$ | async"
+                [placeholder]="'Min value'"
+                [unitPlaceholder]="'Unit'"
+            ></app-grid-value-field>
+            <app-grid-value-field
+                *ngIf="minmax.value === 'true'"
+                [formGroup]="form"
+                [controlName]="'maxWidth'"
+                [unitControlName]="'maxUnit'"
+                [unitList]="units"
+                [placeholder]="'Max value'"
+                [unitPlaceholder]="'Unit'"
+            >
+            </app-grid-value-field>
         </section>
     </fieldset>
 </ng-container>
