@@ -29,9 +29,9 @@ export class AppTemplateFormComponent implements OnInit {
     ngOnInit() {
         this.form = this.rootFormGroup.control.get(this.formGroupName) as FormGroup
 
-        this.form.get('repeat').valueChanges.subscribe((repeat) => {
+        this.repeat.valueChanges.subscribe((repeat) => {
             if (repeat === 'false') {
-                this.form.get('numOfTimes').setValue(1)
+                this.numOfTimes.setValue(1)
             }
         })
 
@@ -49,5 +49,13 @@ export class AppTemplateFormComponent implements OnInit {
 
     get minmax() {
         return this.form.get('minmax') as AbstractControl
+    }
+
+    get repeat() {
+        return this.form.get('repeat') as AbstractControl
+    }
+
+    get numOfTimes() {
+        return this.form.get('numOfTimes') as AbstractControl
     }
 }

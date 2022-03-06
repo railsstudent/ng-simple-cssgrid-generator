@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms'
+import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/forms'
 import { combineLatest, Observable, of, Subject } from 'rxjs'
 import { filter, map, startWith, takeUntil, tap } from 'rxjs/operators'
 import { ControlMapping, GridForm, GridTemplateInfo } from '../types'
@@ -103,9 +103,9 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
             takeUntil(this.destroy$),
         )
 
-        this.numDivs$ = this.gridForm.get('numDivs').valueChanges.pipe(
-            startWith(this.gridForm.get('numDivs').value),
-            filter((v: number) => v && v > 0),
+        this.numDivs$ = this.numOfDivs.valueChanges.pipe(
+            startWith(this.numOfDivs.value as number),
+            filter((v: number) => typeof v === 'number' && v > 0),
             map((numDivs) => Array.from({ length: numDivs }, (_, i) => i)),
             takeUntil(this.destroy$),
         )
@@ -122,15 +122,19 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
     }
 
     get gridTemplateColumns() {
-        return this.form.get('gridTemplateColumns')
+        return this.form.get('gridTemplateColumns') as AbstractControl
     }
 
     get gridTemplateRows() {
-        return this.form.get('gridTemplateRows')
+        return this.form.get('gridTemplateRows') as AbstractControl
     }
 
     get gridForm() {
-        return this.form.get('grid')
+        return this.form.get('grid') as AbstractControl
+    }
+
+    get numOfDivs() {
+        return this.gridForm.get('numDivs') as AbstractControl
     }
 
     private generateCss(info: GridTemplateInfo) {
