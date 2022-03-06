@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, View
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms'
 import { combineLatest, Observable, Subject } from 'rxjs'
 import { filter, map, startWith, takeUntil, tap } from 'rxjs/operators'
-import { autoflow, ControlMapping, gapUnits, GridForm, GridTemplateInfo } from '../types'
 import {
   gridControlNames,
   gridFormStartWith,
@@ -11,6 +10,7 @@ import {
   templateColumnsStartWith,
   templateRowsStartWith,
 } from './constants'
+import { autoflow, ControlMapping, gapUnits, GridForm, GridTemplateInfo } from '../types'
 
 @Component({
   selector: 'app-grid-generator',
