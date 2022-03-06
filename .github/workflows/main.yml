@@ -41,7 +41,7 @@ jobs:
       run: npm audit --audit-level=high
 
     - name: lint
-      run: npm lint
+      run: npm run lint
 
     - name: Build and Deploy Repo
       env:
