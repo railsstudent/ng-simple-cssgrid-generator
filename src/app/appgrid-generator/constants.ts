@@ -1,6 +1,6 @@
 import { ControlMapping, GridForm, GridTemplateInfo } from '../types'
 
-export const gridControlNames: ControlMapping = {
+export const GRID_CONTROL_NAMES: ControlMapping = {
   heightInPixel: {
     value: 60,
     updateOn: 'blur',
@@ -21,7 +21,7 @@ export const gridControlNames: ControlMapping = {
   },
 }
 
-const same: ControlMapping = {
+const DEFAULT_PROPERTIES: ControlMapping = {
   repeat: {
     value: 'true',
   },
@@ -44,23 +44,23 @@ const same: ControlMapping = {
   },
 }
 
-export const gridTemplateColumnControlNames: ControlMapping = {
-  ...same,
+export const GRID_TEMPLATE_COLUMN_CONTROL_NAMES: ControlMapping = {
+  ...DEFAULT_PROPERTIES,
   minWidth: {
     value: 10,
     updateOn: 'blur',
   },
 }
 
-export const gridTemplateRowControlNames: ControlMapping = {
-  ...same,
+export const GRID_TEMPLATE_ROW_COLUMN_NAMES: ControlMapping = {
+  ...DEFAULT_PROPERTIES,
   minWidth: {
     value: 20,
     updateOn: 'blur',
   },
 }
 
-export const templateColumnsStartWith: GridTemplateInfo = {
+export const TEMPLATE_COLUMNS_START_WITH: GridTemplateInfo = {
   repeat: 'true',
   numOfTimes: 2,
   minmax: 'true',
@@ -70,7 +70,7 @@ export const templateColumnsStartWith: GridTemplateInfo = {
   maxUnit: 'fr',
 }
 
-export const templateRowsStartWith: GridTemplateInfo = {
+export const TEMPLATE_ROWS_START_WITH: GridTemplateInfo = {
   repeat: 'true',
   numOfTimes: 2,
   minmax: 'true',
@@ -80,7 +80,7 @@ export const templateRowsStartWith: GridTemplateInfo = {
   maxUnit: 'fr',
 }
 
-export const gridFormStartWith: GridForm = {
+export const GRID_FORM_START_WITH: GridForm = {
   heightInPixel: 60,
   numDivs: 4,
   gridAutoFlow: 'row',

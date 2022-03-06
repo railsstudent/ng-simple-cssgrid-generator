@@ -4,12 +4,12 @@ import { combineLatest, Observable, Subject } from 'rxjs'
 import { filter, map, startWith, takeUntil, tap } from 'rxjs/operators'
 import { AUTO_FLOW, ControlMapping, GAP_UNITS, GridForm, GridTemplateInfo } from '../types'
 import {
-  gridControlNames,
-  gridFormStartWith,
-  gridTemplateColumnControlNames,
-  gridTemplateRowControlNames,
-  templateColumnsStartWith,
-  templateRowsStartWith,
+  GRID_CONTROL_NAMES,
+  GRID_FORM_START_WITH,
+  GRID_TEMPLATE_COLUMN_CONTROL_NAMES,
+  GRID_TEMPLATE_ROW_COLUMN_NAMES,
+  TEMPLATE_COLUMNS_START_WITH,
+  TEMPLATE_ROWS_START_WITH,
 } from './constants'
 
 @Component({
@@ -41,9 +41,9 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
-    const fbGridGroup = this.createFormGroup(gridControlNames)
-    const fbTemplateColumnsGroup = this.createFormGroup(gridTemplateColumnControlNames)
-    const fbTemplateRowsGroup = this.createFormGroup(gridTemplateRowControlNames)
+    const fbGridGroup = this.createFormGroup(GRID_CONTROL_NAMES)
+    const fbTemplateColumnsGroup = this.createFormGroup(GRID_TEMPLATE_COLUMN_CONTROL_NAMES)
+    const fbTemplateRowsGroup = this.createFormGroup(GRID_TEMPLATE_ROW_COLUMN_NAMES)
 
     this.form = this.fb.group({
       grid: this.fb.group(fbGridGroup),
@@ -52,19 +52,19 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
     })
 
     const gridTemplateColumns$ = (this.gridTemplateColumns.valueChanges as Observable<GridTemplateInfo>).pipe(
-      startWith(templateColumnsStartWith),
+      startWith(TEMPLATE_COLUMNS_START_WITH),
       map((v) => this.generateCss(v)),
       takeUntil(this.destroy$),
     )
 
     const gridTemplateRows$ = (this.gridTemplateRows.valueChanges as Observable<GridTemplateInfo>).pipe(
-      startWith(templateRowsStartWith),
+      startWith(TEMPLATE_ROWS_START_WITH),
       map((v) => this.generateCss(v)),
       takeUntil(this.destroy$),
     )
 
     const gridForm$ = (this.gridForm.valueChanges as Observable<GridForm>).pipe(
-      startWith(gridFormStartWith),
+      startWith(GRID_FORM_START_WITH),
       filter((value) => value.gap !== null && !!value.gridAutoFlow && value.heightInPixel != null && value.heightInPixel >= 60),
       map((value) => {
         const { heightInPixel, gridAutoFlow, gap, gapUnit } = value
