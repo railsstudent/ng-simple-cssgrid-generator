@@ -1,6 +1,6 @@
 {
     "version": "0.2",
     "language": "en",
-    "words": ["autoflow", "appgrid", "divs"],
+    "words": ["autoflow", "appgrid", "divs", "cssgrid"],
     "flagWords": ["hte"]
 }

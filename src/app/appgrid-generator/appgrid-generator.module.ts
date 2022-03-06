@@ -6,8 +6,8 @@ import { ShareModule } from '../share.module'
 import { AppGridGeneratorComponent } from './appgrid-generator.component'
 
 @NgModule({
-  declarations: [AppGridGeneratorComponent],
-  imports: [ShareModule, ReactiveFormsModule, AppTemplateFormModule, AppGridFormModule],
-  exports: [AppGridGeneratorComponent],
+    declarations: [AppGridGeneratorComponent],
+    imports: [ShareModule, ReactiveFormsModule, AppTemplateFormModule, AppGridFormModule],
+    exports: [AppGridGeneratorComponent],
 })
 export class AppGeneratorModule {}
