@@ -18,6 +18,13 @@
         "noUnusedParameters": true,
         "noImplicitReturns": true,
         "noImplicitAny": true,
-        "strict": true
+        "strict": true,
+        "strictPropertyInitialization": false
+    },
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false,
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true,
+        "strictTemplates": true
     }
 }
