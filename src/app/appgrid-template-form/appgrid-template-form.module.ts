@@ -4,8 +4,8 @@ import { ShareModule } from '../share.module'
 import { AppTemplateFormComponent } from './appgrid-template-form.component'
 
 @NgModule({
-  declarations: [AppTemplateFormComponent],
-  imports: [ShareModule, ReactiveFormsModule],
-  exports: [AppTemplateFormComponent],
+    declarations: [AppTemplateFormComponent],
+    imports: [ShareModule, ReactiveFormsModule],
+    exports: [AppTemplateFormComponent],
 })
 export class AppTemplateFormModule {}
