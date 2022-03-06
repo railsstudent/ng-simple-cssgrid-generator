@@ -1,0 +1,9 @@
+{
+    "types": [
+        { "type": "feat", "section": "Features" },
+        { "type": "fix", "section": "Bug fixes" }
+    ],
+    "scripts": {
+        "posttag": "git push --follow-tags --force"
+    }
+}
