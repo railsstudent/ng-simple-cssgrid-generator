@@ -20,7 +20,7 @@ export class AppTemplateFormComponent implements OnInit {
     units = GRID_UNITS
     unitsWithoutFlex = GAP_UNITS
 
-    minUnits$: Observable<typeof GAP_UNITS | typeof GRID_UNITS>
+    minUnits$: Observable<any>
 
     form: FormGroup
 
@@ -37,13 +37,7 @@ export class AppTemplateFormComponent implements OnInit {
 
         this.minUnits$ = this.minmax.valueChanges.pipe(
             startWith('true'),
-            map((value) => {
-                if (value === 'true') {
-                    return this.unitsWithoutFlex
-                } else {
-                    return this.units
-                }
-            }),
+            map((value) => (value === 'true' ? this.unitsWithoutFlex : this.units)),
         )
     }
 

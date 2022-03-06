@@ -4,43 +4,72 @@
         <label>
             Repeat:
             <mat-radio-group formControlName="repeat">
-                <mat-radio-button value="true" [checked]="form.get('repeat').value">Yes</mat-radio-button>
-                <mat-radio-button value="false" [checked]="!form.get('repeat').value">No</mat-radio-button>
+                <mat-radio-button value="true" [checked]="repeat.value"
+                    >Yes</mat-radio-button
+                >
+                <mat-radio-button value="false" [checked]="!repeat.value"
+                    >No</mat-radio-button
+                >
             </mat-radio-group>
-            <mat-form-field *ngIf="form.get('repeat').value === 'true'">
-                <input type="number" matInput placeholder="Number of times" formControlName="numOfTimes" />
+            <mat-form-field *ngIf="repeat.value === 'true'">
+                <input
+                    type="number"
+                    matInput
+                    placeholder="Number of times"
+                    formControlName="numOfTimes"
+                />
             </mat-form-field>
         </label>
         <label>
             Need MinMax:
             <mat-radio-group formControlName="minmax">
-                <mat-radio-button value="true" [checked]="form.get('minmax').value">Yes</mat-radio-button>
-                <mat-radio-button value="false" [checked]="!form.get('minmax').value">No</mat-radio-button>
+                <mat-radio-button value="true" [checked]="minmax.value"
+                    >Yes</mat-radio-button
+                >
+                <mat-radio-button value="false" [checked]="!minmax.value"
+                    >No</mat-radio-button
+                >
             </mat-radio-group>
         </label>
         <section class="section-width">
             <mat-form-field>
-                <input type="number" matInput placeholder="Min value" formControlName="minWidth" />
+                <input
+                    type="number"
+                    matInput
+                    placeholder="Min value"
+                    formControlName="minWidth"
+                />
             </mat-form-field>
             <mat-form-field>
                 <mat-select placeholder="Unit" formControlName="minUnit">
-                    <ng-container *ngIf="(minUnits$ | async) as minUnits">
-                        <mat-option *ngFor="let unit of minUnits" [value]="unit"> {{ unit }} </mat-option>
+                    <ng-container *ngIf="minUnits$ | async as minUnits">
+                        <mat-option
+                            *ngFor="let unit of minUnits"
+                            [value]="unit"
+                        >
+                            {{ unit }}
+                        </mat-option>
                     </ng-container>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field *ngIf="form.get('minmax').value === 'true'">
+            <mat-form-field *ngIf="minmax.value === 'true'">
                 <input
                     type="number"
                     matInput
                     placeholder="Max value"
                     formControlName="maxWidth"
-                    *ngIf="form.get('minmax').value === 'true'"
+                    *ngIf="minmax.value === 'true'"
                 />
             </mat-form-field>
-            <mat-form-field *ngIf="form.get('minmax').value === 'true'">
-                <mat-select placeholder="Unit" formControlName="maxUnit" *ngIf="form.get('minmax').value === 'true'">
-                    <mat-option *ngFor="let unit of units" [value]="unit"> {{ unit }} </mat-option>
+            <mat-form-field *ngIf="minmax.value === 'true'">
+                <mat-select
+                    placeholder="Unit"
+                    formControlName="maxUnit"
+                    *ngIf="minmax.value === 'true'"
+                >
+                    <mat-option *ngFor="let unit of units" [value]="unit">
+                        {{ unit }}
+                    </mat-option>
                 </mat-select>
             </mat-form-field>
         </section>
