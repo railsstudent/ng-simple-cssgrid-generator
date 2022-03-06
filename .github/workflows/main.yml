@@ -40,6 +40,9 @@ jobs:
     - name: audit
       run: npm audit --audit-level=high
 
+    - name: lint
+      run: npm lint
+
     - name: Build and Deploy Repo
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
