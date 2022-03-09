@@ -25,7 +25,7 @@ import { Component, Input, OnInit } from '@angular/core'
             }
 
             mat-form-field {
-                margin-right: 1rem;
+                margin-right: 0.5rem;
             }
         `,
     ],
