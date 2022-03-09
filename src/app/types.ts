@@ -1,11 +1,11 @@
 export const AUTO_FLOW = ['row', 'column', 'dense', 'row dense', 'column dense'] as const
 export type AutoFlowType = typeof AUTO_FLOW[number]
 
-export const GRID_UNITS = ['fr', 'px', 'em', '%'] as const
-export type GridUnitsType = typeof GRID_UNITS[number]
+export const GRID_UNITS = ['fr', 'px', 'em', '%']
+export type GridUnitsType = 'fr' | 'px' | 'em' | '%'
 
-export const GAP_UNITS = ['px', '%', 'em'] as const
-export type GapUnitsType = typeof GAP_UNITS[number]
+export const GAP_UNITS = ['px', '%', 'em']
+export type GapUnitsType = 'px' | 'em' | '%'
 
 export interface GridTemplateInfo {
     repeat: string

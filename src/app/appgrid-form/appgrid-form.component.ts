@@ -14,6 +14,10 @@ import { AUTO_FLOW, GAP_UNITS } from '../types'
             mat-form-field {
                 margin-right: 0.5rem;
             }
+
+            app-grid-value-field {
+                display: inline-block;
+            }
         `,
     ],
 })

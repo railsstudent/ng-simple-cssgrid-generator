@@ -1,4 +1,3 @@
-import { GRID_UNITS } from '../types'
 import { FormControl, FormGroup } from '@angular/forms'
 import { Component, Input, OnInit } from '@angular/core'
 
@@ -44,7 +43,7 @@ export class AppGridValueFieldComponent implements OnInit {
     unitPlaceholder: string
 
     @Input()
-    unitList: typeof GRID_UNITS
+    unitList: string[]
 
     @Input()
     formGroup: FormGroup
