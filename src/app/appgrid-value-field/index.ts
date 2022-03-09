@@ -1,1 +1,1 @@
-export * from './appgrid-value-field.component'
+export * from './appgrid-value-field.module'
