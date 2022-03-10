@@ -12,7 +12,7 @@ export const GRID_CONTROL_NAMES: ControlMapping = {
     gridAutoFlow: {
         value: 'row',
     },
-    numGapValues: {
+    numGapLengths: {
         value: 1,
     },
     gap: {
@@ -94,6 +94,9 @@ export const GRID_FORM_START_WITH: GridForm = {
     heightInPixel: 60,
     numDivs: 4,
     gridAutoFlow: 'row',
+    numGapLengths: 1,
     gap: 0,
     gapUnit: 'px',
+    gapCol: 0,
+    gapColUnit: 'px',
 }

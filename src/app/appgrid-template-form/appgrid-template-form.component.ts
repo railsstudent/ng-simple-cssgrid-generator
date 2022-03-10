@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { AbstractControl, FormGroup, FormGroupDirective } from '@angular/forms'
 import { Observable } from 'rxjs'
 import { map, startWith } from 'rxjs/operators'
+import { GAP_UNITS, GRID_UNITS } from '../app.types'
 
 @Component({
     selector: 'app-grid-template-form',
