@@ -28,7 +28,13 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
     closeCurly = '}'
 
     numDivs$: Observable<number[]>
-    css$: Observable<any>
+    css$: Observable<{
+        gridTemplateColumns: string
+        gridTemplateRows: string
+        containerHeight: string
+        gridAutoFlow: 'row' | 'column' | 'dense' | 'row dense' | 'column dense'
+        gridGap: string
+    }>
     destroy$ = new Subject()
 
     constructor(private fb: FormBuilder) {}
