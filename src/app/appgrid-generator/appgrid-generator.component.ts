@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, View
 import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/forms'
 import { combineLatest, Observable, of, Subject } from 'rxjs'
 import { filter, map, startWith, takeUntil, tap } from 'rxjs/operators'
-import { ControlMapping, GridForm, GridTemplateInfo } from '../types'
+import { ControlMapping, GridForm, GridTemplateInfo } from '../app.types'
 import {
     GRID_CONTROL_NAMES,
     GRID_FORM_START_WITH,

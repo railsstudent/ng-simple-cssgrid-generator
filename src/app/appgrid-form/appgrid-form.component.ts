@@ -1,6 +1,6 @@
 import { FormGroup, FormGroupDirective } from '@angular/forms'
 import { Component, Input, OnInit } from '@angular/core'
-import { AUTO_FLOW, GAP_UNITS } from '../types'
+import { AUTO_FLOW, GAP_UNITS } from '../app.types'
 
 @Component({
     selector: 'app-grid-form',

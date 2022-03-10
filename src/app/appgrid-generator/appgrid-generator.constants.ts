@@ -1,4 +1,4 @@
-import { ControlMapping, GridForm, GridTemplateInfo } from '../types'
+import { ControlMapping, GridForm, GridTemplateInfo } from '../app.types'
 
 export const GRID_CONTROL_NAMES: ControlMapping = {
     heightInPixel: {
@@ -11,6 +11,9 @@ export const GRID_CONTROL_NAMES: ControlMapping = {
     },
     gridAutoFlow: {
         value: 'row',
+    },
+    numGapValues: {
+        value: 1,
     },
     gap: {
         value: 0,
