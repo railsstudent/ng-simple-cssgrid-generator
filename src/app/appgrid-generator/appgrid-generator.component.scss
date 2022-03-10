@@ -28,7 +28,7 @@ $border-colour: #dcdcdc;
 
     height: var(--containerHeight);
     display: grid;
-    grid-gap: var(--grid-gap);
+    gap: var(--grid-gap);
     grid-template-columns: var(--grid-template-columns);
     grid-template-rows: var(--grid-template-rows);
     grid-auto-flow: var(--grid-auto-flow);
