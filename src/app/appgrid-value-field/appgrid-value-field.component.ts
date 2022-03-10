@@ -1,5 +1,5 @@
 import { FormControl, FormGroup } from '@angular/forms'
-import { Component, Input, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core'
 
 @Component({
     selector: 'app-grid-value-field',
@@ -28,6 +28,7 @@ import { Component, Input, OnInit } from '@angular/core'
             }
         `,
     ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppGridValueFieldComponent implements OnInit {
     @Input()

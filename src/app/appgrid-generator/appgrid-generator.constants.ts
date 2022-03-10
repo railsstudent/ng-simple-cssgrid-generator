@@ -19,6 +19,13 @@ export const GRID_CONTROL_NAMES: ControlMapping = {
     gapUnit: {
         value: 'px',
     },
+    gapCol: {
+        value: 0,
+        updateOn: 'blur',
+    },
+    gapColUnit: {
+        value: 'px',
+    },
 }
 
 const DEFAULT_PROPERTIES: ControlMapping = {

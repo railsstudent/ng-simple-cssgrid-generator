@@ -10,7 +10,7 @@ import {
     GRID_TEMPLATE_ROW_COLUMN_NAMES,
     TEMPLATE_COLUMNS_START_WITH,
     TEMPLATE_ROWS_START_WITH,
-} from './constants'
+} from './appgrid-generator.constants'
 
 @Component({
     selector: 'app-grid-generator',
