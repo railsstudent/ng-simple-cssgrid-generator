@@ -24,6 +24,14 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
+    <mat-form-field>
+        <mat-label>Gap Lengths:</mat-label>
+        <mat-select formControlName="numGapLengths">
+            <mat-option *ngFor="let value of gapLengths" [value]="value">
+                {{ value }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
     <app-grid-value-field
         [formGroup]="form"
         [controlName]="'gap'"
@@ -31,5 +39,14 @@
         [unitList]="gapUnits"
         [placeholder]="'Grid gap'"
         [unitPlaceholder]="'Gap Unit'"
+    ></app-grid-value-field>
+    <app-grid-value-field
+        *ngIf="numGapLengths.value === 2"
+        [formGroup]="form"
+        [controlName]="'gapCol'"
+        [unitControlName]="'gapColUnit'"
+        [unitList]="gapColUnits"
+        [placeholder]="'Grid column gap'"
+        [unitPlaceholder]="'Gap column Unit'"
     ></app-grid-value-field>
 </ng-container>

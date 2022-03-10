@@ -64,13 +64,21 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
 
         const gridForm$ = (this.gridForm.valueChanges as Observable<GridForm>).pipe(
             startWith(GRID_FORM_START_WITH),
-            filter((value) => value.gap !== null && !!value.gridAutoFlow && value.heightInPixel != null && value.heightInPixel >= 60),
+            filter(
+                (value) =>
+                    value.numGapLengths >= 1 &&
+                    value.gap !== null &&
+                    value.gapCol !== null &&
+                    !!value.gridAutoFlow &&
+                    value.heightInPixel != null &&
+                    value.heightInPixel >= 60,
+            ),
             map((value) => {
-                const { heightInPixel, gridAutoFlow, gap, gapUnit } = value
+                const { heightInPixel, gridAutoFlow, gap, gapUnit, numGapLengths, gapCol, gapColUnit } = value
                 return {
                     containerHeight: `${heightInPixel}px`,
                     gridAutoFlow,
-                    gridGap: `${gap}${gapUnit}`,
+                    gridGap: numGapLengths <= 1 ? `${gap}${gapUnit}` : `${gap}${gapUnit} ${gapCol}${gapColUnit}`,
                 }
             }),
             takeUntil(this.destroy$),
