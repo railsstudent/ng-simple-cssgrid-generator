@@ -17,7 +17,8 @@ import { Subject } from 'rxjs'
                 margin-right: 0.5rem;
             }
 
-            app-grid-value-field {
+            app-grid-value-field,
+            app-appgrid-auto-row {
                 display: inline-block;
             }
         `,
