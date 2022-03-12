@@ -11,6 +11,7 @@ import {
     TEMPLATE_COLUMNS_START_WITH,
     TEMPLATE_ROWS_START_WITH,
 } from './appgrid-generator.constants'
+import { CssVariables } from './appgrid-generator.interface'
 
 @Component({
     selector: 'app-grid-generator',
@@ -28,13 +29,7 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
     closeCurly = '}'
 
     numDivs$: Observable<number[]>
-    css$: Observable<{
-        gridTemplateColumns: string
-        gridTemplateRows: string
-        containerHeight: string
-        gridAutoFlow: 'row' | 'column' | 'dense' | 'row dense' | 'column dense'
-        gridGap: string
-    }>
+    css$: Observable<CssVariables>
     destroy$ = new Subject()
 
     constructor(private fb: FormBuilder) {}
@@ -49,7 +44,21 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
             gridTemplateColumns: this.fb.group(fbTemplateColumnsGroup),
             gridTemplateRows: this.fb.group(fbTemplateRowsGroup),
         })
+        this.css$ = this.createCssObservable()
+        this.numDivs$ = this.numOfDivs.valueChanges.pipe(
+            startWith(this.numOfDivs.value as number),
+            filter((v: number) => typeof v === 'number' && v > 0),
+            map((numDivs) => Array.from({ length: numDivs }, (_, i) => i)),
+            takeUntil(this.destroy$),
+        )
+    }
 
+    private validateGridForm(value: GridForm) {
+        const { numGapLengths, gap, gapCol, heightInPixel, gridAutoFlow } = value
+        return numGapLengths >= 1 && gap !== null && gapCol !== null && !!gridAutoFlow && heightInPixel != null && heightInPixel >= 60
+    }
+
+    private createCssObservable(): Observable<CssVariables> {
         const gridTemplateColumns$ = (this.gridTemplateColumns.valueChanges as Observable<GridTemplateInfo>).pipe(
             startWith(TEMPLATE_COLUMNS_START_WITH),
             map((v) => this.generateCss(v)),
@@ -64,21 +73,15 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
 
         const gridForm$ = (this.gridForm.valueChanges as Observable<GridForm>).pipe(
             startWith(GRID_FORM_START_WITH),
-            filter(
-                (value) =>
-                    value.numGapLengths >= 1 &&
-                    value.gap !== null &&
-                    value.gapCol !== null &&
-                    !!value.gridAutoFlow &&
-                    value.heightInPixel != null &&
-                    value.heightInPixel >= 60,
-            ),
+            filter((value) => this.validateGridForm(value)),
             map((value) => {
-                const { heightInPixel, gridAutoFlow, gap, gapUnit, numGapLengths, gapCol, gapColUnit } = value
+                const { gridAutoFlow, gap, gapUnit, numGapLengths, gapCol, gapColUnit } = value
+                const rowGap = `${gap}${gapUnit}`
+                const columnGap = `${gapCol}${gapColUnit}`
                 return {
-                    containerHeight: `${heightInPixel}px`,
+                    containerHeight: `${value.heightInPixel}px`,
                     gridAutoFlow,
-                    gridGap: numGapLengths <= 1 ? `${gap}${gapUnit}` : `${gap}${gapUnit} ${gapCol}${gapColUnit}`,
+                    gridGap: numGapLengths <= 1 ? rowGap : `${rowGap} ${columnGap}`,
                 }
             }),
             takeUntil(this.destroy$),
@@ -86,7 +89,7 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
 
         const gridStyle$ = of(this.grid.nativeElement.style)
 
-        this.css$ = combineLatest([gridTemplateColumns$, gridTemplateRows$, gridForm$, gridStyle$]).pipe(
+        return combineLatest([gridTemplateColumns$, gridTemplateRows$, gridForm$, gridStyle$]).pipe(
             map(([gridTemplateColumns, gridTemplateRows, gridForm, gridStyle]) => {
                 const { containerHeight, gridAutoFlow, gridGap } = gridForm
                 return {
@@ -114,13 +117,6 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
                     gridGap,
                 }
             }),
-            takeUntil(this.destroy$),
-        )
-
-        this.numDivs$ = this.numOfDivs.valueChanges.pipe(
-            startWith(this.numOfDivs.value as number),
-            filter((v: number) => typeof v === 'number' && v > 0),
-            map((numDivs) => Array.from({ length: numDivs }, (_, i) => i)),
             takeUntil(this.destroy$),
         )
     }
