@@ -29,6 +29,16 @@ export const GRID_CONTROL_NAMES: ControlMapping = {
     gapColUnit: {
         value: 'px',
     },
+    gridAutoRowsKeyword: {
+        value: '',
+    },
+    gridAutoRows: {
+        value: 0,
+        updateOn: 'blur',
+    },
+    gridAutoRowsUnit: {
+        value: 'px',
+    },
 }
 
 const DEFAULT_PROPERTIES: ControlMapping = {
@@ -103,4 +113,7 @@ export const GRID_FORM_START_WITH: GridForm = {
     gapUnit: 'px',
     gapCol: 0,
     gapColUnit: 'px',
+    gridAutoRowsKeyword: 'auto',
+    gridAutoRows: 0,
+    gridAutoRowsUnit: 'px',
 }

@@ -1,1 +1,20 @@
-<p>appgrid-auto-rows works!</p>
+<ng-container [formGroup]="formGroup">
+    <mat-form-field>
+        <mat-select
+            [placeholder]="keywordControlConfig.placeholder"
+            [formControl]="keywordFormControl"
+        >
+            <mat-option [value]="'none'">------</mat-option>
+            <mat-option
+                *ngFor="let keyword of keywordControlConfig.valueList"
+                [value]="keyword"
+            >
+                {{ keyword }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <pre>
+        keyword value: {{ keywordFormControl.value }}
+    </pre>
+</ng-container>
