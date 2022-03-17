@@ -1,4 +1,4 @@
-import { NUM_GAP_LENGTHS, AUTO_FLOW, GAP_UNITS, GRID_AUTO_ROWS_KEYWORDS } from '../app.types'
+import { NUM_GAP_LENGTHS, AUTO_FLOW, GAP_UNITS, GRID_AUTO_ROWS_KEYWORDS, GRID_UNITS } from '../app.types'
 import { AbstractControl, FormGroup, FormGroupDirective } from '@angular/forms'
 import { Component, Input, OnDestroy, OnInit } from '@angular/core'
 import { takeUntil, tap } from 'rxjs/operators'
@@ -19,7 +19,7 @@ import { FieldControlConfig, ListControlConfig } from '../app-grid-control.inter
             }
 
             app-grid-value-field,
-            app-appgrid-auto-row {
+            app-appgrid-auto-rows {
                 display: inline-block;
             }
         `,
@@ -49,7 +49,13 @@ export class AppgridFormComponent implements OnInit, OnDestroy {
         this.gridAutoRowsKeywordConfig = {
             controlName: 'gridAutoRowsKeyword',
             valueList: GRID_AUTO_ROWS_KEYWORDS,
-            placeholder: 'Grid Auto Rows Keywords',
+            placeholder: 'Grid Auto Rows Keyword',
+        }
+
+        this.gridAutoRowsUnitConfig = {
+            controlName: 'gridAutoRowsUnit',
+            valueList: GRID_UNITS,
+            placeholder: 'Grid Auto Rows Unit',
         }
 
         this.numGapLengths.valueChanges

@@ -25,8 +25,12 @@ export class AppgridAutoRowsComponent implements OnInit {
     keywordFormControl: FormControl
 
     ngOnInit(): void {
-        this.formControl = this.formGroup.get(this.formFieldControlConfig.controlName) as FormControl
+        // this.formControl = this.formGroup.get(this.formFieldControlConfig.controlName) as FormControl
         this.unitFormControl = this.formGroup.get(this.unitControlConfig.controlName) as FormControl
         this.keywordFormControl = this.formGroup.get(this.keywordControlConfig.controlName) as FormControl
+
+        // console.log('keywordControlConfig', this.keywordControlConfig)
+        // console.log('keywordFormControl', this.keywordFormControl)
+        console.log(this.unitControlConfig, this.unitFormControl)
     }
 }

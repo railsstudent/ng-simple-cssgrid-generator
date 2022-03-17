@@ -4,7 +4,7 @@
             [placeholder]="keywordControlConfig.placeholder"
             [formControl]="keywordFormControl"
         >
-            <mat-option [value]="'none'">------</mat-option>
+            <mat-option [value]="''">------</mat-option>
             <mat-option
                 *ngFor="let keyword of keywordControlConfig.valueList"
                 [value]="keyword"
@@ -14,7 +14,21 @@
         </mat-select>
     </mat-form-field>
 
+    <mat-form-field>
+        <mat-select
+            [placeholder]="unitControlConfig.placeholder"
+            [formControl]="unitFormControl"
+        >
+            <mat-option
+                *ngFor="let value of unitControlConfig.valueList"
+                [value]="value"
+            >
+                {{ value }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
     <pre>
         keyword value: {{ keywordFormControl.value }}
+        unit value: {{ unitFormControl.value }}
     </pre>
 </ng-container>

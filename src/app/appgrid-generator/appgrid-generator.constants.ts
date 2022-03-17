@@ -30,7 +30,7 @@ export const GRID_CONTROL_NAMES: ControlMapping = {
         value: 'px',
     },
     gridAutoRowsKeyword: {
-        value: '',
+        value: 'auto',
     },
     gridAutoRows: {
         value: 0,
