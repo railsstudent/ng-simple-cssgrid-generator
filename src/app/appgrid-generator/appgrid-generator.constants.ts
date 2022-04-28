@@ -36,6 +36,10 @@ export const GRID_CONTROL_NAMES: ControlMapping = {
         value: 0,
         updateOn: 'blur',
     },
+    gridAutoRowsField: {
+        value: 0,
+        updateOn: 'blur',
+    },
     gridAutoRowsUnit: {
         value: 'px',
     },

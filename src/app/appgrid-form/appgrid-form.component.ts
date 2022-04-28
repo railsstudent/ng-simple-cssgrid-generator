@@ -52,6 +52,11 @@ export class AppgridFormComponent implements OnInit, OnDestroy {
             placeholder: 'Grid Auto Rows Keyword',
         }
 
+        this.gridAutoRowsFieldConfig = {
+            controlName: 'gridAutoRowsField',
+            placeholder: 'Grid Auto Rows Field',
+        }
+
         this.gridAutoRowsUnitConfig = {
             controlName: 'gridAutoRowsUnit',
             valueList: GRID_UNITS,

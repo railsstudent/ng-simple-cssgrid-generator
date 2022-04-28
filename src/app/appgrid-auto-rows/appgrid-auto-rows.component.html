@@ -15,6 +15,15 @@
     </mat-form-field>
 
     <mat-form-field>
+        <input
+            type="number"
+            matInput
+            [placeholder]="formFieldControlConfig.placeholder"
+            [formControl]="formControl"
+        />
+    </mat-form-field>
+
+    <mat-form-field>
         <mat-select
             [placeholder]="unitControlConfig.placeholder"
             [formControl]="unitFormControl"
@@ -29,6 +38,7 @@
     </mat-form-field>
     <pre>
         keyword value: {{ keywordFormControl.value }}
+        field value: {{ formControl.value }}
         unit value: {{ unitFormControl.value }}
     </pre>
 </ng-container>
