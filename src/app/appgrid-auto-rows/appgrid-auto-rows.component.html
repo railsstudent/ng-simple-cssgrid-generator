@@ -1,4 +1,7 @@
-<ng-container [formGroup]="formGroup">
+<ng-container
+    [formGroup]="formGroup"
+    *ngIf="{ isKeywordSelected: this.isKeywordSelected$ | async } as fields"
+>
     <mat-form-field>
         <mat-select
             [placeholder]="keywordControlConfig.placeholder"
@@ -20,6 +23,7 @@
             matInput
             [placeholder]="formFieldControlConfig.placeholder"
             [formControl]="formControl"
+            [readonly]="fields.isKeywordSelected ?? true"
         />
     </mat-form-field>
 
@@ -27,6 +31,7 @@
         <mat-select
             [placeholder]="unitControlConfig.placeholder"
             [formControl]="unitFormControl"
+            [disabled]="fields.isKeywordSelected ?? true"
         >
             <mat-option
                 *ngFor="let value of unitControlConfig.valueList"
@@ -40,5 +45,6 @@
         keyword value: {{ keywordFormControl.value }}
         field value: {{ formControl.value }}
         unit value: {{ unitFormControl.value }}
+        isKeywordSelected: {{ fields.isKeywordSelected }}
     </pre>
 </ng-container>

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { FormControl, FormGroup } from '@angular/forms'
+import { Observable } from 'rxjs'
+import { map, startWith } from 'rxjs/operators'
 import { FieldControlConfig, ListControlConfig } from '../app-grid-control.interface'
 
 @Component({
@@ -33,6 +35,7 @@ export class AppgridAutoRowsComponent implements OnInit {
     formControl: FormControl
     unitFormControl: FormControl
     keywordFormControl: FormControl
+    isKeywordSelected$: Observable<boolean>
 
     ngOnInit(): void {
         this.formControl = this.formGroup.get(this.formFieldControlConfig.controlName) as FormControl
@@ -42,5 +45,10 @@ export class AppgridAutoRowsComponent implements OnInit {
         // console.log('keywordControlConfig', this.keywordControlConfig)
         // console.log('keywordFormControl', this.keywordFormControl)
         // console.log(this.formFieldControlConfig, this.formControl)
+
+        this.isKeywordSelected$ = this.keywordFormControl.valueChanges.pipe(
+            startWith(this.keywordFormControl.value),
+            map((value) => typeof value === 'string' && value !== ''),
+        )
     }
 }

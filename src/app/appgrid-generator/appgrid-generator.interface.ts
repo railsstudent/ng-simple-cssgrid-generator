@@ -4,4 +4,5 @@ export interface CssVariables {
     containerHeight: string
     gridAutoFlow: 'row' | 'column' | 'dense' | 'row dense' | 'column dense'
     gridGap: string
+    gridAutoRows: string
 }

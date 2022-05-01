@@ -75,13 +75,25 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
             startWith(GRID_FORM_START_WITH),
             filter((value) => this.validateGridForm(value)),
             map((value) => {
-                const { gridAutoFlow, gap, gapUnit, numGapLengths, gapCol, gapColUnit } = value
+                const {
+                    gridAutoFlow,
+                    gap,
+                    gapUnit,
+                    numGapLengths,
+                    gapCol,
+                    gapColUnit,
+                    gridAutoRowsKeyword,
+                    gridAutoRowsField,
+                    gridAutoRowsUnit,
+                } = value
                 const rowGap = `${gap}${gapUnit}`
                 const columnGap = `${gapCol}${gapColUnit}`
+                const gridAutoRows = gridAutoRowsKeyword !== '' ? gridAutoRowsKeyword : `${gridAutoRowsField}${gridAutoRowsUnit}`
                 return {
                     containerHeight: `${value.heightInPixel}px`,
                     gridAutoFlow,
                     gridGap: numGapLengths <= 1 ? rowGap : `${rowGap} ${columnGap}`,
+                    gridAutoRows,
                 }
             }),
             takeUntil(this.destroy$),
@@ -91,7 +103,7 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
 
         return combineLatest([gridTemplateColumns$, gridTemplateRows$, gridForm$, gridStyle$]).pipe(
             map(([gridTemplateColumns, gridTemplateRows, gridForm, gridStyle]) => {
-                const { containerHeight, gridAutoFlow, gridGap } = gridForm
+                const { containerHeight, gridAutoFlow, gridGap, gridAutoRows } = gridForm
                 return {
                     gridTemplateColumns,
                     gridTemplateRows,
@@ -99,22 +111,25 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
                     gridAutoFlow,
                     gridGap,
                     gridStyle,
+                    gridAutoRows,
                 }
             }),
-            tap(({ gridTemplateColumns, gridTemplateRows, containerHeight, gridAutoFlow, gridGap, gridStyle }) => {
+            tap(({ gridTemplateColumns, gridTemplateRows, containerHeight, gridAutoFlow, gridGap, gridStyle, gridAutoRows }) => {
                 gridStyle.setProperty('--containerHeight', containerHeight)
                 gridStyle.setProperty('--grid-template-columns', gridTemplateColumns)
                 gridStyle.setProperty('--grid-template-rows', gridTemplateRows)
                 gridStyle.setProperty('--grid-auto-flow', gridAutoFlow)
                 gridStyle.setProperty('--grid-gap', gridGap)
+                gridStyle.setProperty('--grid-auto-rows', gridAutoRows)
             }),
-            map(({ gridTemplateColumns, gridTemplateRows, containerHeight, gridAutoFlow, gridGap }) => {
+            map(({ gridTemplateColumns, gridTemplateRows, containerHeight, gridAutoFlow, gridGap, gridAutoRows }) => {
                 return {
                     gridTemplateColumns,
                     gridTemplateRows,
                     containerHeight,
                     gridAutoFlow,
                     gridGap,
+                    gridAutoRows,
                 }
             }),
             takeUntil(this.destroy$),

@@ -8,8 +8,8 @@ export const GAP_UNITS = ['px', '%', 'em']
 export type GapUnitsType = 'px' | 'em' | '%'
 
 export const NUM_GAP_LENGTHS = [1, 2]
-export const GRID_AUTO_ROWS_KEYWORDS = ['min-content', 'max-content', 'auto']
-export type GridAutoRowsKeywordType = 'min-content' | 'max-content' | 'auto'
+export const GRID_AUTO_ROWS_KEYWORDS = ['auto', 'max-content', 'min-content']
+export type GridAutoRowsKeywordType = 'min-content' | 'max-content' | 'auto' | ''
 export interface GridTemplateInfo {
     repeat: string
     numOfTimes: number
@@ -30,7 +30,7 @@ export interface GridForm {
     gapCol: number
     gapColUnit: GapUnitsType
     gridAutoRowsKeyword: GridAutoRowsKeywordType
-    gridAutoRows: number
+    gridAutoRowsField: number
     gridAutoRowsUnit: GridUnitsType
 }
 
