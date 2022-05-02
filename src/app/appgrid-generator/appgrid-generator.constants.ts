@@ -2,11 +2,11 @@ import { ControlMapping, GridForm, GridTemplateInfo } from '../app.types'
 
 export const GRID_CONTROL_NAMES: ControlMapping = {
     heightInPixel: {
-        value: 80,
+        value: 150,
         updateOn: 'blur',
     },
     numDivs: {
-        value: 12,
+        value: 20,
         updateOn: 'blur',
     },
     gridAutoFlow: {
@@ -67,7 +67,7 @@ const DEFAULT_PROPERTIES: ControlMapping = {
 export const GRID_TEMPLATE_COLUMN_CONTROL_NAMES: ControlMapping = {
     ...DEFAULT_PROPERTIES,
     numOfTimes: {
-        value: 6,
+        value: 5,
         updateOn: 'blur',
     },
     minWidth: {
@@ -86,7 +86,7 @@ export const GRID_TEMPLATE_ROW_COLUMN_NAMES: ControlMapping = {
 
 export const TEMPLATE_COLUMNS_START_WITH: GridTemplateInfo = {
     repeat: 'true',
-    numOfTimes: 6,
+    numOfTimes: 5,
     minmax: 'true',
     minWidth: 10,
     minUnit: 'px',
@@ -100,12 +100,12 @@ export const TEMPLATE_ROWS_START_WITH: GridTemplateInfo = {
     minmax: 'true',
     minWidth: 20,
     minUnit: 'px',
-    maxWidth: 1,
-    maxUnit: 'fr',
+    maxWidth: 25,
+    maxUnit: 'px',
 }
 
 export const GRID_FORM_START_WITH: GridForm = {
-    heightInPixel: 80,
+    heightInPixel: 150,
     numDivs: 4,
     gridAutoFlow: 'row',
     numGapLengths: 1,
