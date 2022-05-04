@@ -5,6 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core'
 })
 export class GridCellContentPipe implements PipeTransform {
     transform(value: number, numOfTemplateCells: number): string {
-        return value < numOfTemplateCells ? `${value}` : `Implicit grid cell ${value}`
+        return value < numOfTemplateCells ? `${value}` : `${value} is an implicit grid cell`
     }
 }
