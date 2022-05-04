@@ -19,6 +19,13 @@ $border-colour: #dcdcdc;
         margin-right: 1rem;
     }
 
+    .section-repeat {
+        display: flex;
+        > * {
+            flex: 1 1 50%;
+        }
+    }
+
     .section-width {
         display: flex;
         flex-flow: row wrap;

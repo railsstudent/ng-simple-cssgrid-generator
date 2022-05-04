@@ -1,36 +1,38 @@
 <ng-container [formGroup]="form">
     <fieldset class="settings">
         <legend>{{ legend }}</legend>
-        <label>
-            Repeat:
-            <mat-radio-group formControlName="repeat">
-                <mat-radio-button value="true" [checked]="repeat.value"
-                    >Yes</mat-radio-button
-                >
-                <mat-radio-button value="false" [checked]="!repeat.value"
-                    >No</mat-radio-button
-                >
-            </mat-radio-group>
-            <mat-form-field *ngIf="repeat.value === 'true'">
-                <input
-                    type="number"
-                    matInput
-                    placeholder="Number of times"
-                    formControlName="numOfTimes"
-                />
-            </mat-form-field>
-        </label>
-        <label>
-            Need MinMax:
-            <mat-radio-group formControlName="minmax">
-                <mat-radio-button value="true" [checked]="minmax.value"
-                    >Yes</mat-radio-button
-                >
-                <mat-radio-button value="false" [checked]="!minmax.value"
-                    >No</mat-radio-button
-                >
-            </mat-radio-group>
-        </label>
+        <section class="section-repeat">
+            <label>
+                Repeat:
+                <mat-radio-group formControlName="repeat">
+                    <mat-radio-button value="true" [checked]="repeat.value"
+                        >Yes</mat-radio-button
+                    >
+                    <mat-radio-button value="false" [checked]="!repeat.value"
+                        >No</mat-radio-button
+                    >
+                </mat-radio-group>
+                <mat-form-field *ngIf="repeat.value === 'true'">
+                    <input
+                        type="number"
+                        matInput
+                        placeholder="Number of times"
+                        formControlName="numOfTimes"
+                    />
+                </mat-form-field>
+            </label>
+            <label>
+                Need MinMax:
+                <mat-radio-group formControlName="minmax">
+                    <mat-radio-button value="true" [checked]="minmax.value"
+                        >Yes</mat-radio-button
+                    >
+                    <mat-radio-button value="false" [checked]="!minmax.value"
+                        >No</mat-radio-button
+                    >
+                </mat-radio-group>
+            </label>
+        </section>
         <section class="section-width">
             <app-grid-value-field
                 [formGroup]="form"
