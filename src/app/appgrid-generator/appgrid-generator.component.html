@@ -16,7 +16,7 @@
     </section>
 </form>
 
-<div class="container" #grid>
+<div class="container">
     <ng-container *ngIf="numDivs$ | async as totalDivs">
         <div *ngFor="let x of totalDivs" class="css-row">{{ x }}</div>
     </ng-container>

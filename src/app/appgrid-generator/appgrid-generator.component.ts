@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import { ChangeDetectionStrategy, Component, HostBinding, OnDestroy, OnInit } from '@angular/core'
 import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/forms'
-import { combineLatest, Observable, of, Subject } from 'rxjs'
+import { combineLatest, Observable, Subject } from 'rxjs'
 import { filter, map, startWith, takeUntil, tap } from 'rxjs/operators'
 import { ControlMapping, GridForm, GridTemplateInfo } from '../app.types'
 import {
@@ -20,9 +20,6 @@ import { CssVariables } from './appgrid-generator.interface'
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppGridGeneratorComponent implements OnInit, OnDestroy {
-    @ViewChild('grid', { static: true })
-    grid: ElementRef
-
     form: FormGroup
 
     openCurly = '{'
@@ -31,6 +28,24 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
     numDivs$: Observable<number[]>
     css$: Observable<CssVariables>
     destroy$ = new Subject()
+
+    @HostBinding('style.--containerHeight')
+    containerHeight = '60px'
+
+    @HostBinding('style.--grid-gap')
+    gridGap = '0px'
+
+    @HostBinding('style.--grid-template-columns')
+    gridTemplateColumnsVariable = 'auto'
+
+    @HostBinding('style.--grid-template-rows')
+    gridTemplateRowsVariable = 'auto'
+
+    @HostBinding('style.--grid-auto-flow')
+    gridAutoFlow = 'row'
+
+    @HostBinding('style.--grid-auto-rows')
+    gridAutoRows = 'auto'
 
     constructor(private fb: FormBuilder) {}
 
@@ -99,10 +114,8 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
             takeUntil(this.destroy$),
         )
 
-        const gridStyle$ = of(this.grid.nativeElement.style)
-
-        return combineLatest([gridTemplateColumns$, gridTemplateRows$, gridForm$, gridStyle$]).pipe(
-            map(([gridTemplateColumns, gridTemplateRows, gridForm, gridStyle]) => {
+        return combineLatest([gridTemplateColumns$, gridTemplateRows$, gridForm$]).pipe(
+            map(([gridTemplateColumns, gridTemplateRows, gridForm]) => {
                 const { containerHeight, gridAutoFlow, gridGap, gridAutoRows } = gridForm
                 return {
                     gridTemplateColumns,
@@ -110,17 +123,16 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
                     containerHeight,
                     gridAutoFlow,
                     gridGap,
-                    gridStyle,
                     gridAutoRows,
                 }
             }),
-            tap(({ gridTemplateColumns, gridTemplateRows, containerHeight, gridAutoFlow, gridGap, gridStyle, gridAutoRows }) => {
-                gridStyle.setProperty('--containerHeight', containerHeight)
-                gridStyle.setProperty('--grid-template-columns', gridTemplateColumns)
-                gridStyle.setProperty('--grid-template-rows', gridTemplateRows)
-                gridStyle.setProperty('--grid-auto-flow', gridAutoFlow)
-                gridStyle.setProperty('--grid-gap', gridGap)
-                gridStyle.setProperty('--grid-auto-rows', gridAutoRows)
+            tap(({ gridTemplateColumns, gridTemplateRows, containerHeight, gridAutoFlow, gridGap, gridAutoRows }) => {
+                this.containerHeight = containerHeight
+                this.gridGap = gridGap
+                this.gridTemplateColumnsVariable = gridTemplateColumns
+                this.gridTemplateRowsVariable = gridTemplateRows
+                this.gridAutoFlow = gridAutoFlow
+                this.gridAutoRows = gridAutoRows
             }),
             map(({ gridTemplateColumns, gridTemplateRows, containerHeight, gridAutoFlow, gridGap, gridAutoRows }) => {
                 return {
