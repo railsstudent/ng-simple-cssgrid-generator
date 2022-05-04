@@ -17,8 +17,15 @@
 </form>
 
 <div class="container">
-    <ng-container *ngIf="numDivs$ | async as totalDivs">
-        <div *ngFor="let x of totalDivs" class="css-row">{{ x }}</div>
+    <ng-container
+        *ngIf="{
+            totalDivs: numDivs$ | async,
+            numTemplateCells: numTemplateCells$ | async
+        } as data"
+    >
+        <div *ngFor="let x of data.totalDivs" class="css-row">
+            {{ x | gridCellContent: data.numTemplateCells ?? 0 }}
+        </div>
     </ng-container>
 </div>
 

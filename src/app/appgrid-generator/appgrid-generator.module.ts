@@ -4,9 +4,10 @@ import { AppGridFormModule } from '../appgrid-form'
 import { AppTemplateFormModule } from '../appgrid-template-form'
 import { ShareModule } from '../share.module'
 import { AppGridGeneratorComponent } from './appgrid-generator.component'
+import { GridCellContentPipe } from './grid-cell-content.pipe'
 
 @NgModule({
-    declarations: [AppGridGeneratorComponent],
+    declarations: [AppGridGeneratorComponent, GridCellContentPipe],
     imports: [ShareModule, ReactiveFormsModule, AppTemplateFormModule, AppGridFormModule],
     exports: [AppGridGeneratorComponent],
 })

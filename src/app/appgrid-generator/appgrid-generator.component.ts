@@ -27,6 +27,8 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
 
     numDivs$: Observable<number[]>
     css$: Observable<CssVariables>
+    numTemplateCells$: Observable<number>
+
     destroy$ = new Subject()
 
     @HostBinding('style.--containerHeight')
@@ -65,6 +67,15 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
             filter((v: number) => typeof v === 'number' && v > 0),
             map((numDivs) => Array.from({ length: numDivs }, (_, i) => i)),
             takeUntil(this.destroy$),
+        )
+
+        this.numTemplateCells$ = combineLatest([
+            this.gridTemplateColumns.valueChanges.pipe(startWith(this.gridTemplateColumns.value)),
+            this.gridTemplateRows.valueChanges.pipe(startWith(this.gridTemplateRows.value)),
+        ]).pipe(
+            map(([column, row]) => {
+                return column.numOfTimes * row.numOfTimes
+            }),
         )
     }
 
