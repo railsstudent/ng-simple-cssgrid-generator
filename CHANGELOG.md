@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/railsstudent/ng-simple-cssgrid-generator/compare/0.0.2...0.0.3) (2022-05-05)
+
+
+### Features
+
+* add gap column length ([bdd154d](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/bdd154db430e6843559d24ac97bd4bf1cd985f61))
+* add input field ([caef531](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/caef53119c3c96e1e20629c554aef7cf3883fb77))
+* add numGapLengths and gapCol components ([3ac4602](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/3ac4602835d923e0be06130e77857e0ef0ba08c5))
+* appDisableControl directive ([ed244a4](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/ed244a44b61f0a803c00fa427150cdd4ef473d9f))
+* appGridAutoRows component ([f63cade](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/f63cade91d45a94313b4fe8da0e5d4b7da6784a3))
+* appGridAutoRows component ([9cf7b80](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/9cf7b80cbca706612492da51a039d9677befea28))
+* appGridAutoRowsModule ([4667b03](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/4667b03cac089183941a25d3636bd0ba39d85645))
+* dynamically update css variable --grid-auto-rows ([77bd0c5](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/77bd0c5b9b58a6c8758e69a09b4c96556247f51d))
+* render grid cell content ([cd8ebcd](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/cd8ebcd4ab14a333f18bbcbd96b1c10173269f8d))
+
+
+### Bug fixes
+
+* add OnPush ([9d57c91](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/9d57c918a90dca2674a614978a1198faa0d1e6f4))
+* npm vulnerabilities ([82b68fd](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/82b68fd79b0c3d50bc77ee62f488240ac82474f7))
+* replace grid-gap to gap ([ea7befa](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/ea7befa6205036a8f0f9fae468479d85a6d77f3b))
+* typed observable ([4dc484d](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/4dc484d55f06da9a2a488573cc68ffb43545f44c))
+* update content ([0d3c7bb](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/0d3c7bb33b84fd754994848dd4f00dd9f17f1e6e))
+
 ### [0.0.2](https://github.com/railsstudent/ng-simple-cssgrid-generator/compare/0.0.1...0.0.2) (2022-03-06)
 
 
