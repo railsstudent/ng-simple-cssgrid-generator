@@ -16,30 +16,40 @@
     </section>
 </form>
 
-<div class="container">
-    <ng-container
-        *ngIf="{
-            totalDivs: numDivs$ | async,
-            numTemplateCells: numTemplateCells$ | async
-        } as data"
+<ng-container
+    *ngIf="{
+        css: css$ | async,
+        totalDivs: numDivs$ | async,
+        numTemplateCells: numTemplateCells$ | async
+    } as data"
+>
+    <div
+        class="container"
+        [style.--containerHeight]="data.css?.containerHeight"
+        [style.--grid-gap]="data.css?.gridGap"
+        [style.--grid-template-columns]="data.css?.gridTemplateColumns"
+        [style.--grid-template-rows]="data.css?.gridTemplateRows"
+        [style.--grid-auto-flow]="data.css?.gridAutoFlow"
+        [style.--grid-auto-rows]="data.css?.gridAutoRows"
     >
         <div *ngFor="let x of data.totalDivs" class="css-row">
             {{ x | gridCellContent: data.numTemplateCells ?? 0 }}
         </div>
-    </ng-container>
-</div>
+    </div>
 
-<p class="code-title">CSS Code</p>
-<ng-container *ngIf="css$ | async as css">
+    <p class="code-title">CSS Code</p>
     <div class="code">
         <p>{{ openCurly }}</p>
-        <p>&nbsp;&nbsp;height: {{ css.containerHeight }};</p>
+        <p>&nbsp;&nbsp;height: {{ data.css?.containerHeight }};</p>
         <p>&nbsp;&nbsp;display: grid;</p>
-        <p>&nbsp;&nbsp;gap: {{ css.gridGap }};</p>
-        <p>&nbsp;&nbsp;grid-template-columns: {{ css.gridTemplateColumns }};</p>
-        <p>&nbsp;&nbsp;grid-template-rows: {{ css.gridTemplateRows }};</p>
-        <p>&nbsp;&nbsp;grid-auto-flow: {{ css.gridAutoFlow }};</p>
-        <p>&nbsp;&nbsp;grid-auto-row: {{ css.gridAutoRows }};</p>
+        <p>&nbsp;&nbsp;gap: {{ data.css?.gridGap }};</p>
+        <p>
+            &nbsp;&nbsp;grid-template-columns:
+            {{ data.css?.gridTemplateColumns }};
+        </p>
+        <p>&nbsp;&nbsp;grid-template-rows: {{ data.css?.gridTemplateRows }};</p>
+        <p>&nbsp;&nbsp;grid-auto-flow: {{ data.css?.gridAutoFlow }};</p>
+        <p>&nbsp;&nbsp;grid-auto-row: {{ data.css?.gridAutoRows }};</p>
         <p>{{ closeCurly }}</p>
     </div>
 </ng-container>

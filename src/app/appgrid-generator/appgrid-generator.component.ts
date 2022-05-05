@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, HostBinding, OnDestroy, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core'
 import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/forms'
 import { combineLatest, Observable, Subject } from 'rxjs'
-import { filter, map, startWith, takeUntil, tap } from 'rxjs/operators'
+import { filter, map, startWith, takeUntil } from 'rxjs/operators'
 import { ControlMapping, GridForm, GridTemplateInfo } from '../app.types'
 import {
     GRID_CONTROL_NAMES,
@@ -30,24 +30,6 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
     numTemplateCells$: Observable<number>
 
     destroy$ = new Subject()
-
-    @HostBinding('style.--containerHeight')
-    containerHeight = '60px'
-
-    @HostBinding('style.--grid-gap')
-    gridGap = '0px'
-
-    @HostBinding('style.--grid-template-columns')
-    gridTemplateColumnsVariable = 'auto'
-
-    @HostBinding('style.--grid-template-rows')
-    gridTemplateRowsVariable = 'auto'
-
-    @HostBinding('style.--grid-auto-flow')
-    gridAutoFlow = 'row'
-
-    @HostBinding('style.--grid-auto-rows')
-    gridAutoRows = 'auto'
 
     constructor(private fb: FormBuilder) {}
 
@@ -136,14 +118,6 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
                     gridGap,
                     gridAutoRows,
                 }
-            }),
-            tap(({ gridTemplateColumns, gridTemplateRows, containerHeight, gridAutoFlow, gridGap, gridAutoRows }) => {
-                this.containerHeight = containerHeight
-                this.gridGap = gridGap
-                this.gridTemplateColumnsVariable = gridTemplateColumns
-                this.gridTemplateRowsVariable = gridTemplateRows
-                this.gridAutoFlow = gridAutoFlow
-                this.gridAutoRows = gridAutoRows
             }),
             map(({ gridTemplateColumns, gridTemplateRows, containerHeight, gridAutoFlow, gridGap, gridAutoRows }) => {
                 return {
