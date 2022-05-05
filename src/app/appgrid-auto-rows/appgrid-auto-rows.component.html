@@ -23,7 +23,7 @@
             matInput
             [placeholder]="formFieldControlConfig.placeholder"
             [formControl]="formControl"
-            [readonly]="fields.isKeywordSelected ?? true"
+            [appDisableControl]="fields.isKeywordSelected ?? true"
         />
     </mat-form-field>
 
@@ -31,7 +31,7 @@
         <mat-select
             [placeholder]="unitControlConfig.placeholder"
             [formControl]="unitFormControl"
-            [disabled]="fields.isKeywordSelected ?? true"
+            [appDisableControl]="fields.isKeywordSelected ?? true"
         >
             <mat-option
                 *ngFor="let value of unitControlConfig.valueList"
@@ -41,10 +41,4 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
-    <pre>
-        keyword value: {{ keywordFormControl.value }}
-        field value: {{ formControl.value }}
-        unit value: {{ unitFormControl.value }}
-        isKeywordSelected: {{ fields.isKeywordSelected }}
-    </pre>
 </ng-container>

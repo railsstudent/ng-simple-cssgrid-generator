@@ -42,10 +42,6 @@ export class AppgridAutoRowsComponent implements OnInit {
         this.unitFormControl = this.formGroup.get(this.unitControlConfig.controlName) as FormControl
         this.keywordFormControl = this.formGroup.get(this.keywordControlConfig.controlName) as FormControl
 
-        // console.log('keywordControlConfig', this.keywordControlConfig)
-        // console.log('keywordFormControl', this.keywordFormControl)
-        // console.log(this.formFieldControlConfig, this.formControl)
-
         this.isKeywordSelected$ = this.keywordFormControl.valueChanges.pipe(
             startWith(this.keywordFormControl.value),
             map((value) => typeof value === 'string' && value !== ''),
