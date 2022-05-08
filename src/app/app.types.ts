@@ -1,3 +1,5 @@
+import { AbstractControlOptions } from '@angular/forms'
+
 export const AUTO_FLOW = ['row', 'column', 'dense', 'row dense', 'column dense'] as const
 export type AutoFlowType = typeof AUTO_FLOW[number]
 
@@ -34,4 +36,8 @@ export interface GridForm {
     gridAutoRowsUnit: GridUnitsType
 }
 
-export type ControlMapping = { [key: string]: { value: string | number; updateOn?: 'change' | 'blur' | 'submit' } }
+export interface CustomFormControlOptions extends AbstractControlOptions {
+    value: string | number
+}
+
+export type FormOptions = Record<string, CustomFormControlOptions>

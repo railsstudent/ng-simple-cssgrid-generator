@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/forms'
 import { combineLatest, Observable, Subject } from 'rxjs'
 import { filter, map, startWith, takeUntil } from 'rxjs/operators'
-import { ControlMapping, GridForm, GridTemplateInfo } from '../app.types'
+import { FormOptions, GridForm, GridTemplateInfo } from '../app.types'
 import {
     GRID_CONTROL_NAMES,
     GRID_FORM_START_WITH,
@@ -133,11 +133,11 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
         )
     }
 
-    createFormGroup(controlNames: ControlMapping): { [key: string]: any } {
+    createFormGroup(controlNames: FormOptions): { [key: string]: any } {
         return Object.keys(controlNames).reduce((acc, field) => {
             const option = controlNames[field]
-            const { value, updateOn } = option
-            const control = updateOn ? new FormControl(value, { updateOn }) : value
+            const { value, updateOn, validators, asyncValidators } = option
+            const control = updateOn ? new FormControl(value, { updateOn, validators, asyncValidators }) : value
             acc[field] = control
             return acc
         }, {} as { [key: string]: any })
@@ -153,6 +153,14 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
 
     get gridForm() {
         return this.form.get('grid') as AbstractControl
+    }
+
+    get gridGap() {
+        return this.gridForm.get('gap') as AbstractControl
+    }
+
+    get gridColGap() {
+        return this.gridForm.get('gapCol') as AbstractControl
     }
 
     get numOfDivs() {

@@ -1,4 +1,5 @@
-import { GridUnitsType, ControlMapping, GridForm, GridTemplateInfo } from '../app.types'
+import { Validators } from '@angular/forms'
+import { GridUnitsType, GridForm, GridTemplateInfo, FormOptions } from '../app.types'
 
 export const GRID_FORM_START_WITH: GridForm = {
     heightInPixel: 150,
@@ -14,7 +15,7 @@ export const GRID_FORM_START_WITH: GridForm = {
     gridAutoRowsUnit: 'px',
 }
 
-export const GRID_CONTROL_NAMES: ControlMapping = {
+export const GRID_CONTROL_NAMES: FormOptions = {
     heightInPixel: {
         value: GRID_FORM_START_WITH.heightInPixel,
         updateOn: 'blur',
@@ -32,6 +33,7 @@ export const GRID_CONTROL_NAMES: ControlMapping = {
     gap: {
         value: GRID_FORM_START_WITH.gap,
         updateOn: 'blur',
+        validators: Validators.min(0),
     },
     gapUnit: {
         value: GRID_FORM_START_WITH.gapUnit,
@@ -39,6 +41,7 @@ export const GRID_CONTROL_NAMES: ControlMapping = {
     gapCol: {
         value: GRID_FORM_START_WITH.gapCol,
         updateOn: 'blur',
+        validators: Validators.min(0),
     },
     gapColUnit: {
         value: GRID_FORM_START_WITH.gapColUnit,
@@ -55,7 +58,7 @@ export const GRID_CONTROL_NAMES: ControlMapping = {
     },
 }
 
-const DEFAULT_PROPERTIES: ControlMapping = {
+const DEFAULT_PROPERTIES: FormOptions = {
     repeat: {
         value: 'true',
     },
@@ -88,7 +91,7 @@ export const TEMPLATE_COLUMNS_START_WITH: GridTemplateInfo = {
     maxUnit: <GridUnitsType>`${DEFAULT_PROPERTIES.maxUnit.value}`,
 }
 
-export const GRID_TEMPLATE_COLUMN_CONTROL_NAMES: ControlMapping = {
+export const GRID_TEMPLATE_COLUMN_CONTROL_NAMES: FormOptions = {
     ...DEFAULT_PROPERTIES,
     numOfTimes: {
         value: TEMPLATE_COLUMNS_START_WITH.numOfTimes,
@@ -110,7 +113,7 @@ export const TEMPLATE_ROWS_START_WITH: GridTemplateInfo = {
     maxUnit: <GridUnitsType>`${DEFAULT_PROPERTIES.maxUnit.value}`,
 }
 
-export const GRID_TEMPLATE_ROW_COLUMN_NAMES: ControlMapping = {
+export const GRID_TEMPLATE_ROW_COLUMN_NAMES: FormOptions = {
     ...DEFAULT_PROPERTIES,
     minWidth: {
         value: TEMPLATE_ROWS_START_WITH.minWidth,

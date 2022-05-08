@@ -14,6 +14,16 @@
             [legend]="'Grid template rows'"
         ></app-grid-template-form>
     </section>
+    <pre>
+        gridGap.valid: {{ gridGap.valid }}
+        gridGap.invalid: {{ gridGap.invalid }}
+        gridGap.errors: {{ gridGap.errors | json }}
+
+
+        gridColGap.valid: {{ gridColGap.valid }}
+        gridColGap.invalid: {{ gridColGap.invalid }}
+        gridColGap.errors: {{ gridColGap.errors | json }}
+    </pre>
 </form>
 
 <ng-container
