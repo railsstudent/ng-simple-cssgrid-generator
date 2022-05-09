@@ -1,22 +1,26 @@
-import { ComponentRef, Directive, Inject, OnDestroy, OnInit, Self, ViewContainerRef } from '@angular/core'
+import { ComponentRef, Directive, Inject, OnDestroy, OnInit, Optional, Self, ViewContainerRef } from '@angular/core'
 import { NgControl } from '@angular/forms'
-import { Observable, Subscription } from 'rxjs'
+import { Subscription } from 'rxjs'
 import { ControlErrorComponent } from '../control-error.component'
 import { FORM_ERRORS } from '../error-map'
+import { AppControlErrorContainerDirective } from './control-error-container.directive'
 
 @Directive({
     selector: '[formControl], [formControlName]',
 })
 export class ControlErrorsDirective implements OnInit, OnDestroy {
     subscription: Subscription
-    submit$: Observable<Event>
     ref: ComponentRef<ControlErrorComponent>
+    container: ViewContainerRef
 
     constructor(
         @Self() private control: NgControl,
         @Inject(FORM_ERRORS) private errors: Record<string, any>,
-        private vcr: ViewContainerRef,
-    ) {}
+        vcr: ViewContainerRef,
+        @Optional() appControlErrorContainer: AppControlErrorContainerDirective,
+    ) {
+        this.container = appControlErrorContainer ? appControlErrorContainer.vcr : vcr
+    }
 
     ngOnInit(): void {
         if (this.control && this.control.valueChanges) {
@@ -36,8 +40,8 @@ export class ControlErrorsDirective implements OnInit, OnDestroy {
 
     async setError(text: string) {
         if (!this.ref) {
-            const component = await (await import('../control-error.component')).ControlErrorComponent
-            this.ref = this.vcr.createComponent(component)
+            const component = (await import('../control-error.component')).ControlErrorComponent
+            this.ref = this.container.createComponent(component)
         }
 
         this.ref.instance.text = text

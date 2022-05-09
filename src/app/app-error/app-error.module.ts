@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { ControlErrorsDirective } from './directives'
+import { AppControlErrorContainerDirective, ControlErrorsDirective } from './directives'
 import { ControlErrorComponent } from './control-error.component'
 
 @NgModule({
-    declarations: [ControlErrorsDirective, ControlErrorComponent],
+    declarations: [ControlErrorsDirective, ControlErrorComponent, AppControlErrorContainerDirective],
     imports: [CommonModule],
-    exports: [ControlErrorsDirective, ControlErrorComponent],
+    exports: [ControlErrorsDirective, ControlErrorComponent, AppControlErrorContainerDirective],
 })
 export class AppErrorModule {}
