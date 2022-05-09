@@ -51,5 +51,8 @@ export class ControlErrorsDirective implements OnInit, OnDestroy {
         if (this.subscription) {
             this.subscription.unsubscribe()
         }
+        if (this.ref) {
+            this.ref.destroy()
+        }
     }
 }
