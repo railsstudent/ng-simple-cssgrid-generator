@@ -28,7 +28,7 @@
                 "@angular-eslint/directive-selector": [
                     "error",
                     {
-                        "prefix": "app",
+                        "prefix": ["app", "form"],
                         "style": "camelCase",
                         "type": "attribute"
                     }
