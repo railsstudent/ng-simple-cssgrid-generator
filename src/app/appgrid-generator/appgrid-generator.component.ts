@@ -81,8 +81,8 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
 
         const gridForm$ = (this.gridForm.valueChanges as Observable<GridForm>).pipe(
             startWith(GRID_FORM_START_WITH),
-            filter((value) => this.validateGridForm(value)),
-            map((value) => {
+            filter((values) => this.gridForm.valid && this.validateGridForm(values)),
+            map((values) => {
                 const {
                     gridAutoFlow,
                     gap,
@@ -93,12 +93,13 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
                     gridAutoRowsKeyword,
                     gridAutoRowsField,
                     gridAutoRowsUnit,
-                } = value
+                    heightInPixel,
+                } = values
                 const rowGap = `${gap}${gapUnit}`
                 const columnGap = `${gapCol}${gapColUnit}`
                 const gridAutoRows = gridAutoRowsKeyword !== '' ? gridAutoRowsKeyword : `${gridAutoRowsField}${gridAutoRowsUnit}`
                 return {
-                    containerHeight: `${value.heightInPixel}px`,
+                    containerHeight: `${heightInPixel}px`,
                     gridAutoFlow,
                     gridGap: numGapLengths <= 1 ? rowGap : `${rowGap} ${columnGap}`,
                     gridAutoRows,
