@@ -38,18 +38,5 @@
     </div>
 
     <p class="code-title">CSS Code</p>
-    <div class="code">
-        <p>{{ openCurly }}</p>
-        <p>&nbsp;&nbsp;height: {{ data.css?.containerHeight }};</p>
-        <p>&nbsp;&nbsp;display: grid;</p>
-        <p>&nbsp;&nbsp;gap: {{ data.css?.gridGap }};</p>
-        <p>
-            &nbsp;&nbsp;grid-template-columns:
-            {{ data.css?.gridTemplateColumns }};
-        </p>
-        <p>&nbsp;&nbsp;grid-template-rows: {{ data.css?.gridTemplateRows }};</p>
-        <p>&nbsp;&nbsp;grid-auto-flow: {{ data.css?.gridAutoFlow }};</p>
-        <p>&nbsp;&nbsp;grid-auto-row: {{ data.css?.gridAutoRows }};</p>
-        <p>{{ closeCurly }}</p>
-    </div>
+    <div class="code" [innerHTML]="data?.css | appGridCss"></div>
 </ng-container>

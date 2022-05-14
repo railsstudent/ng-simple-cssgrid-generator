@@ -21,15 +21,10 @@ import { CssVariables } from './appgrid-generator.interface'
 })
 export class AppGridGeneratorComponent implements OnInit, OnDestroy {
     form: FormGroup
-
-    openCurly = '{'
-    closeCurly = '}'
-
     numDivs$: Observable<number[]>
     css$: Observable<CssVariables>
     numTemplateCells$: Observable<number>
-
-    destroy$ = new Subject()
+    destroy$ = new Subject<void>()
 
     constructor(private fb: FormBuilder) {}
 
