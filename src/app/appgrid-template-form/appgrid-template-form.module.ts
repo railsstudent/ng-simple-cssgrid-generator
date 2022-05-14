@@ -1,12 +1,15 @@
+import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { ReactiveFormsModule } from '@angular/forms'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
+import { MatRadioModule } from '@angular/material/radio'
 import { AppGridValueFieldModule } from '../appgrid-value-field'
-import { ShareModule } from '../share.module'
 import { AppTemplateFormComponent } from './appgrid-template-form.component'
 
 @NgModule({
     declarations: [AppTemplateFormComponent],
-    imports: [ShareModule, ReactiveFormsModule, AppGridValueFieldModule],
+    imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatRadioModule, MatInputModule, AppGridValueFieldModule],
     exports: [AppTemplateFormComponent],
 })
 export class AppTemplateFormModule {}
