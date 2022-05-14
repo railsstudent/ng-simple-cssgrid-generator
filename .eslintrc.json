@@ -20,7 +20,7 @@
                 "@angular-eslint/component-selector": [
                     "error",
                     {
-                        "prefix": "app",
+                        "prefix": ["app"],
                         "style": "kebab-case",
                         "type": "element"
                     }
@@ -30,7 +30,7 @@
                     {
                         "prefix": ["app", "form"],
                         "style": "camelCase",
-                        "type": "attribute"
+                        "type": ["element", "attribute"]
                     }
                 ],
                 "prettier/prettier": [

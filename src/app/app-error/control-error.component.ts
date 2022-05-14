@@ -1,12 +1,16 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core'
 
 @Component({
-    template: `<p class="help is-danger" [class.hide]="shouldHide">{{ errorText }}</p>`,
+    template: `
+        <div class="mat-form-field">
+            <mat-error class="mat-error help" [class.hide]="shouldHide">{{ errorText }}</mat-error>
+        </div>
+    `,
     styles: [
         `
             .help {
-                color: red;
-                font-size: 0.75rem;
+                margin-top: calc(2 / 3 * 1em);
+                font-size: 75%;
             }
         `,
     ],
