@@ -7,7 +7,6 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
         <ng-container [formGroup]="formGroup">
             <mat-form-field>
                 <input type="number" matInput [placeholder]="placeholder" [formControl]="formControl" />
-                <mat-error appControlErrorContainer>123213</mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-select [placeholder]="unitPlaceholder" [formControl]="unitFormControl">

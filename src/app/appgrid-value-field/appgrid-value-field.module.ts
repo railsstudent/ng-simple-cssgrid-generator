@@ -1,7 +1,7 @@
-import { AppErrorModule } from '../app-error'
 import { NgModule } from '@angular/core'
 import { ReactiveFormsModule } from '@angular/forms'
 import { AppGridValueFieldComponent } from './appgrid-value-field.component'
+import { AppErrorModule } from '../app-error/app-error.module'
 import { ShareModule } from '../share.module'
 
 @NgModule({
