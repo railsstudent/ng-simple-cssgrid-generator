@@ -1,7 +1,7 @@
+import { CommonModule } from '@angular/common'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormGroupDirective, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
-import { ShareModule } from '../share.module'
 
 import { AppgridFormComponent } from './appgrid-form.component'
 
@@ -14,7 +14,7 @@ describe('AppgridFormComponent', () => {
 
         await TestBed.configureTestingModule({
             declarations: [AppgridFormComponent],
-            imports: [ReactiveFormsModule, ShareModule, NoopAnimationsModule],
+            imports: [ReactiveFormsModule, CommonModule, NoopAnimationsModule],
             providers: [
                 {
                     provide: FormGroupDirective,

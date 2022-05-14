@@ -4,15 +4,15 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { AppComponent } from './app.component'
 import { AppTemplateFormComponent } from './appgrid-template-form'
 import { AppGridGeneratorComponent } from './appgrid-generator/appgrid-generator.component'
-import { ShareModule } from './share.module'
 import { AppgridFormComponent } from './appgrid-form'
+import { CommonModule } from '@angular/common'
 
 describe('AppComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 declarations: [AppComponent, AppGridGeneratorComponent, AppTemplateFormComponent, AppgridFormComponent],
-                imports: [ReactiveFormsModule, ShareModule, NoopAnimationsModule],
+                imports: [ReactiveFormsModule, CommonModule, NoopAnimationsModule],
                 providers: [FormGroupDirective],
             }).compileComponents()
         }),
