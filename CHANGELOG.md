@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/railsstudent/ng-simple-cssgrid-generator/compare/0.0.3...0.0.4) (2022-05-14)
+
+
+### Features
+
+* apply error directive ([fc19224](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/fc19224be8bf10a36b133dd244d5c2e57eb5abb2))
+* apply error directive ([d25f55e](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/d25f55e6c6fc17f3a30d5f83e727fb3c0cbb901f))
+* control error directive ([c4094cc](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/c4094cc3d9a3597e6ecf05393ccc35084475acfe))
+* custom css pipe ([929d362](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/929d3623fc08508c236807b75d4b50c709892b10))
+* error control ([52dd0d5](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/52dd0d5faf48f69587274d0491229432b9b82b59))
+* style error container to use mat-error ([5737876](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/57378765df13e169fc86cdce363bec44a67238f5))
+
+
+### Bug fixes
+
+*  do not update css when form is not valid ([d9fcd26](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/d9fcd26fc797bd1b56d159072730955c32fbf9fc))
+
+
+### Refactor
+
+* add form validators ([6ac562c](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/6ac562cc6c87e9016a3e72948ccb9714c2e63140))
+* import appError module ([af13638](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/af136385726335e6701b9f1c870ed071c04f8d37))
+* remove ShareModule from AppGridForm module ([31f6afb](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/31f6afbc8397454f96304ccf75d9a1bfcdb81b85))
+* remove ShareModule from AppGridTemplateForm module ([e1513f5](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/e1513f588b8fd4d5cfbfcc8610bc7329a91050f4))
+* remove ShareModule from AppgridValueField module ([d0ceed3](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/d0ceed3b60da472483719f6536d3d718d8b64623))
+* remove ShareModule from AppModule and AppGridGeneratorModule ([62cc74e](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/62cc74e72908db731b9080a3ca9041fa5ab7bcdf))
+
 ### [0.0.3](https://github.com/railsstudent/ng-simple-cssgrid-generator/compare/0.0.2...0.0.3) (2022-05-05)
 
 
