@@ -19,7 +19,9 @@
         "noImplicitReturns": true,
         "noImplicitAny": true,
         "strict": true,
-        "strictPropertyInitialization": false
+        "strictPropertyInitialization": false,
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true
     },
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,
