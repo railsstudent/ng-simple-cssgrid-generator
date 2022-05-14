@@ -4,10 +4,10 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { AppGridFormModule } from '../appgrid-form'
 import { AppTemplateFormModule } from '../appgrid-template-form'
 import { AppGridGeneratorComponent } from './appgrid-generator.component'
-import { AppGridCssPipe, GridCellContentPipe } from './pipes'
+import { AppGridCssPipe, AppGridCellContentPipe } from './pipes'
 
 @NgModule({
-    declarations: [AppGridGeneratorComponent, GridCellContentPipe, AppGridCssPipe],
+    declarations: [AppGridGeneratorComponent, AppGridCellContentPipe, AppGridCssPipe],
     imports: [CommonModule, ReactiveFormsModule, AppTemplateFormModule, AppGridFormModule],
     exports: [AppGridGeneratorComponent],
 })

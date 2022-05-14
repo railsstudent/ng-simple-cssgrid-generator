@@ -1,2 +1,2 @@
 export * from './app-grid-css.pipe'
-export * from './grid-cell-content.pipe'
+export * from './app-grid-cell-content.pipe'

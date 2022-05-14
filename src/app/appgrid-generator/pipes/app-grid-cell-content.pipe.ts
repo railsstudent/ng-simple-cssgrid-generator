@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core'
 
 @Pipe({
-    name: 'gridCellContent',
+    name: 'appGridCellContent',
 })
-export class GridCellContentPipe implements PipeTransform {
+export class AppGridCellContentPipe implements PipeTransform {
     transform(value: number, numOfTemplateCells: number): string {
         return value < numOfTemplateCells ? `${value}` : `${value} is an implicit grid cell`
     }

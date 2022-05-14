@@ -33,7 +33,7 @@
         [style.--grid-auto-rows]="data.css?.gridAutoRows"
     >
         <div *ngFor="let x of data.totalDivs" class="css-row">
-            {{ x | gridCellContent: data.numTemplateCells ?? 0 }}
+            {{ x | appGridCellContent: data.numTemplateCells ?? 0 }}
         </div>
     </div>
 
