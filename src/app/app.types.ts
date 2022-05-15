@@ -36,7 +36,7 @@ export interface GridForm {
     gridAutoRowsUnit: GridUnitsType
 }
 
-export interface CustomFormControlOptions extends AbstractControlOptions {
+interface CustomFormControlOptions extends AbstractControlOptions {
     value: string | number
 }
 
