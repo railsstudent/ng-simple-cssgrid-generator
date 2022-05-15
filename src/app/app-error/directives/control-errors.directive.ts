@@ -1,4 +1,4 @@
-import { ComponentRef, Directive, ElementRef, Inject, OnDestroy, OnInit, Optional, Self, ViewContainerRef } from '@angular/core'
+import { ComponentRef, Directive, Inject, OnDestroy, OnInit, Optional, Self, ViewContainerRef } from '@angular/core'
 import { NgControl } from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { ControlErrorComponent } from '../control-error.component'
@@ -18,10 +18,8 @@ export class ControlErrorsDirective implements OnInit, OnDestroy {
         @Inject(FORM_ERRORS) private errors: Record<string, any>,
         vcr: ViewContainerRef,
         @Optional() appControlErrorContainer: AppControlErrorContainerDirective,
-        private el: ElementRef,
     ) {
         this.container = appControlErrorContainer ? appControlErrorContainer.vcr : vcr
-        console.log(this.el.nativeElement)
     }
 
     ngOnInit(): void {

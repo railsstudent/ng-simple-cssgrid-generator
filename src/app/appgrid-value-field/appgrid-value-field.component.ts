@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
     selector: 'app-grid-value-field',
     template: `
         <ng-container [formGroup]="formGroup">
-            <mat-form-field>
+            <mat-form-field appControlErrorContainer>
                 <input type="number" matInput [placeholder]="placeholder" [formControl]="formControl" />
             </mat-form-field>
             <mat-form-field>

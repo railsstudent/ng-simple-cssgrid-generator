@@ -11,6 +11,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@a
             .help {
                 margin-top: calc(2 / 3 * 1em);
                 font-size: 75%;
+                margin-right: 0.75em;
             }
         `,
     ],
