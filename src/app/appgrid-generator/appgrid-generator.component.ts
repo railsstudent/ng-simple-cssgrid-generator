@@ -129,14 +129,16 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
         )
     }
 
-    createFormGroup(controlNames: FormOptions): { [key: string]: any } {
+    createFormGroup(controlNames: FormOptions): { [key: string]: FormControl } {
         return Object.keys(controlNames).reduce((acc, field) => {
             const option = controlNames[field]
             const { value, updateOn, validators, asyncValidators } = option
-            const control = updateOn ? new FormControl(value, { updateOn, validators, asyncValidators }) : value
+            const control = updateOn
+                ? new FormControl(value, { updateOn, validators, asyncValidators })
+                : new FormControl(value, validators, asyncValidators)
             acc[field] = control
             return acc
-        }, {} as { [key: string]: any })
+        }, {} as { [key: string]: FormControl })
     }
 
     get gridTemplateColumns() {
