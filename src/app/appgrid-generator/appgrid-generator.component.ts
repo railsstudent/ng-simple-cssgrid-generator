@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/forms'
 import { combineLatest, Observable, Subject } from 'rxjs'
 import { filter, map, startWith, takeUntil } from 'rxjs/operators'
-import { FormOptions, GridForm, GridTemplateInfo } from '../app.types'
+import { FormGroupConfiguration, GridForm, GridTemplateInfo } from '../app.types'
 import {
     FORM_CONFIGURATION,
     GRID_FORM_START_WITH,
@@ -119,10 +119,10 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
         )
     }
 
-    private createFormGroup(controlNames: FormOptions): Record<string, FormControl> {
+    private createFormGroup(controlNames: FormGroupConfiguration): Record<string, FormControl> {
         return Object.keys(controlNames).reduce((acc, field) => {
             const option = controlNames[field]
-            const { value, updateOn, validators, asyncValidators } = option
+            const { initialValue: value, updateOn, validators, asyncValidators } = option
             const control = updateOn
                 ? new FormControl(value, { updateOn, validators, asyncValidators })
                 : new FormControl(value, validators, asyncValidators)
@@ -131,7 +131,7 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
         }, {} as Record<string, FormControl>)
     }
 
-    private createForm(formConfiguration: Record<string, FormOptions>) {
+    private createForm(formConfiguration: Record<string, FormGroupConfiguration>) {
         return Object.keys(formConfiguration).reduce((acc: Record<string, FormGroup>, formGroupName) => {
             const formGroupConfiguration = formConfiguration[formGroupName]
             const formGroup = this.createFormGroup(formGroupConfiguration)

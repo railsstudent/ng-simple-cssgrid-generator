@@ -37,7 +37,7 @@ export interface GridForm {
 }
 
 interface CustomFormControlOptions extends AbstractControlOptions {
-    value: string | number
+    initialValue: string | number
 }
 
-export type FormOptions = Record<string, CustomFormControlOptions>
+export type FormGroupConfiguration = Record<string, CustomFormControlOptions>
