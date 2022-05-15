@@ -15,7 +15,7 @@ export const GRID_FORM_START_WITH: GridForm = {
     gridAutoRowsUnit: 'px',
 }
 
-export const GRID_CONTROL_NAMES: FormOptions = {
+const GRID_CONTROL_NAMES: FormOptions = {
     heightInPixel: {
         value: GRID_FORM_START_WITH.heightInPixel,
         updateOn: 'blur',
@@ -91,7 +91,7 @@ export const TEMPLATE_COLUMNS_START_WITH: GridTemplateInfo = {
     maxUnit: <GridUnitsType>`${DEFAULT_PROPERTIES.maxUnit.value}`,
 }
 
-export const GRID_TEMPLATE_COLUMN_CONTROL_NAMES: FormOptions = {
+const GRID_TEMPLATE_COLUMN_CONTROL_NAMES: FormOptions = {
     ...DEFAULT_PROPERTIES,
     numOfTimes: {
         value: TEMPLATE_COLUMNS_START_WITH.numOfTimes,
@@ -113,10 +113,16 @@ export const TEMPLATE_ROWS_START_WITH: GridTemplateInfo = {
     maxUnit: <GridUnitsType>`${DEFAULT_PROPERTIES.maxUnit.value}`,
 }
 
-export const GRID_TEMPLATE_ROW_COLUMN_NAMES: FormOptions = {
+const GRID_TEMPLATE_ROW_COLUMN_NAMES: FormOptions = {
     ...DEFAULT_PROPERTIES,
     minWidth: {
         value: TEMPLATE_ROWS_START_WITH.minWidth,
         updateOn: 'blur',
     },
+}
+
+export const FORM_CONFIGURATION: Record<string, FormOptions> = {
+    grid: GRID_CONTROL_NAMES,
+    gridTemplateColumns: GRID_TEMPLATE_COLUMN_CONTROL_NAMES,
+    gridTemplateRows: GRID_TEMPLATE_ROW_COLUMN_NAMES,
 }

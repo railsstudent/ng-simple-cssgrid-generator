@@ -4,10 +4,8 @@ import { combineLatest, Observable, Subject } from 'rxjs'
 import { filter, map, startWith, takeUntil } from 'rxjs/operators'
 import { FormOptions, GridForm, GridTemplateInfo } from '../app.types'
 import {
-    GRID_CONTROL_NAMES,
+    FORM_CONFIGURATION,
     GRID_FORM_START_WITH,
-    GRID_TEMPLATE_COLUMN_CONTROL_NAMES,
-    GRID_TEMPLATE_ROW_COLUMN_NAMES,
     TEMPLATE_COLUMNS_START_WITH,
     TEMPLATE_ROWS_START_WITH,
 } from './appgrid-generator.constants'
@@ -29,15 +27,7 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
     constructor(private fb: FormBuilder) {}
 
     ngOnInit() {
-        const fbGridGroup = this.createFormGroup(GRID_CONTROL_NAMES)
-        const fbTemplateColumnsGroup = this.createFormGroup(GRID_TEMPLATE_COLUMN_CONTROL_NAMES)
-        const fbTemplateRowsGroup = this.createFormGroup(GRID_TEMPLATE_ROW_COLUMN_NAMES)
-
-        this.form = this.fb.group({
-            grid: this.fb.group(fbGridGroup),
-            gridTemplateColumns: this.fb.group(fbTemplateColumnsGroup),
-            gridTemplateRows: this.fb.group(fbTemplateRowsGroup),
-        })
+        this.form = this.fb.group(this.createForm(FORM_CONFIGURATION))
         this.css$ = this.createCssObservable()
         this.numDivs$ = this.numOfDivs.valueChanges.pipe(
             startWith(this.numOfDivs.value as number),
@@ -129,7 +119,7 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
         )
     }
 
-    createFormGroup(controlNames: FormOptions): { [key: string]: FormControl } {
+    private createFormGroup(controlNames: FormOptions): Record<string, FormControl> {
         return Object.keys(controlNames).reduce((acc, field) => {
             const option = controlNames[field]
             const { value, updateOn, validators, asyncValidators } = option
@@ -138,7 +128,16 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
                 : new FormControl(value, validators, asyncValidators)
             acc[field] = control
             return acc
-        }, {} as { [key: string]: FormControl })
+        }, {} as Record<string, FormControl>)
+    }
+
+    private createForm(formConfiguration: Record<string, FormOptions>) {
+        return Object.keys(formConfiguration).reduce((acc: Record<string, FormGroup>, formGroupName) => {
+            const formGroupConfiguration = formConfiguration[formGroupName]
+            const formGroup = this.createFormGroup(formGroupConfiguration)
+            acc[formGroupName] = this.fb.group(formGroup)
+            return acc
+        }, {})
     }
 
     get gridTemplateColumns() {
