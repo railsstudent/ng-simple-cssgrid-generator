@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/railsstudent/ng-simple-cssgrid-generator/compare/0.0.4...0.0.5) (2022-05-29)
+
+
+### Features
+
+* generate dynamic reactive form ([778ec5f](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/778ec5f0feb539e6cf37faa2aefb3151c17dfac6))
+* show error messages ([1b6f6bf](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/1b6f6bf0c642beea970dd17afa2030c67dfd4724))
+
+
+### Refactor
+
+* appGridValueField ([12d08dc](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/12d08dc36c8d5670f4d91f5d8e1977512893d5de))
+* rename FormGroup configuration ([126eb39](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/126eb390ff199997da9f7b395f754b5b768f8a50))
+
+
+### Bug fixes
+
+*  add display: none to hide error control ([ce6c6da](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/ce6c6dadc7142a4fa48b9ec49813923e64744b82))
+* pass validator and async validator to FormControl ([0fb59ad](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/0fb59ad3d0c1c54726cd9ec1d11d62a6b4ebaad9))
+
 ### [0.0.4](https://github.com/railsstudent/ng-simple-cssgrid-generator/compare/0.0.3...0.0.4) (2022-05-14)
 
 
