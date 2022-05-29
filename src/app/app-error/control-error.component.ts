@@ -13,6 +13,10 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@a
                 font-size: 75%;
                 margin-right: 0.75em;
             }
+
+            .hide {
+                display: none;
+            }
         `,
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,

@@ -65,11 +65,11 @@ export class AppTemplateFormComponent implements OnInit, OnDestroy {
                 map((value) => (value === 'true' ? this.unitsWithoutFlex : this.units)),
                 takeUntil(this.unsubscribe$),
             )
-            .subscribe((list) => {
-                const dropdown = list.map((unit) => ({ text: unit, value: unit }))
+            .subscribe((unitList) => {
+                const list = unitList.map((unit) => ({ text: unit, value: unit }))
                 this.minWidthConfiguration = {
                     ...this.minWidthConfiguration,
-                    list: dropdown,
+                    list,
                 }
                 this.cdr.markForCheck()
             })

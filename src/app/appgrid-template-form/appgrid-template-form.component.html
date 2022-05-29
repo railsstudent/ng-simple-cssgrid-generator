@@ -36,11 +36,6 @@
         <section class="section-width">
             <app-grid-value-field
                 [formGroup]="form"
-                [controlName]="'minWidth'"
-                [unitControlName]="'minUnit'"
-                [unitList]="minUnits$ | async"
-                [placeholder]="'Min value'"
-                [unitPlaceholder]="'Unit'"
                 [fieldConfiguration]="minWidthConfiguration"
             ></app-grid-value-field>
             <app-grid-value-field
