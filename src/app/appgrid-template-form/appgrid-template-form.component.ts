@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core'
 import { AbstractControl, FormGroup, FormGroupDirective } from '@angular/forms'
-import { Observable } from 'rxjs'
-import { map, startWith } from 'rxjs/operators'
+import { Observable, Subject } from 'rxjs'
+import { map, startWith, takeUntil } from 'rxjs/operators'
 import { GAP_UNITS, GRID_UNITS } from '../app.types'
+import { CompositeFieldDropdownConfiguration } from '../appgrid-value-field'
 
 @Component({
     selector: 'app-grid-template-form',
@@ -10,7 +11,7 @@ import { GAP_UNITS, GRID_UNITS } from '../app.types'
     styleUrls: ['./appgrid-template-form.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppTemplateFormComponent implements OnInit {
+export class AppTemplateFormComponent implements OnInit, OnDestroy {
     @Input()
     legend: string
 
@@ -23,11 +24,34 @@ export class AppTemplateFormComponent implements OnInit {
     minUnits$: Observable<any>
 
     form: FormGroup
+    minWidthConfiguration: CompositeFieldDropdownConfiguration
+    maxWidthConfiguration: CompositeFieldDropdownConfiguration
+    unsubscribe$ = new Subject<void>()
 
-    constructor(private rootFormGroup: FormGroupDirective) {}
+    constructor(private rootFormGroup: FormGroupDirective, private cdr: ChangeDetectorRef) {}
 
     ngOnInit() {
         this.form = this.rootFormGroup.control.get(this.formGroupName) as FormGroup
+
+        this.minWidthConfiguration = {
+            controlName: 'minWidth',
+            placeholder: 'Min value',
+            type: 'number',
+            min: 0,
+            unitControlName: 'minUnit',
+            unitPlaceholder: 'Unit',
+            list: [],
+        }
+
+        this.maxWidthConfiguration = {
+            controlName: 'maxWidth',
+            placeholder: 'Max value',
+            type: 'number',
+            min: 0,
+            unitControlName: 'maxUnit',
+            unitPlaceholder: 'Unit',
+            list: this.units.map((unit) => ({ text: unit, value: unit })),
+        }
 
         this.repeat.valueChanges.subscribe((repeat) => {
             if (repeat === 'false') {
@@ -35,10 +59,20 @@ export class AppTemplateFormComponent implements OnInit {
             }
         })
 
-        this.minUnits$ = this.minmax.valueChanges.pipe(
-            startWith('true'),
-            map((value) => (value === 'true' ? this.unitsWithoutFlex : this.units)),
-        )
+        this.minmax.valueChanges
+            .pipe(
+                startWith('true'),
+                map((value) => (value === 'true' ? this.unitsWithoutFlex : this.units)),
+                takeUntil(this.unsubscribe$),
+            )
+            .subscribe((list) => {
+                const dropdown = list.map((unit) => ({ text: unit, value: unit }))
+                this.minWidthConfiguration = {
+                    ...this.minWidthConfiguration,
+                    list: dropdown,
+                }
+                this.cdr.markForCheck()
+            })
     }
 
     get minmax() {
@@ -51,5 +85,10 @@ export class AppTemplateFormComponent implements OnInit {
 
     get numOfTimes() {
         return this.form.get('numOfTimes') as AbstractControl
+    }
+
+    ngOnDestroy(): void {
+        this.unsubscribe$.next()
+        this.unsubscribe$.complete()
     }
 }

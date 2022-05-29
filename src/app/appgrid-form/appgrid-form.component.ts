@@ -1,8 +1,9 @@
-import { NUM_GAP_LENGTHS, AUTO_FLOW, GAP_UNITS, GRID_AUTO_ROWS_KEYWORDS, GRID_UNITS } from '../app.types'
 import { AbstractControl, FormGroup, FormGroupDirective } from '@angular/forms'
 import { Component, Input, OnDestroy, OnInit } from '@angular/core'
 import { takeUntil, tap } from 'rxjs/operators'
 import { Subject } from 'rxjs'
+import { NUM_GAP_LENGTHS, AUTO_FLOW, GAP_UNITS, GRID_AUTO_ROWS_KEYWORDS, GRID_UNITS } from '../app.types'
+import { CompositeFieldDropdownConfiguration } from '../appgrid-value-field'
 import { FieldControlConfig, ListControlConfig } from '../app-grid-control.interface'
 
 @Component({
@@ -33,6 +34,8 @@ export class AppgridFormComponent implements OnInit, OnDestroy {
     gridAutoRowsFieldConfig: FieldControlConfig
     gridAutoRowsUnitConfig: ListControlConfig<string>
     gridAutoRowsKeywordConfig: ListControlConfig<string>
+    gapConfiguration: CompositeFieldDropdownConfiguration
+    gapColConfiguration: CompositeFieldDropdownConfiguration
 
     readonly gapUnits = GAP_UNITS
     readonly gapColUnits = GAP_UNITS
@@ -61,6 +64,26 @@ export class AppgridFormComponent implements OnInit, OnDestroy {
             controlName: 'gridAutoRowsUnit',
             valueList: GRID_UNITS,
             placeholder: 'Grid Auto Rows Unit',
+        }
+
+        this.gapConfiguration = {
+            controlName: 'gap',
+            placeholder: 'Grid gap',
+            type: 'number',
+            min: 0,
+            unitControlName: 'gapUnit',
+            unitPlaceholder: 'Gap Unit',
+            list: this.gapUnits.map((unit) => ({ text: unit, value: unit })),
+        }
+
+        this.gapColConfiguration = {
+            controlName: 'gapCol',
+            placeholder: 'Grid column gap',
+            type: 'number',
+            min: 0,
+            unitControlName: 'gapColUnit',
+            unitPlaceholder: 'Gap Column Unit',
+            list: this.gapColUnits.map((unit) => ({ text: unit, value: unit })),
         }
 
         this.numGapLengths.valueChanges

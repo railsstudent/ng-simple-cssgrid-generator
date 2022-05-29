@@ -1,17 +1,24 @@
 import { FormControl, FormGroup } from '@angular/forms'
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core'
+import { CompositeFieldDropdownConfiguration } from './appgrid-value-field.interface'
 
 @Component({
     selector: 'app-grid-value-field',
     template: `
         <ng-container [formGroup]="formGroup">
             <mat-form-field appControlErrorContainer>
-                <input type="number" matInput [placeholder]="placeholder" [formControl]="formControl" />
+                <input
+                    [type]="fieldConfiguration.type || 'number'"
+                    matInput
+                    [placeholder]="fieldConfiguration.placeholder"
+                    [formControl]="formControl"
+                    [min]="fieldConfiguration.min ?? null"
+                />
             </mat-form-field>
             <mat-form-field>
-                <mat-select [placeholder]="unitPlaceholder" [formControl]="unitFormControl">
-                    <mat-option *ngFor="let unit of unitList" [value]="unit">
-                        {{ unit }}
+                <mat-select [placeholder]="fieldConfiguration.unitPlaceholder" [formControl]="unitFormControl">
+                    <mat-option *ngFor="let item of fieldConfiguration.list" [value]="item.value">
+                        {{ item.text }}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -49,11 +56,16 @@ export class AppGridValueFieldComponent implements OnInit {
     @Input()
     formGroup: FormGroup
 
+    @Input()
+    fieldConfiguration: CompositeFieldDropdownConfiguration
+
     formControl: FormControl
     unitFormControl: FormControl
+    min: string | number | null
 
     ngOnInit() {
-        this.formControl = this.formGroup.get(this.controlName) as FormControl
-        this.unitFormControl = this.formGroup.get(this.unitControlName) as FormControl
+        const { controlName, unitControlName } = this.fieldConfiguration
+        this.formControl = this.formGroup.get(controlName) as FormControl
+        this.unitFormControl = this.formGroup.get(unitControlName) as FormControl
     }
 }

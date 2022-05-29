@@ -5,7 +5,7 @@ export const GRID_FORM_START_WITH: GridForm = {
     heightInPixel: 150,
     numDivs: 20,
     gridAutoFlow: 'row',
-    numGapLengths: 1,
+    numGapLengths: 2,
     gap: 0,
     gapUnit: 'px',
     gapCol: 0,

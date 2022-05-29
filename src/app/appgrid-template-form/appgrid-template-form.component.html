@@ -41,15 +41,12 @@
                 [unitList]="minUnits$ | async"
                 [placeholder]="'Min value'"
                 [unitPlaceholder]="'Unit'"
+                [fieldConfiguration]="minWidthConfiguration"
             ></app-grid-value-field>
             <app-grid-value-field
                 *ngIf="minmax.value === 'true'"
                 [formGroup]="form"
-                [controlName]="'maxWidth'"
-                [unitControlName]="'maxUnit'"
-                [unitList]="units"
-                [placeholder]="'Max value'"
-                [unitPlaceholder]="'Unit'"
+                [fieldConfiguration]="maxWidthConfiguration"
             >
             </app-grid-value-field>
         </section>
