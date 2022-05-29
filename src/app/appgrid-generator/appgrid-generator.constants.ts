@@ -11,7 +11,7 @@ export const GRID_FORM_START_WITH: GridForm = {
     gapCol: 0,
     gapColUnit: 'px',
     gridAutoRowsKeyword: 'auto',
-    gridAutoRowsField: 0,
+    gridAutoRowsField: 20,
     gridAutoRowsUnit: 'px',
 }
 
@@ -52,6 +52,7 @@ const GRID_CONTROL_NAMES: FormGroupConfiguration = {
     gridAutoRowsField: {
         initialValue: GRID_FORM_START_WITH.gridAutoRowsField,
         updateOn: 'blur',
+        validators: Validators.min(GRID_FORM_START_WITH.gridAutoRowsField),
     },
     gridAutoRowsUnit: {
         initialValue: GRID_FORM_START_WITH.gridAutoRowsUnit,
@@ -75,6 +76,7 @@ const DEFAULT_PROPERTIES: FormGroupConfiguration = {
     maxWidth: {
         initialValue: 1,
         updateOn: 'blur',
+        validators: Validators.min(1),
     },
     maxUnit: {
         initialValue: 'fr',
@@ -100,6 +102,7 @@ const GRID_TEMPLATE_COLUMN_CONTROL_NAMES: FormGroupConfiguration = {
     minWidth: {
         initialValue: TEMPLATE_COLUMNS_START_WITH.minWidth,
         updateOn: 'blur',
+        validators: Validators.min(1),
     },
 }
 
@@ -118,6 +121,7 @@ const GRID_TEMPLATE_ROW_COLUMN_NAMES: FormGroupConfiguration = {
     minWidth: {
         initialValue: TEMPLATE_ROWS_START_WITH.minWidth,
         updateOn: 'blur',
+        validators: Validators.min(1),
     },
 }
 

@@ -5,6 +5,7 @@ import { Subject } from 'rxjs'
 import { NUM_GAP_LENGTHS, AUTO_FLOW, GAP_UNITS, GRID_AUTO_ROWS_KEYWORDS, GRID_UNITS } from '../app.types'
 import { CompositeFieldDropdownConfiguration } from '../appgrid-value-field'
 import { FieldControlConfig, ListControlConfig } from '../app-grid-control.interface'
+import { GRID_FORM_START_WITH } from '../appgrid-generator'
 
 @Component({
     selector: 'app-grid-form',
@@ -58,6 +59,7 @@ export class AppgridFormComponent implements OnInit, OnDestroy {
         this.gridAutoRowsFieldConfig = {
             controlName: 'gridAutoRowsField',
             placeholder: 'Grid Auto Rows Field',
+            min: GRID_FORM_START_WITH.gridAutoRowsField,
         }
 
         this.gridAutoRowsUnitConfig = {

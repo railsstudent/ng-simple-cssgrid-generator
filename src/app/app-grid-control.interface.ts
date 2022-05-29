@@ -7,4 +7,5 @@ export interface ListControlConfig<T extends string> {
 export interface FieldControlConfig {
     controlName: string
     placeholder: string
+    min?: number | string
 }

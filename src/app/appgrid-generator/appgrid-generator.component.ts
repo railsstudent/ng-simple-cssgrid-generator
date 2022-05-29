@@ -82,7 +82,8 @@ export class AppGridGeneratorComponent implements OnInit, OnDestroy {
                 } = values
                 const rowGap = `${gap}${gapUnit}`
                 const columnGap = `${gapCol}${gapColUnit}`
-                const gridAutoRows = gridAutoRowsKeyword !== '' ? gridAutoRowsKeyword : `${gridAutoRowsField}${gridAutoRowsUnit}`
+                const gridAutoRows =
+                    gridAutoRowsKeyword !== '' ? gridAutoRowsKeyword : `${gridAutoRowsField || ''}${gridAutoRowsUnit || ''}`
                 return {
                     containerHeight: `${heightInPixel}px`,
                     gridAutoFlow,

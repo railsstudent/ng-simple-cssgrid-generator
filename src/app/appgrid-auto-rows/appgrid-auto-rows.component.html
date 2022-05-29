@@ -17,12 +17,13 @@
         </mat-select>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appControlErrorContainer>
         <input
             type="number"
             matInput
             [placeholder]="formFieldControlConfig.placeholder"
             [formControl]="formControl"
+            [min]="formFieldControlConfig.min ?? null"
             [appDisableControl]="fields.isKeywordSelected ?? true"
         />
     </mat-form-field>
