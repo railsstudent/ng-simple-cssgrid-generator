@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core'
 import { AbstractControl, FormGroup, FormGroupDirective } from '@angular/forms'
-import { Observable, Subject } from 'rxjs'
+import { Subject } from 'rxjs'
 import { map, startWith, takeUntil } from 'rxjs/operators'
 import { GAP_UNITS, GRID_UNITS } from '../app.types'
 import { CompositeFieldDropdownConfiguration } from '../appgrid-value-field'
@@ -20,8 +20,6 @@ export class AppTemplateFormComponent implements OnInit, OnDestroy {
 
     units = GRID_UNITS
     unitsWithoutFlex = GAP_UNITS
-
-    minUnits$: Observable<any>
 
     form: FormGroup
     minWidthConfiguration: CompositeFieldDropdownConfiguration
