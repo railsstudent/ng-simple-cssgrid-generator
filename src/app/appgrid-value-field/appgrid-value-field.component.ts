@@ -13,6 +13,7 @@ import { CompositeFieldDropdownConfiguration } from './appgrid-value-field.inter
                     [placeholder]="fieldConfiguration.placeholder"
                     [formControl]="formControl"
                     [min]="fieldConfiguration.min ?? null"
+                    [max]="fieldConfiguration.max ?? null"
                 />
             </mat-form-field>
             <mat-form-field>

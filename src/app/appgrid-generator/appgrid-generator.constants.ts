@@ -33,7 +33,7 @@ const GRID_CONTROL_NAMES: FormGroupConfiguration = {
     gap: {
         initialValue: GRID_FORM_START_WITH.gap,
         updateOn: 'blur',
-        validators: Validators.min(0),
+        validators: [Validators.min(0), Validators.max(30)],
     },
     gapUnit: {
         initialValue: GRID_FORM_START_WITH.gapUnit,
@@ -41,7 +41,7 @@ const GRID_CONTROL_NAMES: FormGroupConfiguration = {
     gapCol: {
         initialValue: GRID_FORM_START_WITH.gapCol,
         updateOn: 'blur',
-        validators: Validators.min(0),
+        validators: [Validators.min(0), Validators.max(30)],
     },
     gapColUnit: {
         initialValue: GRID_FORM_START_WITH.gapColUnit,

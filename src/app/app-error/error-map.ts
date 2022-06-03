@@ -1,9 +1,10 @@
 import { InjectionToken } from '@angular/core'
-import { MinError } from './interfaces'
+import { MinError, MaxError } from './interfaces'
 
 export const defaultErrors = {
     required: () => `This field is required`,
     min: ({ actual, min }: MinError) => `Min ${min} but got ${actual}`,
+    max: ({ actual, max }: MaxError) => `Min ${max} but got ${actual}`,
 }
 
 export const FORM_ERRORS = new InjectionToken('FORM_ERRORS', {
