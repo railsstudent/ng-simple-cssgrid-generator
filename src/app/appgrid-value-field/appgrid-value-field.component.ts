@@ -40,6 +40,21 @@ import { CompositeFieldDropdownConfiguration } from './appgrid-value-field.inter
 })
 export class AppGridValueFieldComponent implements OnInit {
     @Input()
+    controlName: string
+
+    @Input()
+    unitControlName: string
+
+    @Input()
+    placeholder: string
+
+    @Input()
+    unitPlaceholder: string
+
+    @Input()
+    unitList: string[]
+
+    @Input()
     formGroup: FormGroup
 
     @Input()
@@ -47,6 +62,7 @@ export class AppGridValueFieldComponent implements OnInit {
 
     formControl: FormControl
     unitFormControl: FormControl
+    min: string | number | null
 
     ngOnInit() {
         const { controlName, unitControlName } = this.fieldConfiguration

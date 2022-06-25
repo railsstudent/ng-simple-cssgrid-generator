@@ -70,7 +70,7 @@ export class AppgridFormComponent implements OnInit, OnDestroy {
 
         this.gapConfiguration = {
             controlName: 'gap',
-            placeholder: 'Grid Gap',
+            placeholder: 'Grid gap',
             type: 'number',
             min: 0,
             max: 20,
@@ -81,7 +81,7 @@ export class AppgridFormComponent implements OnInit, OnDestroy {
 
         this.gapColConfiguration = {
             controlName: 'gapCol',
-            placeholder: 'Grid Column Gap',
+            placeholder: 'Grid column gap',
             type: 'number',
             min: 0,
             max: 20,
