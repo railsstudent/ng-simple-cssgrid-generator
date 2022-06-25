@@ -8,10 +8,10 @@ import { CompositeFieldDropdownConfiguration } from './appgrid-value-field.inter
         <ng-container [formGroup]="formGroup">
             <mat-form-field appControlErrorContainer>
                 <input
-                    [type]="fieldConfiguration.type || 'number'"
                     matInput
-                    [placeholder]="fieldConfiguration.placeholder"
                     [formControl]="formControl"
+                    [type]="fieldConfiguration.type || 'number'"
+                    [placeholder]="fieldConfiguration.placeholder"
                     [min]="fieldConfiguration.min ?? null"
                     [max]="fieldConfiguration.max ?? null"
                 />
