@@ -7,4 +7,5 @@ export interface CompositeFieldDropdownConfiguration {
     unitControlName: string
     unitPlaceholder: string
     list: { value: string; text: string }[]
+    required?: boolean
 }

@@ -39,6 +39,7 @@ export class AppTemplateFormComponent implements OnInit, OnDestroy {
             unitControlName: 'minUnit',
             unitPlaceholder: 'Unit',
             list: [],
+            required: true,
         }
 
         this.maxWidthConfiguration = {
@@ -49,6 +50,7 @@ export class AppTemplateFormComponent implements OnInit, OnDestroy {
             unitControlName: 'maxUnit',
             unitPlaceholder: 'Unit',
             list: this.units.map((unit) => ({ text: unit, value: unit })),
+            required: true,
         }
 
         this.repeat.valueChanges.subscribe((repeat) => {

@@ -77,6 +77,7 @@ export class AppgridFormComponent implements OnInit, OnDestroy {
             unitControlName: 'gapUnit',
             unitPlaceholder: 'Gap Unit',
             list: this.gapUnits.map((unit) => ({ text: unit, value: unit })),
+            required: true,
         }
 
         this.gapColConfiguration = {
@@ -88,6 +89,7 @@ export class AppgridFormComponent implements OnInit, OnDestroy {
             unitControlName: 'gapColUnit',
             unitPlaceholder: 'Gap Column Unit',
             list: this.gapColUnits.map((unit) => ({ text: unit, value: unit })),
+            required: true,
         }
 
         this.numGapLengths.valueChanges
