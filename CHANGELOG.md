@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/railsstudent/ng-simple-cssgrid-generator/compare/0.0.5...0.0.6) (2022-06-26)
+
+
+### Features
+
+* add max validation ([bb96f1d](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/bb96f1d2edb192ecbd3949f310063aedc86cc9ae))
+* add required attribute ([d25eb8e](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/d25eb8e1fab6f59eadd272b5c81aa6b37c41cb1c))
+* max validation in appGridFormComponent ([bcdf62e](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/bcdf62e911aaac959753a7dcef2ae217fb741885))
+
+
+### Bug fixes
+
+* delete unused inputs ([ee4cd85](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/ee4cd853f49402dd3351672970be8a9eaa9e8fb9))
+
+
+### Refactor
+
+* delete unused inputs ([f8c7181](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/f8c71810010eca2c49a82f5980fdc1a91532febf))
+* deleteu nused inputs ([af97f2f](https://github.com/railsstudent/ng-simple-cssgrid-generator/commit/af97f2f4775d99c4ffeced9e83feadb2f89a2629))
+
 ### [0.0.5](https://github.com/railsstudent/ng-simple-cssgrid-generator/compare/0.0.4...0.0.5) (2022-05-29)
 
 
